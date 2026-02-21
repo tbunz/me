@@ -3,5 +3,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/content'],
-  css: ['~/assets/css/reset.css']
+  css: ['~/assets/css/reset.css'],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "~/assets/scss/_palette" as *;'
+        }
+      }
+    }
+  }
 })
