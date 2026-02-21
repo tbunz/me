@@ -85,7 +85,6 @@
   padding: 60px 40px;
   background: $bg-base;
   color: $text-primary;
-  font-family: system-ui, -apple-system, sans-serif;
 }
 
 h1 {

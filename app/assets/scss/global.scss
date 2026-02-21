@@ -1,0 +1,14 @@
+// ──────────────────────────────────
+// Global Typography Rules
+// ──────────────────────────────────
+// Variables and mixins provided via additionalData (_index.scss)
+
+body {
+  font-family: $font-sans;
+  @include type-body;
+  color: $text-primary;
+}
+
+h1 { @include type-h1; }
+h2 { @include type-h2; }
+h3 { @include type-h3; }
