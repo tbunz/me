@@ -75,6 +75,32 @@
         </div>
       </div>
     </section>
+
+    <section>
+      <h2>Typography</h2>
+      <div class="type-samples">
+        <div class="type-sample">
+          <span class="type-label">H1 — 48px / 700 / -0.02em</span>
+          <h1 class="sample-h1">Call me Ishmael.</h1>
+        </div>
+        <div class="type-sample">
+          <span class="type-label">H2 — 32px / 700 / -0.01em</span>
+          <h2 class="sample-h2">So we beat on, boats against the current.</h2>
+        </div>
+        <div class="type-sample">
+          <span class="type-label">H3 — 20px / 500</span>
+          <h3 class="sample-h3">All happy families are alike; each unhappy family is unhappy in its own way.</h3>
+        </div>
+        <div class="type-sample">
+          <span class="type-label">Body — 16px / 400 / 1.6 line-height</span>
+          <p class="sample-body">It was a bright cold day in April, and the clocks were striking thirteen.</p>
+        </div>
+        <div class="type-sample">
+          <span class="type-label">Caption — 14px / 400</span>
+          <p class="sample-caption">It was the best of times, it was the worst of times.</p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -139,4 +165,34 @@ section {
   font-family: monospace;
   opacity: 0.7;
 }
+
+.type-samples {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.type-sample {
+  border-bottom: 1px solid $tan-light;
+  padding-bottom: 32px;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.type-label {
+  display: block;
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: $brown-light;
+  margin-bottom: 8px;
+}
+
+.sample-h1 { @include type-h1; color: $text-primary; margin: 0; }
+.sample-h2 { @include type-h2; color: $text-primary; margin: 0; text-transform: none; letter-spacing: $tracking-snug; }
+.sample-h3 { @include type-h3; color: $text-primary; margin: 0; }
+.sample-body { @include type-body; color: $text-primary; margin: 0; }
+.sample-caption { @include type-caption; color: $text-secondary; margin: 0; }
 </style>

@@ -2,8 +2,6 @@
 // Typography System
 // ──────────────────────────────────
 
-@use 'palette' as *;
-
 // Font family
 $font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
 
@@ -57,5 +55,4 @@ $leading-body: 1.6;
 @mixin type-caption {
   font-size: $text-caption;
   font-weight: $weight-regular;
-  color: $text-secondary;
 }
