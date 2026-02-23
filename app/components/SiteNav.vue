@@ -1,13 +1,31 @@
 <template>
   <header class="site-header">
     <nav class="site-nav">
-      <h1 class="site-title">Trevor McKinney</h1>
+      <h1 class="site-title">{{ pageTitle }}</h1>
       <AppLink to="/" class="nav-link" style="width: 45px">Work</AppLink>
       <AppLink to="/about" class="nav-link" style="width: 51px">About</AppLink>
       <AppLink to="/contact" class="nav-link" style="width: 71px">Contact</AppLink>
     </nav>
   </header>
 </template>
+
+<script setup lang="ts">
+const route = useRoute()
+
+const titles: Record<string, string> = {
+  '/': 'Projects',
+  '/about': 'Trevor McKinney',
+  '/contact': 'Connect',
+}
+
+const pageTitle = computed(() => {
+  // Exact match first
+  if (titles[route.path]) return titles[route.path]
+  // Work subpages (TODO: use project title)
+  if (route.path.startsWith('/work/')) return 'TODO'
+  return 'Projects'
+})
+</script>
 
 <style lang="scss" scoped>
 .site-header {
