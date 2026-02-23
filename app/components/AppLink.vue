@@ -48,7 +48,7 @@ defineProps<{
   }
 
   &--in {
-    color: $terracotta;
+    color: $sage;
     transform: translateY(-120%);
     transition: transform 0.4s $ease-in-out;
   }

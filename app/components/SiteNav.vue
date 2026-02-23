@@ -1,9 +1,10 @@
 <template>
   <header class="site-header">
     <nav class="site-nav">
-      <AppLink to="/" class="nav-link">Work</AppLink>
-      <AppLink to="/about" class="nav-link">About</AppLink>
-      <AppLink to="/contact" class="nav-link">Contact</AppLink>
+      <h1 class="site-title">Trevor McKinney</h1>
+      <AppLink to="/" class="nav-link" style="width: 45px">Work</AppLink>
+      <AppLink to="/about" class="nav-link" style="width: 51px">About</AppLink>
+      <AppLink to="/contact" class="nav-link" style="width: 71px">Contact</AppLink>
     </nav>
   </header>
 </template>
@@ -25,7 +26,16 @@
   padding: 8px 16px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 24px;
+}
+
+.site-title {
+  margin: 0;
+  margin-right: auto;
+  @include type-h3;
+  font-weight: $weight-bold;
+  color: $brown-dark;
 }
 
 .nav-link {
@@ -35,8 +45,15 @@
   text-transform: uppercase;
   color: $brown-dark;
 
-  &.router-link-active {
-    color: $text-primary;
+  &.router-link-active :deep(.app-link-text) {
+    font-weight: $weight-bold;
+  }
+
+  &.router-link-active :deep(.app-link-text--out) {
+    color: $sage;
+  }
+
+  &.router-link-active :deep(.app-link-sizer) {
     font-weight: $weight-bold;
   }
 }

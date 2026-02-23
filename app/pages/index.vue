@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1>Projects</h1>
     <div class="tiles">
       <NuxtLink
         v-for="project in projects"
@@ -48,14 +47,13 @@ function onTileLeave(e: MouseEvent) {
 
 <style lang="scss" scoped>
 .home {
-  max-width: 900px;
+  color: $text-secondary;
 }
 
 .tiles {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px;
-  margin-top: 24px;
 }
 
 .tile {
