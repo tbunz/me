@@ -1,31 +1,12 @@
 <template>
   <header class="site-header">
-    <nav ref="navEl" class="site-nav">
-      <NavLink to="/">Work</NavLink>
-      <NavLink to="/about">About</NavLink>
-      <NavLink to="/contact">Contact</NavLink>
+    <nav class="site-nav">
+      <AppLink to="/" class="nav-link">Work</AppLink>
+      <AppLink to="/about" class="nav-link">About</AppLink>
+      <AppLink to="/contact" class="nav-link">Contact</AppLink>
     </nav>
   </header>
 </template>
-
-<script setup lang="ts">
-import gsap from 'gsap'
-
-const navEl = ref<HTMLElement | null>(null)
-
-onMounted(() => {
-  if (!navEl.value) return
-  const links = navEl.value.querySelectorAll('.nav-link')
-
-  gsap.from(links, {
-    opacity: 0,
-    y: -8,
-    duration: 0.4,
-    ease: 'power3.out',
-    stagger: 0.06,
-  })
-})
-</script>
 
 <style lang="scss" scoped>
 .site-header {
@@ -45,5 +26,18 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 24px;
+}
+
+.nav-link {
+  font-size: $text-caption;
+  font-weight: $weight-medium;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $brown-dark;
+
+  &.router-link-active {
+    color: $text-primary;
+    font-weight: $weight-bold;
+  }
 }
 </style>
