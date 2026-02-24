@@ -1,7 +1,11 @@
 <template>
   <header class="site-header">
     <nav class="site-nav">
-      <h1 class="site-title">{{ pageTitle }}</h1>
+      <div class="site-title-wrap">
+        <Transition name="title-flip">
+          <h1 class="site-title" :key="pageTitle">{{ pageTitle }}</h1>
+        </Transition>
+      </div>
       <AppLink to="/" class="nav-link" style="width: 45px">Work</AppLink>
       <AppLink to="/about" class="nav-link" style="width: 51px">About</AppLink>
       <AppLink to="/contact" class="nav-link" style="width: 71px">Contact</AppLink>
@@ -48,12 +52,40 @@ const pageTitle = computed(() => {
   gap: 24px;
 }
 
+.site-title-wrap {
+  position: relative;
+  overflow: hidden;
+  margin-right: auto;
+  padding: 2px 0;
+  mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+}
+
 .site-title {
   margin: 0;
-  margin-right: auto;
-  @include type-h3;
+  white-space: nowrap;
+  @include type-h2;
   font-weight: $weight-bold;
   color: $brown-dark;
+}
+
+.title-flip-leave-active {
+  transition: transform 0.4s $ease-in-out;
+}
+
+.title-flip-leave-to {
+  transform: translateY(120%);
+}
+
+.title-flip-enter-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.4s $ease-in-out;
+  transition-delay: 0.05s;
+}
+
+.title-flip-enter-from {
+  transform: translateY(-120%);
 }
 
 .nav-link {
