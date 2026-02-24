@@ -2,9 +2,8 @@
   <header class="site-header">
     <nav class="site-nav">
       <div class="site-title-wrap">
-        <Transition name="title-flip">
-          <h1 class="site-title" :key="pageTitle">{{ pageTitle }}</h1>
-        </Transition>
+        <span class="site-title site-title--sizer" ref="sizer">{{ initialTitle }}</span>
+        <h1 class="site-title site-title--slot" ref="titleEl">{{ initialTitle }}</h1>
       </div>
       <AppLink to="/" class="nav-link" style="width: 45px">Work</AppLink>
       <AppLink to="/about" class="nav-link" style="width: 51px">About</AppLink>
@@ -14,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import gsap from 'gsap'
+
 const route = useRoute()
 
 const titles: Record<string, string> = {
@@ -23,11 +24,95 @@ const titles: Record<string, string> = {
 }
 
 const pageTitle = computed(() => {
-  // Exact match first
   if (titles[route.path]) return titles[route.path]
-  // Work subpages (TODO: use project title)
   if (route.path.startsWith('/work/')) return 'TODO'
   return 'Projects'
+})
+
+const initialTitle = pageTitle.value ?? 'Projects'
+
+const sizer = ref<HTMLElement | null>(null)
+const titleEl = ref<HTMLElement | null>(null)
+
+let tween: gsap.core.Tween | null = null
+let currentDisplay = initialTitle
+
+const FILLER_WORDS = [
+  'Cimarron Alamo', 'Green A', 'Legume', 'Thuggish Ruggish Bone', 'Pues, fíjate que sí',
+]
+const ROULETTE_DURATION = 2
+
+function buildSequence(current: string, target: string): string[] {
+  const pool = FILLER_WORDS.filter(w => w !== current && w !== target)
+  const shuffled = [...pool].sort(() => Math.random() - 0.5)
+  return [...shuffled, target]
+}
+
+function runRoulette(target: string) {
+  const el = titleEl.value
+  if (!el) return
+
+  if (tween) {
+    tween.kill()
+    tween = null
+    gsap.set(el, { y: '0%' })
+  }
+
+  const sequence = buildSequence(currentDisplay, target)
+  const words = [currentDisplay, ...sequence]
+  const scrollRange = words.length - 1
+
+  // Size container to the widest word in the entire sequence
+  if (sizer.value) {
+    let maxWidth = 0
+    let widestWord = target
+    for (const word of words) {
+      sizer.value.textContent = word
+      const w = sizer.value.offsetWidth
+      if (w > maxWidth) { maxWidth = w; widestWord = word }
+    }
+    sizer.value.textContent = widestWord
+  }
+
+  const proxy = { scroll: 0 }
+  let lastIdx = 0
+
+  tween = gsap.to(proxy, {
+    scroll: scrollRange,
+    duration: ROULETTE_DURATION,
+    ease: 'power2.inOut',
+    onUpdate: () => {
+      const idx = Math.min(Math.round(proxy.scroll), words.length - 1)
+      const offset = proxy.scroll - idx
+      if (idx !== lastIdx) {
+        el.textContent = words[idx]!
+        lastIdx = idx
+      }
+      gsap.set(el, { y: `${offset * 240}%` })
+    },
+    onComplete: () => {
+      currentDisplay = target
+      gsap.set(el, { y: '0%' })
+      if (sizer.value) sizer.value.textContent = target
+      tween = null
+    },
+  })
+}
+
+watch(pageTitle, (newTitle) => {
+  if (!newTitle || newTitle === currentDisplay) return
+  runRoulette(newTitle)
+})
+
+onMounted(() => {
+  if (titleEl.value) gsap.set(titleEl.value, { y: '0%' })
+})
+
+onBeforeUnmount(() => {
+  if (tween) {
+    tween.kill()
+    tween = null
+  }
 })
 </script>
 
@@ -56,8 +141,8 @@ const pageTitle = computed(() => {
   position: relative;
   overflow: hidden;
   margin-right: auto;
-  padding: 2px 0;
-  mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+  padding: 8px 0;
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
 }
 
 .site-title {
@@ -65,27 +150,19 @@ const pageTitle = computed(() => {
   white-space: nowrap;
   @include type-h2;
   font-weight: $weight-bold;
-  color: $brown-dark;
-}
 
-.title-flip-leave-active {
-  transition: transform 0.4s $ease-in-out;
-}
+  &--sizer {
+    display: block;
+    visibility: hidden;
+  }
 
-.title-flip-leave-to {
-  transform: translateY(120%);
-}
-
-.title-flip-enter-active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: transform 0.4s $ease-in-out;
-  transition-delay: 0.05s;
-}
-
-.title-flip-enter-from {
-  transform: translateY(-120%);
+  &--slot {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    color: $brown-dark;
+    will-change: transform;
+  }
 }
 
 .nav-link {
