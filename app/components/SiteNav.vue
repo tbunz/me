@@ -38,9 +38,9 @@ let tween: gsap.core.Tween | null = null
 let currentDisplay = initialTitle
 
 const FILLER_WORDS = [
-  'Cimarron Alamo', 'Green A', 'Legume', 'Thuggish Ruggish Bone', 'Pues, fíjate que sí',
+  'Cimarron Alamo', 'Green A', 'Legume', 'Pues, Fíjate Que Sí', 'T-Bone', 'Mori', 'Yesterday Blues', 'Sweet And Low', 'La Sal', 'Rabbit Ears', 'Tombstone', 'Mt. Diablo', 'Agulhas'
 ]
-const ROULETTE_DURATION = 2
+const ROULETTE_DURATION = 1.5
 
 function buildSequence(current: string, target: string): string[] {
   const pool = FILLER_WORDS.filter(w => w !== current && w !== target)
@@ -88,7 +88,7 @@ function runRoulette(target: string) {
         el.textContent = words[idx]!
         lastIdx = idx
       }
-      gsap.set(el, { y: `${offset * 240}%` })
+      gsap.set(el, { y: `${offset * 180}%` })
     },
     onComplete: () => {
       currentDisplay = target
