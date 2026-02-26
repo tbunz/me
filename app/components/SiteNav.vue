@@ -124,7 +124,7 @@ onBeforeUnmount(() => {
   right: 0;
   z-index: 100;
   background: $bg-base;
-  border-bottom: 1px solid $tan-light;
+  border-bottom: 1px solid $tan;
 }
 
 .site-nav {
