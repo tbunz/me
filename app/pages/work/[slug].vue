@@ -9,7 +9,7 @@
 const route = useRoute()
 
 const { data: project } = await useAsyncData(`project-${route.params.slug}`, () =>
-  queryCollection('content')
+  queryCollection('work')
     .path(`/work/${route.params.slug}`)
     .first()
 )

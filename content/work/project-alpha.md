@@ -1,6 +1,9 @@
 ---
 title: Project Alpha
-description: A sample project.
+tagline: A sample project.
+thumbnails:
+  - /images/work/alpha-1.png
+  - /images/work/alpha-2.png
 ---
 
 # Project Alpha

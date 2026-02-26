@@ -1,6 +1,9 @@
 ---
 title: Project Gamma
-description: Yet another sample project.
+tagline: Yet another sample project.
+thumbnails:
+  - /images/work/gamma-1.png
+  - /images/work/gamma-2.png
 ---
 
 # Project Gamma

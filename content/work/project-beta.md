@@ -1,6 +1,9 @@
 ---
 title: Project Beta
-description: Another sample project.
+tagline: Another sample project.
+thumbnails:
+  - /images/work/beta-1.png
+  - /images/work/beta-2.png
 ---
 
 # Project Beta

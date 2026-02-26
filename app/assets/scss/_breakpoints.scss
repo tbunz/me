@@ -1,0 +1,19 @@
+// ──────────────────────────────────
+// Breakpoints
+// ──────────────────────────────────
+// NOTE: must match the values in app/composables/useBreakpoints.ts
+
+$breakpoint-mobile-max: 899px;
+$breakpoint-desktop-min: 900px;
+
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile-max) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop-min) {
+    @content;
+  }
+}
