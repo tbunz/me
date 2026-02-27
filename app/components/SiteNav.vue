@@ -36,6 +36,7 @@ const titleEl = ref<HTMLElement | null>(null)
 
 let tween: gsap.core.Tween | null = null
 let currentDisplay = initialTitle
+let targetTitle = initialTitle
 
 const FILLER_WORDS = [
   'Cimarron Alamo', 'Green A', 'Legumes', 'Pues, Fíjate Que Sí', 'T-Bone', 'Mori', 'Yesterday Blues', 'Sweet And Low', 'La Sal', 'Rabbit Ears', 'Tombstone', 'Mt. Diablo', 'Agulhas'
@@ -55,8 +56,11 @@ function runRoulette(target: string) {
   if (tween) {
     tween.kill()
     tween = null
+    currentDisplay = el.textContent || currentDisplay
     gsap.set(el, { y: '0%' })
   }
+
+  targetTitle = target
 
   const sequence = buildSequence(currentDisplay, target)
   const words = [currentDisplay, ...sequence]
@@ -100,7 +104,7 @@ function runRoulette(target: string) {
 }
 
 watch(pageTitle, (newTitle) => {
-  if (!newTitle || newTitle === currentDisplay) return
+  if (!newTitle || newTitle === targetTitle) return
   runRoulette(newTitle)
 })
 

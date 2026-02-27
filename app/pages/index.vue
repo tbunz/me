@@ -9,7 +9,7 @@
         @mouseenter="onTileEnter"
         @mouseleave="onTileLeave"
       >
-        <div v-if="project.thumbnails?.length" class="tile-strip">
+        <div v-if="project.thumbnails?.length" class="tile-media">
           <img
             v-for="(src, i) in project.thumbnails"
             :key="i"
@@ -19,7 +19,7 @@
           />
         </div>
         <div class="tile-info">
-          <h2><span>{{ project.title }}</span></h2>
+          <h2>{{ project.title }}</h2>
         </div>
       </NuxtLink>
     </div>
@@ -34,43 +34,72 @@ const { data: projects } = await useAsyncData('projects', () =>
 )
 
 const SCALE = 1.12
+const PAN = 15
+const HOLD = 2
+const FADE = 0.8
+
+const timelines = new Map<HTMLElement, gsap.core.Timeline>()
 
 function onTileEnter(e: MouseEvent) {
   const tile = e.currentTarget as HTMLElement
-  const strip = tile.querySelector('.tile-strip') as HTMLElement
-  if (!strip) return
+  const media = tile.querySelector('.tile-media') as HTMLElement
+  if (!media) return
 
-  gsap.killTweensOf(strip)
+  timelines.get(media)?.kill()
+  timelines.delete(media)
 
-  const count = strip.children.length
-  const tileWidth = tile.offsetWidth
+  const imgs = [...media.querySelectorAll('.tile-thumb')] as HTMLElement[]
+  const count = imgs.length
 
-  // Zoom in
-  gsap.fromTo(strip,
-    { scale: 1, x: 0 },
-    { scale: SCALE, duration: 0.5, ease: 'power2.out' },
-  )
+  gsap.killTweensOf(imgs)
 
-  // Pan through images like a ticker
-  if (count > 1) {
-    const travel = tileWidth * (count - 1)
-    gsap.to(strip, {
-      x: -travel,
-      duration: (count - 1) * 3,
-      ease: 'sine.inOut',
-      repeat: -1,
-      yoyo: true,
-    })
+  // Reset all images
+  imgs.forEach((img, i) => {
+    gsap.set(img, { scale: 1, x: 0, opacity: i === 0 ? 1 : 0 })
+  })
+
+  // Zoom images directly — avoids sub-pixel wobble from scaling a parent container
+  gsap.to(imgs, { scale: SCALE, duration: 0.5, ease: 'power2.out' })
+
+  if (count <= 1) return
+
+  // Crossfade + pan timeline using absolute positions.
+  // Each image gets one continuous linear pan so overlapping
+  // images move at identical speed during crossfades.
+  const tl = gsap.timeline({ repeat: -1 })
+
+  for (let i = 0; i < count; i++) {
+    const img = imgs[i]!
+    const t = i * HOLD
+
+    tl.fromTo(img, { x: 0 }, { x: PAN, duration: HOLD + FADE, ease: 'linear' }, t)
+
+    if (i === 0) {
+      tl.set(img, { opacity: 1 }, 0)
+    } else {
+      tl.fromTo(img, { opacity: 0 }, { opacity: 1, duration: FADE, ease: 'power1.inOut' }, t)
+    }
+
+    tl.to(img, { opacity: 0, duration: FADE, ease: 'power1.inOut' }, t + HOLD)
   }
+
+  timelines.set(media, tl)
 }
 
 function onTileLeave(e: MouseEvent) {
   const tile = e.currentTarget as HTMLElement
-  const strip = tile.querySelector('.tile-strip') as HTMLElement
-  if (!strip) return
+  const media = tile.querySelector('.tile-media') as HTMLElement
+  if (!media) return
 
-  gsap.killTweensOf(strip)
-  gsap.to(strip, { scale: 1, x: 0, duration: 0.4, ease: 'power2.out' })
+  timelines.get(media)?.kill()
+  timelines.delete(media)
+
+  const imgs = [...media.querySelectorAll('.tile-thumb')] as HTMLElement[]
+  gsap.killTweensOf(imgs)
+
+  imgs.forEach((img, i) => {
+    gsap.to(img, { scale: 1, x: 0, opacity: i === 0 ? 1 : 0, duration: 0.4, ease: 'power2.out' })
+  })
 }
 </script>
 
@@ -89,6 +118,7 @@ function onTileLeave(e: MouseEvent) {
 .tile {
   position: relative;
   overflow: hidden;
+  color: $bg-base;
 
   &:hover .tile-info {
     opacity: 0;
@@ -96,15 +126,24 @@ function onTileLeave(e: MouseEvent) {
   }
 }
 
-.tile-strip {
-  display: flex;
-  will-change: transform;
+.tile-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
 }
 
 .tile-thumb {
-  flex: 0 0 100%;
-  height: auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
   object-fit: cover;
+  will-change: transform, opacity;
+
+  &:not(:first-child) {
+    opacity: 0;
+  }
 }
 
 .tile-info {
@@ -116,13 +155,6 @@ function onTileLeave(e: MouseEvent) {
   justify-content: center;
   text-align: center;
   padding: 12px;
-  transition: opacity $duration-normal $ease-out, transform $duration-normal $ease-out;
-
-  h2 span {
-    background: $bg-base;
-    padding: 2px 6px;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-  }
+  transition: opacity $duration-slow $ease-out, transform $duration-slow $ease-out;
 }
 </style>
