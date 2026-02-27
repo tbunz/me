@@ -34,19 +34,19 @@ const { data: projects } = await useAsyncData('projects', () =>
 )
 
 const SCALE = 1.12
-const PAN = 15
-const HOLD = 2
-const FADE = 0.8
+const PAN = 3 // xPercent — GPU-composited, no sub-pixel jitter
+const HOLD = 1.4
+const FADE = 0.6
 
-const timelines = new Map<HTMLElement, gsap.core.Timeline>()
+const cleanups = new Map<HTMLElement, () => void>()
 
 function onTileEnter(e: MouseEvent) {
   const tile = e.currentTarget as HTMLElement
   const media = tile.querySelector('.tile-media') as HTMLElement
   if (!media) return
 
-  timelines.get(media)?.kill()
-  timelines.delete(media)
+  cleanups.get(media)?.()
+  cleanups.delete(media)
 
   const imgs = [...media.querySelectorAll('.tile-thumb')] as HTMLElement[]
   const count = imgs.length
@@ -55,35 +55,41 @@ function onTileEnter(e: MouseEvent) {
 
   // Reset all images
   imgs.forEach((img, i) => {
-    gsap.set(img, { scale: 1, x: 0, opacity: i === 0 ? 1 : 0 })
+    gsap.set(img, { scale: 1, xPercent: 0, opacity: i === 0 ? 1 : 0 })
   })
 
   // Zoom images directly — avoids sub-pixel wobble from scaling a parent container
-  gsap.to(imgs, { scale: SCALE, duration: 0.5, ease: 'power2.out' })
+  gsap.to(imgs, { scale: SCALE, duration: 0.5, ease: 'power2.out', force3D: true })
 
   if (count <= 1) return
 
-  // Crossfade + pan timeline using absolute positions.
-  // Each image gets one continuous linear pan so overlapping
-  // images move at identical speed during crossfades.
-  const tl = gsap.timeline({ repeat: -1 })
+  // Callback-driven slideshow: each crossfade is individually scheduled,
+  // so the last→first wrap is just another smooth crossfade — no timeline
+  // repeat boundary to pop or snap positions.
+  let active = 0
+  let scheduled: gsap.core.Tween | null = null
+  let stopped = false
 
-  for (let i = 0; i < count; i++) {
-    const img = imgs[i]!
-    const t = i * HOLD
+  function next() {
+    if (stopped) return
+    const from = imgs[active]!
+    active = (active + 1) % count
+    const to = imgs[active]!
 
-    tl.fromTo(img, { x: 0 }, { x: PAN, duration: HOLD + FADE, ease: 'linear' }, t)
-
-    if (i === 0) {
-      tl.set(img, { opacity: 1 }, 0)
-    } else {
-      tl.fromTo(img, { opacity: 0 }, { opacity: 1, duration: FADE, ease: 'power1.inOut' }, t)
-    }
-
-    tl.to(img, { opacity: 0, duration: FADE, ease: 'power1.inOut' }, t + HOLD)
+    gsap.to(from, { opacity: 0, duration: FADE, ease: 'power1.inOut' })
+    gsap.fromTo(to, { opacity: 0 }, { opacity: 1, duration: FADE, ease: 'power1.inOut' })
+    gsap.fromTo(to, { xPercent: 0 }, { xPercent: PAN, duration: HOLD + FADE, ease: 'none', force3D: true })
+    scheduled = gsap.delayedCall(HOLD, next)
   }
 
-  timelines.set(media, tl)
+  gsap.to(imgs[0]!, { xPercent: PAN, duration: HOLD + FADE, ease: 'none', force3D: true })
+  scheduled = gsap.delayedCall(HOLD, next)
+
+  cleanups.set(media, () => {
+    stopped = true
+    scheduled?.kill()
+    gsap.killTweensOf(imgs)
+  })
 }
 
 function onTileLeave(e: MouseEvent) {
@@ -91,14 +97,13 @@ function onTileLeave(e: MouseEvent) {
   const media = tile.querySelector('.tile-media') as HTMLElement
   if (!media) return
 
-  timelines.get(media)?.kill()
-  timelines.delete(media)
+  cleanups.get(media)?.()
+  cleanups.delete(media)
 
   const imgs = [...media.querySelectorAll('.tile-thumb')] as HTMLElement[]
-  gsap.killTweensOf(imgs)
 
   imgs.forEach((img, i) => {
-    gsap.to(img, { scale: 1, x: 0, opacity: i === 0 ? 1 : 0, duration: 0.4, ease: 'power2.out' })
+    gsap.to(img, { scale: 1, xPercent: 0, opacity: i === 0 ? 1 : 0, duration: 0.4, ease: 'power2.out' })
   })
 }
 </script>
@@ -111,8 +116,12 @@ function onTileLeave(e: MouseEvent) {
 
 .tiles {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 16px;
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .tile {

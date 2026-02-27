@@ -3,8 +3,8 @@
 // ──────────────────────────────────
 // NOTE: must match the values in app/composables/useBreakpoints.ts
 
-$breakpoint-mobile-max: 899px;
-$breakpoint-desktop-min: 900px;
+$breakpoint-mobile-max: 999px;
+$breakpoint-desktop-min: 1000px;
 
 @mixin mobile {
   @media (max-width: $breakpoint-mobile-max) {

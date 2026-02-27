@@ -1,6 +1,6 @@
 // NOTE: must match the values in app/assets/scss/_breakpoints.scss
 
-const MOBILE_MAX = 899
+const MOBILE_MAX = 999
 
 export function useBreakpoints() {
   const isMobile = useMediaQuery(`(max-width: ${MOBILE_MAX}px)`)
