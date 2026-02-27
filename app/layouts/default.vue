@@ -1,7 +1,7 @@
 <template>
   <div class="site" :style="{ '--nav-height': `${navHeight}px` }">
     <SiteNav ref="navRef" />
-    <main>
+    <main :class="{ 'is-blurred': navRef?.menuOpen }">
       <slot />
     </main>
     <Transition name="cover">
@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-const navRef = ref<{ $el: HTMLElement } | null>(null)
+const navRef = ref<{ $el: HTMLElement; menuOpen: boolean } | null>(null)
 const navHeight = ref(0)
 const ready = ref(false)
 
@@ -45,6 +45,12 @@ main {
   max-width: 1600px;
   margin: 0 auto;
   padding: calc(var(--nav-height, 0px) + 16px) 16px 0;
+  transition: filter $duration-normal $ease-out;
+
+  &.is-blurred {
+    filter: blur(4px);
+    pointer-events: none;
+  }
 }
 
 .page-cover {

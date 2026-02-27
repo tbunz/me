@@ -10,17 +10,25 @@
         <AppLink to="/about" class="nav-link" style="width: 51px">About</AppLink>
         <AppLink to="/contact" class="nav-link" style="width: 71px">Contact</AppLink>
       </template>
-      <button v-else class="hamburger" :class="{ 'is-open': menuOpen }" @click="menuOpen = !menuOpen" aria-label="Menu">
-        <span class="hamburger-line" />
-        <span class="hamburger-line" />
-        <span class="hamburger-line" />
+      <button v-else class="hamburger-btn" @click="toggleMenu" aria-label="Menu">
+        <span class="hamburger-roulette">
+          <svg class="hamburger-roulette__sizer" viewBox="0 0 20 20" width="20" height="20" />
+          <svg
+            ref="hamburgerSlotEl"
+            class="hamburger-roulette__slot"
+            viewBox="0 0 20 20"
+            width="20"
+            height="20"
+            v-html="currentIconSvg"
+          />
+        </span>
       </button>
     </nav>
-    <Transition name="menu">
-      <div v-if="isMobile && menuOpen" class="mobile-menu">
-        <AppLink to="/" class="mobile-menu-link" @click="menuOpen = false">Work</AppLink>
-        <AppLink to="/about" class="mobile-menu-link" @click="menuOpen = false">About</AppLink>
-        <AppLink to="/contact" class="mobile-menu-link" @click="menuOpen = false">Contact</AppLink>
+    <Transition v-if="isMobile" name="menu">
+      <div v-show="menuOpen" class="mobile-menu">
+        <AppLink to="/" class="mobile-menu-link" @click="closeMenu">Work</AppLink>
+        <AppLink to="/about" class="mobile-menu-link" @click="closeMenu">About</AppLink>
+        <AppLink to="/contact" class="mobile-menu-link" @click="closeMenu">Contact</AppLink>
       </div>
     </Transition>
   </header>
@@ -28,13 +36,92 @@
 
 <script setup lang="ts">
 import gsap from 'gsap'
+import { HAMBURGER_SVG, CLOSE_SVG, FILLER_ICONS } from '~/assets/svg/hamburger-icons'
 
 const { isMobile, isDesktop } = useBreakpoints()
 const route = useRoute()
 const menuOpen = ref(false)
 
-watch(isDesktop, (v) => { if (v) menuOpen.value = false })
-watch(() => route.path, () => { menuOpen.value = false })
+const HAMBURGER_ROULETTE_DURATION = 1.3
+
+const hamburgerSlotEl = ref<SVGElement | null>(null)
+const currentIconSvg = ref(HAMBURGER_SVG)
+let hamburgerTween: gsap.core.Tween | null = null
+let currentHamburgerIcon = HAMBURGER_SVG
+
+function buildIconSequence(current: string, target: string): string[] {
+  const pool = FILLER_ICONS.filter(svg => svg !== current && svg !== target)
+  const shuffled = [...pool].sort(() => Math.random() - 0.5)
+  const count = 8 + Math.floor(Math.random() * 3)
+  return [...shuffled.slice(0, count), target]
+}
+
+function runHamburgerRoulette(target: string) {
+  const el = hamburgerSlotEl.value
+  if (!el) return
+
+  if (hamburgerTween) {
+    hamburgerTween.kill()
+    hamburgerTween = null
+    currentHamburgerIcon = currentIconSvg.value
+    gsap.set(el, { y: '0%' })
+  }
+
+  const sequence = buildIconSequence(currentHamburgerIcon, target)
+  const icons = [currentHamburgerIcon, ...sequence]
+  const scrollRange = icons.length - 1
+
+  const proxy = { scroll: 0 }
+  let lastIdx = 0
+
+  hamburgerTween = gsap.to(proxy, {
+    scroll: scrollRange,
+    duration: HAMBURGER_ROULETTE_DURATION,
+    ease: 'power2.inOut',
+    onUpdate: () => {
+      const idx = Math.min(Math.round(proxy.scroll), icons.length - 1)
+      const offset = proxy.scroll - idx
+      if (idx !== lastIdx) {
+        currentIconSvg.value = icons[idx]!
+        lastIdx = idx
+      }
+      gsap.set(el, { y: `${offset * 180}%` })
+    },
+    onComplete: () => {
+      currentHamburgerIcon = target
+      currentIconSvg.value = target
+      gsap.set(el, { y: '0%' })
+      hamburgerTween = null
+    },
+  })
+}
+
+function toggleMenu() {
+  menuOpen.value = !menuOpen.value
+  const target = menuOpen.value ? CLOSE_SVG : HAMBURGER_SVG
+  runHamburgerRoulette(target)
+}
+
+function closeMenu() {
+  if (!menuOpen.value) return
+  menuOpen.value = false
+  runHamburgerRoulette(HAMBURGER_SVG)
+}
+
+watch(isDesktop, (v) => {
+  if (v) {
+    menuOpen.value = false
+    currentIconSvg.value = HAMBURGER_SVG
+    currentHamburgerIcon = HAMBURGER_SVG
+    if (hamburgerTween) { hamburgerTween.kill(); hamburgerTween = null }
+  }
+})
+watch(() => route.path, () => {
+  menuOpen.value = false
+  if (currentHamburgerIcon !== HAMBURGER_SVG || hamburgerTween) {
+    runHamburgerRoulette(HAMBURGER_SVG)
+  }
+})
 
 const titles: Record<string, string> = {
   '/': 'Projects',
@@ -132,11 +219,11 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  if (tween) {
-    tween.kill()
-    tween = null
-  }
+  if (tween) { tween.kill(); tween = null }
+  if (hamburgerTween) { hamburgerTween.kill(); hamburgerTween = null }
 })
+
+defineExpose({ menuOpen })
 </script>
 
 <style lang="scss" scoped>
@@ -208,40 +295,44 @@ onBeforeUnmount(() => {
   }
 }
 
-// ── Hamburger button ──
-.hamburger {
+// ── Hamburger roulette button ──
+.hamburger-btn {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 5px;
   width: 32px;
   height: 32px;
   padding: 0;
   border: none;
   background: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.hamburger-line {
-  display: block;
+.hamburger-roulette {
+  position: relative;
   width: 20px;
-  height: 2px;
-  background: $brown-dark;
-  border-radius: 1px;
-  transition: transform $duration-normal $ease-out, opacity $duration-normal $ease-out;
-  transform-origin: center;
+  height: 20px;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
 }
 
-.hamburger.is-open {
-  .hamburger-line:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .hamburger-line:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger-line:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
+.hamburger-roulette__sizer {
+  display: block;
+  visibility: hidden;
+}
+
+.hamburger-roulette__slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $brown-dark;
+  will-change: transform;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 // ── Mobile menu dropdown ──
@@ -279,14 +370,16 @@ onBeforeUnmount(() => {
 }
 
 // ── Menu transition ──
-.menu-enter-active,
+.menu-enter-active {
+  transition: opacity $duration-slow $ease-out;
+}
+
 .menu-leave-active {
-  transition: opacity $duration-normal $ease-out, transform $duration-normal $ease-out;
+  transition: opacity $duration-normal $ease-out;
 }
 
 .menu-enter-from,
 .menu-leave-to {
   opacity: 0;
-  transform: translateY(-8px);
 }
 </style>

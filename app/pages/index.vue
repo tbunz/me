@@ -38,9 +38,11 @@ const PAN = 3 // xPercent — GPU-composited, no sub-pixel jitter
 const HOLD = 1.4
 const FADE = 0.6
 
+const { isMobile } = useBreakpoints()
 const cleanups = new Map<HTMLElement, () => void>()
 
 function onTileEnter(e: MouseEvent) {
+  if (isMobile.value) return
   const tile = e.currentTarget as HTMLElement
   const media = tile.querySelector('.tile-media') as HTMLElement
   if (!media) return
@@ -93,6 +95,7 @@ function onTileEnter(e: MouseEvent) {
 }
 
 function onTileLeave(e: MouseEvent) {
+  if (isMobile.value) return
   const tile = e.currentTarget as HTMLElement
   const media = tile.querySelector('.tile-media') as HTMLElement
   if (!media) return
@@ -129,9 +132,11 @@ function onTileLeave(e: MouseEvent) {
   overflow: hidden;
   color: $bg-base;
 
-  &:hover .tile-info {
-    opacity: 0;
-    transform: translateY(8px);
+  @include desktop {
+    &:hover .tile-info {
+      opacity: 0;
+      transform: translateY(8px);
+    }
   }
 }
 

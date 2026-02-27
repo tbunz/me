@@ -23,15 +23,17 @@ defineProps<{
   overflow: hidden;
   mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
 
-  &:hover .app-link-text--out {
-    transform: translateY(120%);
-    transition: transform 0.4s $ease-in-out;
-  }
+  @include desktop {
+    &:hover .app-link-text--out {
+      transform: translateY(120%);
+      transition: transform 0.4s $ease-in-out;
+    }
 
-  &:hover .app-link-text--in {
-    transform: translateY(0);
-    transition: transform 0.4s $ease-in-out;
-    transition-delay: 0.05s;
+    &:hover .app-link-text--in {
+      transform: translateY(0);
+      transition: transform 0.4s $ease-in-out;
+      transition-delay: 0.05s;
+    }
   }
 }
 
