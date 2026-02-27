@@ -5,17 +5,36 @@
         <span class="site-title site-title--sizer" ref="sizer">{{ initialTitle }}</span>
         <h1 class="site-title site-title--slot" ref="titleEl">{{ initialTitle }}</h1>
       </div>
-      <AppLink to="/" class="nav-link" style="width: 45px">Work</AppLink>
-      <AppLink to="/about" class="nav-link" style="width: 51px">About</AppLink>
-      <AppLink to="/contact" class="nav-link" style="width: 71px">Contact</AppLink>
+      <template v-if="isDesktop">
+        <AppLink to="/" class="nav-link" style="width: 45px">Work</AppLink>
+        <AppLink to="/about" class="nav-link" style="width: 51px">About</AppLink>
+        <AppLink to="/contact" class="nav-link" style="width: 71px">Contact</AppLink>
+      </template>
+      <button v-else class="hamburger" :class="{ 'is-open': menuOpen }" @click="menuOpen = !menuOpen" aria-label="Menu">
+        <span class="hamburger-line" />
+        <span class="hamburger-line" />
+        <span class="hamburger-line" />
+      </button>
     </nav>
+    <Transition name="menu">
+      <div v-if="isMobile && menuOpen" class="mobile-menu">
+        <AppLink to="/" class="mobile-menu-link" @click="menuOpen = false">Work</AppLink>
+        <AppLink to="/about" class="mobile-menu-link" @click="menuOpen = false">About</AppLink>
+        <AppLink to="/contact" class="mobile-menu-link" @click="menuOpen = false">Contact</AppLink>
+      </div>
+    </Transition>
   </header>
 </template>
 
 <script setup lang="ts">
 import gsap from 'gsap'
 
+const { isMobile, isDesktop } = useBreakpoints()
 const route = useRoute()
+const menuOpen = ref(false)
+
+watch(isDesktop, (v) => { if (v) menuOpen.value = false })
+watch(() => route.path, () => { menuOpen.value = false })
 
 const titles: Record<string, string> = {
   '/': 'Projects',
@@ -187,5 +206,87 @@ onBeforeUnmount(() => {
   &.router-link-active :deep(.app-link-sizer) {
     font-weight: $weight-bold;
   }
+}
+
+// ── Hamburger button ──
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: $brown-dark;
+  border-radius: 1px;
+  transition: transform $duration-normal $ease-out, opacity $duration-normal $ease-out;
+  transform-origin: center;
+}
+
+.hamburger.is-open {
+  .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+// ── Mobile menu dropdown ──
+.mobile-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px 16px;
+  background: $bg-base;
+  margin-top: -1px;
+  border-bottom: 1px solid $tan;
+}
+
+.mobile-menu-link {
+  padding: 6px 0;
+  font-size: $text-body;
+  font-weight: $weight-medium;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $brown-dark;
+
+  &.router-link-active :deep(.app-link-text) {
+    font-weight: $weight-bold;
+  }
+
+  &.router-link-active :deep(.app-link-text--out) {
+    color: $sage;
+  }
+
+  &.router-link-active :deep(.app-link-sizer) {
+    font-weight: $weight-bold;
+  }
+}
+
+// ── Menu transition ──
+.menu-enter-active,
+.menu-leave-active {
+  transition: opacity $duration-normal $ease-out, transform $duration-normal $ease-out;
+}
+
+.menu-enter-from,
+.menu-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 </style>
