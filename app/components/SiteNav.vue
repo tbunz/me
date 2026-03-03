@@ -223,7 +223,7 @@ onBeforeUnmount(() => {
   if (hamburgerTween) { hamburgerTween.kill(); hamburgerTween = null }
 })
 
-defineExpose({ menuOpen })
+defineExpose({ menuOpen, closeMenu })
 </script>
 
 <style lang="scss" scoped>

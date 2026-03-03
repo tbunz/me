@@ -1,6 +1,7 @@
 <template>
   <div class="site" :style="{ '--nav-height': `${navHeight}px` }">
     <SiteNav ref="navRef" />
+    <div v-if="navRef?.menuOpen" class="menu-backdrop" @click="navRef?.closeMenu()" />
     <main :class="{ 'is-blurred': navRef?.menuOpen }">
       <slot />
     </main>
@@ -11,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-const navRef = ref<{ $el: HTMLElement; menuOpen: boolean } | null>(null)
+const navRef = ref<{ $el: HTMLElement; menuOpen: boolean; closeMenu: () => void } | null>(null)
 const navHeight = ref(0)
 const ready = ref(false)
 
@@ -51,6 +52,15 @@ main {
     filter: blur(4px);
     pointer-events: none;
   }
+}
+
+.menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
 }
 
 .page-cover {
