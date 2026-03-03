@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/content', '@nuxt/fonts'],
+  router: {
+    options: {
+      scrollBehavior: () => ({ top: 0, behavior: 'instant' }),
+    },
+  },
   fonts: {
     families: [
       {

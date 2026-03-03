@@ -124,7 +124,7 @@ watch(() => route.path, () => {
 })
 
 const titles: Record<string, string> = {
-  '/': 'Projects',
+  '/': 'Portfolio',
   '/about': 'Trevor McKinney',
   '/contact': 'Connect',
 }

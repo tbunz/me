@@ -1,5 +1,5 @@
 <template>
-  <div class="project">
+  <div class="project page-narrow">
     <ContentRenderer v-if="project" :value="project" />
     <p v-else>Project not found.</p>
   </div>
@@ -20,9 +20,4 @@ if (!project.value) {
 </script>
 
 <style lang="scss" scoped>
-.project {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 40px 24px;
-}
 </style>

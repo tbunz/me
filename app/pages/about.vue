@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about page-narrow">
     <ContentRenderer v-if="about" :value="about" />
   </div>
 </template>
@@ -11,9 +11,4 @@ const { data: about } = await useAsyncData('about', () =>
 </script>
 
 <style lang="scss" scoped>
-.about {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 40px 24px;
-}
 </style>

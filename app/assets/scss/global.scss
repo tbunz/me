@@ -13,3 +13,13 @@ body {
 h1 { @include type-h1; }
 h2 { @include type-h2; }
 h3 { @include type-h3; }
+
+// ──────────────────────────────────
+// Layout Utilities
+// ──────────────────────────────────
+
+.page-narrow {
+  width: 50vw;
+  max-width: 900px;
+  margin: 0 auto;
+}
