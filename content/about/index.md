@@ -5,6 +5,10 @@ description: A short introduction.
 
 # About Me
 
-This is the about page. It is written in markdown and managed by @nuxt/content.
+Write a paragraph about yourself here — who you are, what you do, and what drives you.
 
-Replace this with your real bio.
+## Skills
+
+- Skill one
+- Skill two
+- Skill three

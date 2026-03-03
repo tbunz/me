@@ -1,9 +1,14 @@
 <template>
   <div class="contact page-narrow">
-    <h1>Contact</h1>
-    <p>Get in touch. This page is a placeholder.</p>
+    <ContentRenderer v-if="contact" :value="contact" />
   </div>
 </template>
+
+<script setup lang="ts">
+const { data: contact } = await useAsyncData('contact', () =>
+  queryCollection('content').path('/contact').first()
+)
+</script>
 
 <style lang="scss" scoped>
 </style>

@@ -7,7 +7,10 @@ export default defineNuxtPlugin(() => {
     return { provide: { lenis: null as Lenis | null } }
   }
 
-  const lenis = new Lenis()
+  const lenis = new Lenis({
+    duration: 1.4,
+    wheelMultiplier: 0.9,
+  })
 
   // Drive Lenis through GSAP's ticker so scroll and animations share the same frame loop
   gsap.ticker.add((time: number) => {
