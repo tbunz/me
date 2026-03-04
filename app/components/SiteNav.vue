@@ -145,7 +145,7 @@ let currentDisplay = initialTitle
 let targetTitle = initialTitle
 
 const FILLER_WORDS = [
-  'Cimarron Alamo', 'Green A', 'Legumes', 'Pues, Fíjate Que Sí', 'T-Bone', 'Mori', 'Yesterday Blues', 'Sweet And Low', 'La Sal', 'Rabbit Ears', 'Tombstone', 'Mt. Diablo', 'Agulhas'
+  'Cimarron Alamo', 'Green A', 'Legumes', 'Me importas tu, y tu, y tu', 'T-Bone', 'Mori', 'Yesterday Blues', 'Sweet And Low', 'La Sal', 'Rabbit Ears', 'Tombstone', 'Mt. Diablo', 'Agulhas'
 ]
 const ROULETTE_DURATION = 1.5
 

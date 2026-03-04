@@ -22,4 +22,25 @@ h3 { @include type-h3; }
   width: 50vw;
   max-width: 900px;
   margin: 0 auto;
+  padding-bottom: 128px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    h2 { margin-top: 1rem; }
+
+    ul, ol {
+      padding-left: 1.25rem;
+      li { margin-bottom: 0.35rem; }
+    }
+
+    a {
+      color: $text-primary;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+      &:hover { opacity: 0.7; }
+    }
+  }
 }
