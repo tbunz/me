@@ -3,7 +3,7 @@ title: About Me
 description: A short introduction.
 ---
 
-# Begin Again
+## Begin Again
 
 University of Michigan, then the Bay Area, then a few years of seasonal work in Utah's mountains and deserts. Now I'm back to software, mostly building for the web. 
 

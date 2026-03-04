@@ -39,6 +39,7 @@ import gsap from 'gsap'
 import { HAMBURGER_SVG, CLOSE_SVG, FILLER_ICONS } from '~/assets/svg/hamburger-icons'
 
 const { isMobile, isDesktop } = useBreakpoints()
+const { stop: lenisStop, start: lenisStart } = useLenis()
 const route = useRoute()
 const menuOpen = ref(false)
 
@@ -107,6 +108,11 @@ function closeMenu() {
   menuOpen.value = false
   runHamburgerRoulette(HAMBURGER_SVG)
 }
+
+watch(menuOpen, (open) => {
+  if (open) lenisStop()
+  else lenisStart()
+})
 
 watch(isDesktop, (v) => {
   if (v) {
@@ -250,7 +256,8 @@ defineExpose({ menuOpen, closeMenu })
 .site-title-wrap {
   position: relative;
   overflow: hidden;
-  margin-right: auto;
+  flex: 1;
+  min-width: 0;
   padding: 8px 0;
   mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
 }
