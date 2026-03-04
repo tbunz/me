@@ -46,6 +46,7 @@ main {
   max-width: 1600px;
   margin: 0 auto;
   padding: calc(var(--nav-height, 0px) + 16px) 16px 0;
+  overflow-x: clip;
   transition: filter $duration-normal $ease-out;
 
   &.is-blurred {

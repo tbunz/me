@@ -1,5 +1,5 @@
 <template>
-  <div class="project page-narrow">
+  <div class="project">
     <ContentRenderer v-if="project" :value="project" />
     <p v-else>Project not found.</p>
   </div>
@@ -20,4 +20,7 @@ if (!project.value) {
 </script>
 
 <style lang="scss" scoped>
+.project :deep(.hero-image:first-child) {
+  margin-top: calc(-1 * (var(--nav-height, 0px) + 16px));
+}
 </style>
