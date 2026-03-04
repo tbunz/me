@@ -28,8 +28,8 @@ defineProps<{
 
 <style lang="scss">
 .hero-image {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: min(100vw, 1568px);
+  margin-left: calc(-1 * min(50vw, 784px) + 50%);
   height: 100dvh;
   position: relative;
   overflow: hidden;

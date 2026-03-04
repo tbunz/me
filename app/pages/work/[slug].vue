@@ -20,7 +20,12 @@ if (!project.value) {
 </script>
 
 <style lang="scss" scoped>
-.project :deep(.hero-image:first-child) {
-  margin-top: calc(-1 * (var(--nav-height, 0px) + 16px));
+.project {
+  padding-bottom: 128px;
+}
+
+.project :deep(.hero-image) {
+  height: calc(100dvh - var(--nav-height, 0px));
+  margin-top: -16px;
 }
 </style>
