@@ -3,19 +3,21 @@ title: About Me
 description: A short introduction.
 ---
 
-## Begin Again
+## Begin Again...
 
-University of Michigan, then the Bay Area, then a few years of seasonal work in Utah's mountains and deserts. Now I'm back to software, mostly building for the web. 
+<div id="modus">Broad technical background, with one focus right now — helping teams ambitiously integrate AI.</div>
+
+University of Michigan, Cisco in the Bay Area, a few years in Utah's mountains and deserts. Back now, building across the full stack — e-commerce, animated web experiences, and increasingly, AI.
 
 ## Experience
 
-**Software Developer** — Studio Freight<br>Aug 2025 – Present
+**Software Developer** — <a href="https://studiofreight.com/" target="_blank">Studio Freight</a><br>Building custom, richly animated web experiences across e-commerce, events, and marketing.<br>Aug 2025 – Present
 
-**Full Stack Engineer** — Sapa Investment Group<br>Jun 2024 – Aug 2025
+**Full Stack Engineer** — <a href="https://www.sapainvestment.com/" target="_blank">Sapa Investment Group</a><br>Full-stack work on a medical e-commerce platform serving 30K users; led a redesign that boosted conversion by 20%.<br>Jun 2024 – Aug 2025
 
-**Career Break** — Seasonal work<br>Jun 2021 – May 2024
+**Career Break** — Seasonal work<br>Botany fieldwork and forklift operation.<br>Jun 2021 – May 2024
 
-**Software Engineer** — Cisco<br>Jul 2020 – May 2021
+**Software Engineer** — <a href="https://www.cisco.com/" target="_blank">Cisco</a><br>Test automation for enterprise networking products in Python.<br>Jul 2020 – May 2021
 
 ## Education
 
