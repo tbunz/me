@@ -34,22 +34,22 @@ defineProps<{
     font-weight: $weight-regular;
     line-height: 1.5;
     color: $text-secondary;
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   &--body {
     @include type-body;
     color: $text-primary;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   &--caption {
     @include type-caption;
-    color: $text-secondary;
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
+    color: $sage;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   &--left { text-align: left; }
