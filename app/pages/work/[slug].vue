@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 const route = useRoute()
+const { setProjectTitle, clearProjectTitle } = useProjectTitle()
 
 const { data: project } = await useAsyncData(`project-${route.params.slug}`, () =>
   queryCollection('work')
@@ -17,6 +18,12 @@ const { data: project } = await useAsyncData(`project-${route.params.slug}`, () 
 if (!project.value) {
   throw createError({ statusCode: 404, statusMessage: 'Project not found' })
 }
+
+setProjectTitle(project.value.title)
+
+onBeforeUnmount(() => {
+  clearProjectTitle()
+})
 </script>
 
 <style lang="scss" scoped>

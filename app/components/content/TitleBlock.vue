@@ -15,7 +15,14 @@ defineProps<{
 
 <style lang="scss">
 .title-block {
-  padding: 2rem 0 1rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3rem 0 1rem;
+
+  @include mobile {
+    max-width: 100%;
+  }
 
   &--left { text-align: left; }
   &--center { text-align: center; }
@@ -30,7 +37,7 @@ defineProps<{
     @include type-h3;
     font-weight: $weight-regular;
     color: $text-secondary;
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
   }
 }
 </style>
