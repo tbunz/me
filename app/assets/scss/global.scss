@@ -42,7 +42,7 @@ h3 { @include type-h3; }
       color: $sage;
     }
 
-    #begin-again {
+    h2:first-child {
       @include type-h1;
     }
 

@@ -42,9 +42,18 @@ import { HAMBURGER_SVG, CLOSE_SVG, FILLER_ICONS } from '~/assets/svg/hamburger-i
 
 const { isMobile, isDesktop } = useBreakpoints()
 const { stop: lenisStop, start: lenisStart } = useLenis()
-const { projectTitle } = useProjectTitle()
+const { projectTitle, setProjectTitle } = useProjectTitle()
 const route = useRoute()
 const menuOpen = ref(false)
+
+// Pre-fetch project title during SSR so initialTitle is correct (deduped with [slug].vue)
+const workSlug = route.params.slug as string | undefined
+if (workSlug && route.path.startsWith('/work/')) {
+  const { data: _proj } = await useAsyncData(`project-${workSlug}`, () =>
+    queryCollection('work').path(`/work/${workSlug}`).first()
+  )
+  if (_proj.value?.title) setProjectTitle(_proj.value.title)
+}
 
 const HAMBURGER_ROULETTE_DURATION = 1.3
 
