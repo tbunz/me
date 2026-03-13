@@ -4,7 +4,7 @@
       <span class="code-block__title">{{ title }}</span>
       <span v-if="lang" class="code-block__lang">{{ lang }}</span>
     </div>
-    <div class="code-block__body">
+    <div class="code-block__body" data-lenis-prevent>
       <pre class="code-block__pre"><code class="code-block__code"><slot /></code></pre>
     </div>
   </div>
