@@ -60,6 +60,60 @@ images:
 ---
 ::
 
+::title-block{title="Code"}
+::
+
+::text-block
+Here's how the animation loop works under the hood:
+::
+
+::code-block{title="useSlideshow.ts" lang="ts"}
+function startSlideshow(images: HTMLElement[], opts: SlideshowOptions) {
+  const { hold = 1.4, fade = 0.6, pan = 3 } = opts
+  let active = 0
+  let stopped = false
+
+  function next() {
+    if (stopped) return
+    const from = images[active]
+    active = (active + 1) % images.length
+    const to = images[active]
+
+    gsap.to(from, {
+      opacity: 0,
+      duration: fade,
+      ease: 'power1.inOut',
+    })
+
+    gsap.fromTo(to,
+      { opacity: 0 },
+      { opacity: 1, duration: fade, ease: 'power1.inOut' },
+    )
+
+    gsap.fromTo(to,
+      { xPercent: 0 },
+      { xPercent: pan, duration: hold + fade, ease: 'none', force3D: true },
+    )
+
+    gsap.delayedCall(hold, next)
+  }
+
+  gsap.delayedCall(hold, next)
+  return () => { stopped = true }
+}
+::
+
+::title-block{title="Components"}
+::
+
+::text-block
+Interactive elements from the project:
+::
+
+::component-showcase
+A button component with hover states. This area renders live components from the project — pass in any markup or interactive elements to preview them in context.
+::
+
 ::title-block{title="Results" align="center"}
 ::
 
