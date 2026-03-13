@@ -25,6 +25,15 @@ This is a placeholder project page for Project Alpha. Replace this with an intro
 Describe the project process here. This text block supports **markdown** formatting including [links](#), *italics*, and more.
 ::
 
+::image-gallery{columns="1"}
+---
+images:
+  - src: /images/work/Janu-Hotel.png
+    alt: Wide banner shot
+    caption: Full-width cinematic view
+---
+::
+
 ::image-gallery{columns="2"}
 ---
 images:
@@ -34,6 +43,20 @@ images:
   - src: /images/work/chloeSite.jpeg
     alt: Screenshot two
     caption: Second screenshot
+---
+::
+
+::image-gallery{columns="4"}
+---
+images:
+  - src: /images/work/Janu-Hotel.png
+    alt: Detail one
+  - src: /images/work/Venue-Slider-1.png
+    alt: Detail two
+  - src: /images/work/chloeSite.jpeg
+    alt: Detail three
+  - src: /images/work/headshotCropped.jpg
+    alt: Detail four
 ---
 ::
 

@@ -2,8 +2,10 @@
   <header class="site-header">
     <nav class="site-nav">
       <div class="site-title-wrap">
-        <span class="site-title site-title--sizer" ref="sizer">{{ initialTitle }}</span>
-        <h1 class="site-title site-title--slot" ref="titleEl">{{ initialTitle }}</h1>
+        <NuxtLink to="/" class="site-title-link">
+          <span class="site-title site-title--sizer" ref="sizer">{{ initialTitle }}</span>
+          <h1 class="site-title site-title--slot" ref="titleEl">{{ initialTitle }}</h1>
+        </NuxtLink>
       </div>
       <template v-if="isDesktop">
         <AppLink to="/" class="nav-link" style="width: 45px">Work</AppLink>
@@ -40,8 +42,18 @@ import { HAMBURGER_SVG, CLOSE_SVG, FILLER_ICONS } from '~/assets/svg/hamburger-i
 
 const { isMobile, isDesktop } = useBreakpoints()
 const { stop: lenisStop, start: lenisStart } = useLenis()
+const { projectTitle, setProjectTitle } = useProjectTitle()
 const route = useRoute()
 const menuOpen = ref(false)
+
+// Pre-fetch project title during SSR so initialTitle is correct (deduped with [slug].vue)
+const workSlug = route.params.slug as string | undefined
+if (workSlug && route.path.startsWith('/work/')) {
+  const { data: _proj } = await useAsyncData(`project-${workSlug}`, () =>
+    queryCollection('work').path(`/work/${workSlug}`).first()
+  )
+  if (_proj.value?.title) setProjectTitle(_proj.value.title)
+}
 
 const HAMBURGER_ROULETTE_DURATION = 1.3
 
@@ -137,7 +149,7 @@ const titles: Record<string, string> = {
 
 const pageTitle = computed(() => {
   if (titles[route.path]) return titles[route.path]
-  if (route.path.startsWith('/work/')) return 'TODO'
+  if (route.path.startsWith('/work/')) return projectTitle.value || 'Projects'
   return 'Projects'
 })
 
@@ -262,6 +274,13 @@ defineExpose({ menuOpen, closeMenu })
   mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
 }
 
+.site-title-link {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
 .site-title {
   margin: 0;
   white-space: nowrap;
@@ -275,7 +294,7 @@ defineExpose({ menuOpen, closeMenu })
 
   &--slot {
     position: absolute;
-    top: 8px;
+    top: 0;
     left: 0;
     color: $brown-dark;
     will-change: transform;

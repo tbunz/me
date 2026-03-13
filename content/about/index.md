@@ -7,7 +7,7 @@ description: A short introduction.
 
 <div id="modus">Broad technical background, with one focus right now — helping teams ambitiously integrate AI.</div>
 
-University of Michigan, Cisco in the Bay Area, a few years in Utah's mountains and deserts. Back now, building across the full stack — e-commerce, animated web experiences, and increasingly, AI.
+CS from Michigan, a stint at Cisco, and a detour through Utah's backcountry. These days I build across the full stack with a growing focus on AI.
 
 ## Experience
 
@@ -27,4 +27,4 @@ University of Michigan, Cisco in the Bay Area, a few years in Utah's mountains a
 
 **Rode a bicycle from Salt Lake City to Des Moines in 16 days**<br>May 2025, around 1400 miles, no rest days.
 
-**Favorite rock climb: Green A, Little Cottonwood in SLC**<br>Fun slab. <a href="https://www.mountainproject.com/route/105740051/the-green-adjective" target="_blank">Mountain Project</a>
+**Favorite rock climb: Green A, Little Cottonwood Canyon SLC**<br><a href="https://www.mountainproject.com/route/105740051/the-green-adjective" target="_blank">Mountain Project</a>

@@ -27,7 +27,7 @@ interface GalleryImage {
 
 defineProps<{
   images: GalleryImage[]
-  columns?: 2 | 3
+  columns?: 1 | 2 | 4
 }>()
 </script>
 
@@ -36,12 +36,21 @@ defineProps<{
   display: grid;
   gap: 1rem;
 
+  &--cols-1 {
+    grid-template-columns: 1fr;
+
+    .image-gallery__img {
+      aspect-ratio: 2 / 1;
+    }
+  }
+
   &--cols-2 {
     @include desktop { grid-template-columns: repeat(2, 1fr); }
   }
 
-  &--cols-3 {
-    @include desktop { grid-template-columns: repeat(3, 1fr); }
+  &--cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+    @include desktop { grid-template-columns: repeat(4, 1fr); }
   }
 
   &__item {
@@ -58,7 +67,7 @@ defineProps<{
 
   &__caption {
     @include type-caption;
-    color: $text-secondary;
+    color: $brown-dark;
     margin-top: 0.5rem;
   }
 }
