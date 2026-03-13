@@ -33,11 +33,6 @@ const { data: projects } = await useAsyncData('projects', () =>
   queryCollection('work').order('stem', 'ASC').all()
 )
 
-const SCALE = 1.12
-const PAN = 3 // xPercent — GPU-composited, no sub-pixel jitter
-const HOLD = 1.4
-const FADE = 0.6
-
 const { isMobile } = useBreakpoints()
 const cleanups = new Map<HTMLElement, () => void>()
 
@@ -55,42 +50,32 @@ function onTileEnter(e: MouseEvent) {
 
   gsap.killTweensOf(imgs)
 
-  // Reset all images
+  // Reset all images to stacked
   imgs.forEach((img, i) => {
-    gsap.set(img, { scale: 1, xPercent: 0, opacity: i === 0 ? 1 : 0 })
+    gsap.set(img, {
+      width: '100%',
+      height: '100%',
+      left: '0%',
+      opacity: i === 0 ? 1 : 0,
+    })
   })
-
-  // Zoom images directly — avoids sub-pixel wobble from scaling a parent container
-  gsap.to(imgs, { scale: SCALE, duration: 0.5, ease: 'power2.out', force3D: true })
 
   if (count <= 1) return
 
-  // Callback-driven slideshow: each crossfade is individually scheduled,
-  // so the last→first wrap is just another smooth crossfade — no timeline
-  // repeat boundary to pop or snap positions.
-  let active = 0
-  let scheduled: gsap.core.Tween | null = null
-  let stopped = false
+  // Animate to horizontal film strip layout
+  const gapPx = 1
+  const cellWidth = 100 / count
 
-  function next() {
-    if (stopped) return
-    const from = imgs[active]!
-    active = (active + 1) % count
-    const to = imgs[active]!
-
-    gsap.to(from, { opacity: 0, duration: FADE, ease: 'power1.inOut' })
-    gsap.fromTo(to, { opacity: 0 }, { opacity: 1, duration: FADE, ease: 'power1.inOut' })
-    gsap.fromTo(to, { xPercent: 0 }, { xPercent: PAN, duration: HOLD + FADE, ease: 'none', force3D: true })
-    scheduled = gsap.delayedCall(HOLD, next)
-  }
-
-  gsap.to(imgs[0]!, { xPercent: PAN, duration: HOLD + FADE, ease: 'none', force3D: true })
-  scheduled = gsap.delayedCall(HOLD, next)
-
-  cleanups.set(media, () => {
-    stopped = true
-    scheduled?.kill()
-    gsap.killTweensOf(imgs)
+  imgs.forEach((img, i) => {
+    gsap.to(img, {
+      width: `calc(${cellWidth}% - ${gapPx * (count - 1) / count}px)`,
+      left: `calc(${cellWidth * i}% + ${gapPx * i / count}px)`,
+      opacity: 1,
+      duration: 0.5,
+      delay: i * 0.05,
+      ease: 'power3.out',
+      force3D: true,
+    })
   })
 }
 
@@ -106,7 +91,13 @@ function onTileLeave(e: MouseEvent) {
   const imgs = [...media.querySelectorAll('.tile-thumb')] as HTMLElement[]
 
   imgs.forEach((img, i) => {
-    gsap.to(img, { scale: 1, xPercent: 0, opacity: i === 0 ? 1 : 0, duration: 0.4, ease: 'power2.out' })
+    gsap.to(img, {
+      width: '100%',
+      left: '0%',
+      opacity: i === 0 ? 1 : 0,
+      duration: 0.4,
+      ease: 'power2.out',
+    })
   })
 }
 </script>
@@ -144,6 +135,7 @@ function onTileLeave(e: MouseEvent) {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  background: $bg-dark;
 }
 
 .tile-thumb {
@@ -153,7 +145,7 @@ function onTileLeave(e: MouseEvent) {
   height: 100%;
   display: block;
   object-fit: cover;
-  will-change: transform, opacity;
+  will-change: transform, opacity, width, left;
 
   &:not(:first-child) {
     opacity: 0;
