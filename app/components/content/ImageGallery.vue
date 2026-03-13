@@ -67,7 +67,7 @@ defineProps<{
 
   &__caption {
     @include type-caption;
-    color: $sage;
+    color: $brown-dark;
     margin-top: 0.5rem;
   }
 }

@@ -33,7 +33,7 @@ defineProps<{
     font-size: $text-h3;
     font-weight: $weight-regular;
     line-height: 1.5;
-    color: $text-secondary;
+    color: $text-primary;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -47,7 +47,7 @@ defineProps<{
 
   &--caption {
     @include type-caption;
-    color: $sage;
+    color: $text-primary;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }

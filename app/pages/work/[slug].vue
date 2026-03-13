@@ -19,7 +19,7 @@ if (!project.value) {
   throw createError({ statusCode: 404, statusMessage: 'Project not found' })
 }
 
-setProjectTitle(project.value.title)
+setProjectTitle(project.value.tagline || project.value.title)
 
 onBeforeUnmount(() => {
   clearProjectTitle()

@@ -63,7 +63,7 @@ defineProps<{
 
   &__subtitle {
     @include type-h3;
-    color: rgba($bg-base, 0.85);
+    color: $bg-base;
     margin-top: 0.5rem;
   }
 

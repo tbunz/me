@@ -36,7 +36,7 @@ defineProps<{
   &__subtitle {
     @include type-h3;
     font-weight: $weight-regular;
-    color: $text-secondary;
+    color: $text-primary;
     margin-top: 0.5rem;
   }
 }
