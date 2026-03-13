@@ -9,7 +9,7 @@
 
 <style lang="scss">
 .component-showcase {
-  background: mix($tan, $bg-base, 15%);
+  background: $tan;
   border-radius: 6px;
   padding: 2rem;
   overflow: hidden;
