@@ -54,30 +54,46 @@ function onTileEnter(e: MouseEvent) {
 
   const gapPx = 1
   const cellWidth = 100 / count
+  const cellWidthCalc = `calc(${cellWidth}% - ${gapPx * (count - 1) / count}px)`
 
-  // Image 0 is visible and full-width. Images 1+ are pre-positioned at
-  // their final film strip slots but invisible — no lateral travel needed.
+  // Image 0 travels to a center slot (center-left for even counts)
+  const centerSlot = Math.floor((count - 1) / 2)
+
+  // Map each image to its target slot: image 0 → center, others fill remaining
+  const slots: number[] = new Array(count)
+  slots[0] = centerSlot
+  let si = 1
+  for (let s = 0; s < count; s++) {
+    if (s !== centerSlot) slots[si++] = s
+  }
+
+  function slotLeft(s: number) {
+    return `calc(${cellWidth * s}% + ${gapPx * s / count}px)`
+  }
+
+  // Image 0 is visible and full-width. Others pre-positioned at final slots.
   imgs.forEach((img, i) => {
     if (i === 0) {
       gsap.set(img, { width: '100%', height: '100%', left: '0%', opacity: 1 })
     } else {
       gsap.set(img, {
-        width: `calc(${cellWidth}% - ${gapPx * (count - 1) / count}px)`,
+        width: cellWidthCalc,
         height: '100%',
-        left: `calc(${cellWidth * i}% + ${gapPx * i / count}px)`,
+        left: slotLeft(slots[i]),
         opacity: 0,
       })
     }
   })
 
-  // Shrink image 0 to its cell width — reveals the images beneath
+  // Shrink image 0 and move it to its center slot
   gsap.to(imgs[0]!, {
-    width: `calc(${cellWidth}% - ${gapPx * (count - 1) / count}px)`,
+    width: cellWidthCalc,
+    left: slotLeft(centerSlot),
     duration: 0.5,
     ease: 'power3.out',
   })
 
-  // Fade in the remaining images — borders appear naturally with the fade
+  // Fade in the remaining images
   imgs.slice(1).forEach((img) => {
     gsap.to(img, {
       opacity: 1,
