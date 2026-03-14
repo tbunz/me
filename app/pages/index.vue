@@ -50,31 +50,39 @@ function onTileEnter(e: MouseEvent) {
 
   gsap.killTweensOf(imgs)
 
-  // Reset all images to stacked
-  imgs.forEach((img, i) => {
-    gsap.set(img, {
-      width: '100%',
-      height: '100%',
-      left: '0%',
-      opacity: i === 0 ? 1 : 0,
-    })
-  })
-
   if (count <= 1) return
 
-  // Animate to horizontal film strip layout
   const gapPx = 1
   const cellWidth = 100 / count
 
+  // Image 0 is visible and full-width. Images 1+ are pre-positioned at
+  // their final film strip slots but invisible — no lateral travel needed.
   imgs.forEach((img, i) => {
+    if (i === 0) {
+      gsap.set(img, { width: '100%', height: '100%', left: '0%', opacity: 1 })
+    } else {
+      gsap.set(img, {
+        width: `calc(${cellWidth}% - ${gapPx * (count - 1) / count}px)`,
+        height: '100%',
+        left: `calc(${cellWidth * i}% + ${gapPx * i / count}px)`,
+        opacity: 0,
+      })
+    }
+  })
+
+  // Shrink image 0 to its cell width — reveals the images beneath
+  gsap.to(imgs[0]!, {
+    width: `calc(${cellWidth}% - ${gapPx * (count - 1) / count}px)`,
+    duration: 0.5,
+    ease: 'power3.out',
+  })
+
+  // Fade in the remaining images — borders appear naturally with the fade
+  imgs.slice(1).forEach((img) => {
     gsap.to(img, {
-      width: `calc(${cellWidth}% - ${gapPx * (count - 1) / count}px)`,
-      left: `calc(${cellWidth * i}% + ${gapPx * i / count}px)`,
       opacity: 1,
       duration: 0.5,
-      delay: i * 0.05,
-      ease: 'power3.out',
-      force3D: true,
+      ease: 'power2.out',
     })
   })
 }
