@@ -39,7 +39,7 @@ const { isMobile } = useBreakpoints()
 const initialized = new WeakSet<HTMLElement>()
 
 function getStripLayout(stripCount: number) {
-  const gapPx = 1
+  const gapPx = 2
   const cellWidth = 100 / stripCount
   const width = `calc(${cellWidth}% - ${gapPx * (stripCount - 1) / stripCount}px)`
   const lefts = Array.from({ length: stripCount }, (_, i) =>
