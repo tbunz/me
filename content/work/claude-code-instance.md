@@ -1,6 +1,6 @@
 ---
-title: Claude Code Instance
-tagline: Autonomous AI developer running on a cloud server, managed via Telegram.
+title: My Agent
+tagline: How I let my agent loose...
 thumbnails:
   - /images/work/claude-instance-cover.png
 ---

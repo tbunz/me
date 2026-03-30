@@ -1,28 +1,13 @@
 ---
 title: The Manifest
-tagline: Digital magazine platform built for editorial freedom.
+tagline: Digital magazine platform built for editorial freedom
 thumbnails:
-  - /images/work/manifest-cover.png
+  - /images/work/manifest/hero.png
+  - /images/work/manifest/checker.png
+  - /images/work/manifest/landing.png
+  - /images/work/manifest/checker2.png
+  - /images/work/manifest/stage1.png
 ---
 
-::hero-image{src="/images/work/manifest-cover.png" alt="The Manifest — digital magazine platform" title="The Manifest" subtitle="Digital Magazine Platform"}
-::
-
-::title-block{title="Overview"}
-::
-
-::text-block{variant="lead"}
-A digital magazine platform designed to give editorial teams full creative control over layout, typography, and pacing — without touching code.
-::
-
-::title-block{title="Process"}
-::
-
-::text-block
-::
-
-::title-block{title="Results"}
-::
-
-::text-block{variant="lead"}
+::hero-image{src="/images/work/manifest/hero.png" alt="The Manifest" title="The Manifest" href="https://themanifest.fyi/"}
 ::
