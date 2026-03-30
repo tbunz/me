@@ -33,13 +33,20 @@ const { data: projects } = await useAsyncData('projects', () =>
   queryCollection('work').order('stem', 'ASC').all()
 )
 
-const SCALE = 1.12
-const PAN = 3 // xPercent — GPU-composited, no sub-pixel jitter
-const HOLD = 1.4
-const FADE = 0.6
-
 const { isMobile } = useBreakpoints()
-const cleanups = new Map<HTMLElement, () => void>()
+
+// Track whether each tile has been set up (first hover positions the strip)
+const initialized = new WeakSet<HTMLElement>()
+
+function getStripLayout(stripCount: number) {
+  const gapPx = 2
+  const cellWidth = 100 / stripCount
+  const width = `calc(${cellWidth}% - ${gapPx * (stripCount - 1) / stripCount}px)`
+  const lefts = Array.from({ length: stripCount }, (_, i) =>
+    `calc(${cellWidth * i}% + ${gapPx * i / stripCount}px)`,
+  )
+  return { width, lefts }
+}
 
 function onTileEnter(e: MouseEvent) {
   if (isMobile.value) return
@@ -47,50 +54,46 @@ function onTileEnter(e: MouseEvent) {
   const media = tile.querySelector('.tile-media') as HTMLElement
   if (!media) return
 
-  cleanups.get(media)?.()
-  cleanups.delete(media)
-
   const imgs = [...media.querySelectorAll('.tile-thumb')] as HTMLElement[]
-  const count = imgs.length
+  const strip = imgs.slice(1)
+  if (strip.length < 1) return
 
+  // Kill all running tweens so new ones animate from current positions
   gsap.killTweensOf(imgs)
+  gsap.killTweensOf(media)
 
-  // Reset all images
-  imgs.forEach((img, i) => {
-    gsap.set(img, { scale: 1, xPercent: 0, opacity: i === 0 ? 1 : 0 })
-  })
+  const { width, lefts } = getStripLayout(strip.length)
 
-  // Zoom images directly — avoids sub-pixel wobble from scaling a parent container
-  gsap.to(imgs, { scale: SCALE, duration: 0.5, ease: 'power2.out', force3D: true })
-
-  if (count <= 1) return
-
-  // Callback-driven slideshow: each crossfade is individually scheduled,
-  // so the last→first wrap is just another smooth crossfade — no timeline
-  // repeat boundary to pop or snap positions.
-  let active = 0
-  let scheduled: gsap.core.Tween | null = null
-  let stopped = false
-
-  function next() {
-    if (stopped) return
-    const from = imgs[active]!
-    active = (active + 1) % count
-    const to = imgs[active]!
-
-    gsap.to(from, { opacity: 0, duration: FADE, ease: 'power1.inOut' })
-    gsap.fromTo(to, { opacity: 0 }, { opacity: 1, duration: FADE, ease: 'power1.inOut' })
-    gsap.fromTo(to, { xPercent: 0 }, { xPercent: PAN, duration: HOLD + FADE, ease: 'none', force3D: true })
-    scheduled = gsap.delayedCall(HOLD, next)
+  // First hover: position strip images at their slots off-screen
+  if (!initialized.has(media)) {
+    initialized.add(media)
+    strip.forEach((img, i) => {
+      gsap.set(img, {
+        width,
+        height: '100%',
+        left: lefts[i],
+        yPercent: i % 2 === 0 ? -100 : 100,
+        opacity: 1,
+      })
+    })
   }
 
-  gsap.to(imgs[0]!, { xPercent: PAN, duration: HOLD + FADE, ease: 'none', force3D: true })
-  scheduled = gsap.delayedCall(HOLD, next)
+  // Fade out cover image
+  gsap.to(imgs[0]!, {
+    opacity: 0,
+    duration: 0.35,
+    ease: 'power2.in',
+  })
 
-  cleanups.set(media, () => {
-    stopped = true
-    scheduled?.kill()
-    gsap.killTweensOf(imgs)
+  // Slide strip panels to yPercent: 0 from wherever they currently are
+  strip.forEach((img, i) => {
+    gsap.to(img, {
+      yPercent: 0,
+      duration: 0.5,
+      delay: i * 0.06,
+      ease: 'power3.out',
+      overwrite: 'auto',
+    })
   })
 }
 
@@ -100,13 +103,28 @@ function onTileLeave(e: MouseEvent) {
   const media = tile.querySelector('.tile-media') as HTMLElement
   if (!media) return
 
-  cleanups.get(media)?.()
-  cleanups.delete(media)
-
   const imgs = [...media.querySelectorAll('.tile-thumb')] as HTMLElement[]
+  const strip = imgs.slice(1)
 
-  imgs.forEach((img, i) => {
-    gsap.to(img, { scale: 1, xPercent: 0, opacity: i === 0 ? 1 : 0, duration: 0.4, ease: 'power2.out' })
+  // Kill all running tweens so new ones animate from current positions
+  gsap.killTweensOf(imgs)
+  gsap.killTweensOf(media)
+
+  // Slide strip panels back out from current position
+  strip.forEach((img, i) => {
+    gsap.to(img, {
+      yPercent: i % 2 === 0 ? -100 : 100,
+      duration: 0.35,
+      ease: 'power2.in',
+      overwrite: 'auto',
+    })
+  })
+
+  // Restore cover image
+  gsap.to(imgs[0]!, {
+    opacity: 1,
+    duration: 0.35,
+    ease: 'power2.out',
   })
 }
 </script>
@@ -144,6 +162,7 @@ function onTileLeave(e: MouseEvent) {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  background: $bg-base;
 }
 
 .tile-thumb {
