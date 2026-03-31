@@ -95,7 +95,6 @@ function onTileEnter(e: MouseEvent) {
   if (overlay) {
     gsap.to(overlay, {
       opacity: 0,
-      y: 8,
       duration: 0.35,
       ease: 'power2.out',
     })
@@ -134,8 +133,8 @@ function onTileLeave(e: MouseEvent) {
   if (overlay) {
     gsap.to(overlay, {
       opacity: 1,
-      y: 0,
       duration: 0.35,
+      delay: 0.3,
       ease: 'power2.out',
     })
   }

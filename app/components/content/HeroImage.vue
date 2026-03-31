@@ -5,8 +5,9 @@
       :alt="alt || ''"
       class="hero-image__bg"
     />
-    <div v-if="title" class="hero-image__overlay">
-      <h1 class="hero-image__title">{{ title }}</h1>
+    <div v-if="title || subtitle" class="hero-image__overlay">
+      <h1 v-if="title" class="hero-image__title">{{ title }}</h1>
+      <p v-if="subtitle" class="hero-image__subtitle">{{ subtitle }}</p>
     </div>
   </component>
 </template>
@@ -16,6 +17,7 @@ defineProps<{
   src: string
   alt?: string
   title?: string
+  subtitle?: string
   href?: string
 }>()
 </script>
@@ -41,6 +43,7 @@ defineProps<{
     position: absolute;
     inset: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
@@ -49,6 +52,13 @@ defineProps<{
     @include type-h1;
     color: #000;
     text-align: center;
+  }
+
+  &__subtitle {
+    @include type-h3;
+    color: #000;
+    text-align: center;
+    margin-top: 0.5rem;
   }
 
   @include mobile {
