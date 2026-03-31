@@ -1,13 +1,16 @@
 <template>
   <div class="title-block" :class="`title-block--${align || 'left'}`">
-    <h2 class="title-block__title">{{ title }}</h2>
+    <h2 v-if="title" class="title-block__title">{{ title }}</h2>
+    <div v-if="$slots.default" class="title-block__title">
+      <slot />
+    </div>
     <p v-if="subtitle" class="title-block__subtitle">{{ subtitle }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  title: string
+  title?: string
   subtitle?: string
   align?: 'left' | 'center' | 'right'
 }>()
@@ -18,7 +21,7 @@ defineProps<{
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
-  padding: 3rem 0 1rem;
+  padding: 3rem 0 0;
 
   @include mobile {
     max-width: 100%;
@@ -31,6 +34,15 @@ defineProps<{
   &__title {
     @include type-h2;
     color: $text-primary;
+
+    a {
+      text-decoration: underline;
+      transition: color $duration-normal $ease-out;
+
+      &:hover {
+        color: $sage;
+      }
+    }
   }
 
   &__subtitle {

@@ -18,8 +18,8 @@
             class="tile-thumb"
           />
         </div>
-        <div class="tile-info">
-          <h2>{{ project.title }}</h2>
+        <div class="tile-overlay">
+          <h2 class="tile-title">{{ project.title }}</h2>
         </div>
       </NuxtLink>
     </div>
@@ -35,7 +35,6 @@ const { data: projects } = await useAsyncData('projects', () =>
 
 const { isMobile } = useBreakpoints()
 
-// Track whether each tile has been set up (first hover positions the strip)
 const initialized = new WeakSet<HTMLElement>()
 
 function getStripLayout(stripCount: number) {
@@ -58,13 +57,11 @@ function onTileEnter(e: MouseEvent) {
   const strip = imgs.slice(1)
   if (strip.length < 1) return
 
-  // Kill all running tweens so new ones animate from current positions
   gsap.killTweensOf(imgs)
   gsap.killTweensOf(media)
 
   const { width, lefts } = getStripLayout(strip.length)
 
-  // First hover: position strip images at their slots off-screen
   if (!initialized.has(media)) {
     initialized.add(media)
     strip.forEach((img, i) => {
@@ -78,23 +75,30 @@ function onTileEnter(e: MouseEvent) {
     })
   }
 
-  // Fade out cover image
   gsap.to(imgs[0]!, {
     opacity: 0,
     duration: 0.35,
     ease: 'power2.in',
   })
 
-  // Slide strip panels to yPercent: 0 from wherever they currently are
-  strip.forEach((img, i) => {
+  strip.forEach((img) => {
     gsap.to(img, {
       yPercent: 0,
       duration: 0.5,
-      delay: i * 0.06,
       ease: 'power3.out',
       overwrite: 'auto',
     })
   })
+
+  // Hide title on hover
+  const overlay = tile.querySelector('.tile-overlay') as HTMLElement
+  if (overlay) {
+    gsap.to(overlay, {
+      opacity: 0,
+      duration: 0.35,
+      ease: 'power2.out',
+    })
+  }
 }
 
 function onTileLeave(e: MouseEvent) {
@@ -106,11 +110,9 @@ function onTileLeave(e: MouseEvent) {
   const imgs = [...media.querySelectorAll('.tile-thumb')] as HTMLElement[]
   const strip = imgs.slice(1)
 
-  // Kill all running tweens so new ones animate from current positions
   gsap.killTweensOf(imgs)
   gsap.killTweensOf(media)
 
-  // Slide strip panels back out from current position
   strip.forEach((img, i) => {
     gsap.to(img, {
       yPercent: i % 2 === 0 ? -100 : 100,
@@ -120,12 +122,22 @@ function onTileLeave(e: MouseEvent) {
     })
   })
 
-  // Restore cover image
   gsap.to(imgs[0]!, {
     opacity: 1,
     duration: 0.35,
     ease: 'power2.out',
   })
+
+  // Show title on leave
+  const overlay = tile.querySelector('.tile-overlay') as HTMLElement
+  if (overlay) {
+    gsap.to(overlay, {
+      opacity: 1,
+      duration: 0.35,
+      delay: 0.3,
+      ease: 'power2.out',
+    })
+  }
 }
 </script>
 
@@ -148,14 +160,6 @@ function onTileLeave(e: MouseEvent) {
 .tile {
   position: relative;
   overflow: hidden;
-  color: $bg-base;
-
-  @include desktop {
-    &:hover .tile-info {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-  }
 }
 
 .tile-media {
@@ -179,15 +183,16 @@ function onTileLeave(e: MouseEvent) {
   }
 }
 
-.tile-info {
+.tile-overlay {
   position: absolute;
   inset: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.tile-title {
+  color: #000;
   text-align: center;
-  padding: 12px;
-  transition: opacity $duration-slow $ease-out, transform $duration-slow $ease-out;
 }
 </style>

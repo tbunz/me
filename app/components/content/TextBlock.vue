@@ -34,22 +34,28 @@ defineProps<{
     font-weight: $weight-regular;
     line-height: 1.5;
     color: $text-primary;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    padding: 3rem 0 0;
   }
 
   &--body {
     @include type-body;
     color: $text-primary;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    padding: 3rem 0 0;
   }
 
   &--caption {
     @include type-caption;
     color: $text-primary;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    padding: 3rem 0 0;
+  }
+
+  a {
+    text-decoration: underline;
+    transition: color $duration-normal $ease-out;
+
+    &:hover {
+      color: $sage;
+    }
   }
 
   &--left { text-align: left; }

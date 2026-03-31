@@ -23,6 +23,7 @@ export default defineNuxtConfig({
         name: 'DM Sans',
         provider: 'google',
         weights: [400, 500, 700],
+        styles: ['normal', 'italic'],
       },
     ],
   },

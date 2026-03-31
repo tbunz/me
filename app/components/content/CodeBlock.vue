@@ -4,8 +4,8 @@
       <span class="code-block__title">{{ title }}</span>
       <span v-if="lang" class="code-block__lang">{{ lang }}</span>
     </div>
-    <div class="code-block__body" data-lenis-prevent>
-      <pre class="code-block__pre"><code class="code-block__code"><slot /></code></pre>
+    <div class="code-block__body" @wheel="onWheel">
+      <pre class="code-block__pre"><code class="code-block__code">{{ code }}</code></pre>
     </div>
   </div>
 </template>
@@ -14,7 +14,18 @@
 defineProps<{
   title?: string
   lang?: string
+  code?: string
 }>()
+
+function onWheel(e: WheelEvent) {
+  const el = e.currentTarget as HTMLElement
+  const atTop = el.scrollTop <= 0 && e.deltaY < 0
+  const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1 && e.deltaY > 0
+
+  if (!atTop && !atBottom) {
+    e.stopPropagation()
+  }
+}
 </script>
 
 <style lang="scss">
