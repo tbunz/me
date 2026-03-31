@@ -93,10 +93,12 @@ function onTileEnter(e: MouseEvent) {
   // Hide title on hover
   const overlay = tile.querySelector('.tile-overlay') as HTMLElement
   if (overlay) {
+    gsap.killTweensOf(overlay)
     gsap.to(overlay, {
       opacity: 0,
       duration: 0.35,
       ease: 'power2.out',
+      overwrite: 'auto',
     })
   }
 }
@@ -131,11 +133,13 @@ function onTileLeave(e: MouseEvent) {
   // Show title on leave
   const overlay = tile.querySelector('.tile-overlay') as HTMLElement
   if (overlay) {
+    gsap.killTweensOf(overlay)
     gsap.to(overlay, {
       opacity: 1,
       duration: 0.35,
       delay: 0.3,
       ease: 'power2.out',
+      overwrite: 'auto',
     })
   }
 }

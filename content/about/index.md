@@ -11,9 +11,9 @@ CS from Michigan, a stint at Cisco, and a detour through Utah's backcountry. The
 
 ## Experience
 
-**Software Developer** — <a href="https://studiofreight.com/" target="_blank">Studio Freight</a><br>Building custom, richly animated web experiences across e-commerce, events, and marketing.<br>Aug 2025 – Present
+**Software Developer** — <a href="https://studiofreight.com/" target="_blank">Studio Freight</a><br>Building custom, richly animated web experiences across e-commerce, events, and marketing.<br>Aug 2025 – Mar 2026
 
-**Full Stack Engineer** — <a href="https://www.sapainvestment.com/" target="_blank">Sapa Investment Group</a><br>Full-stack work on a medical e-commerce platform serving 30K users; led a redesign that boosted conversion by 20%.<br>Jun 2024 – Aug 2025
+**Full Stack Engineer** — <a href="https://dragonflywellness.com/" target="_blank">Dragonfly Wellness</a><br>Full-stack work on a medical e-commerce platform serving 30K users; led a redesign that boosted conversion by 20%.<br>Jun 2024 – Aug 2025
 
 **Career Break** — Seasonal work<br>Botany fieldwork and forklift operation.<br>Jun 2021 – May 2024
 
