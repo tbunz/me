@@ -74,6 +74,12 @@ defineProps<{
     aspect-ratio: 9 / 16;
   }
 
+  &--cols-1#{&}--tall {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   &__caption {
     @include type-caption;
     color: $brown-dark;

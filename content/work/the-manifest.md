@@ -83,16 +83,23 @@ I ended up with 12 content blocks (each having variation options within) for the
 
 ::image-gallery
 ---
-columns: 4
+columns: 1
 aspect: tall
 images:
   - src: /images/work/manifest/sb.png
-    alt: The Manifest
-  - src: /images/work/manifest/articleport2.png
-    alt: The Manifest
+    alt: Storyblok CMS
+    caption: Storyblok CMS
 ---
 ::
 
 ::text-block
 In the code base, I kept it clean by keeping the gallery a single component. It parsed the correct layout and adjusted the images within accordingly, while keeping all the general properties of the gallery centralized. This made it really easy to extend if they decided mid-development that they needed a new image layout (quintuple up offset alternating spinning...). I would just add the option to the CMS, then extend the image gallery component to accomodate the option.
+::
+
+::title-block{subtitle="Studio Freight is filling it in with fantastic articles, I highly recommend you browse the site."}
+The site turned out incredible
+::
+
+::text-block
+[The Manifest](https://themanifest.fyi/){target="_blank"}
 ::
