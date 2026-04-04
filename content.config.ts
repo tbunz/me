@@ -15,6 +15,7 @@ export default defineContentConfig({
       schema: z.object({
         tagline: z.string().optional(),
         thumbnails: z.array(z.string()).optional(),
+        titleColor: z.enum(['dark', 'light']).optional(),
       }),
     }),
   },

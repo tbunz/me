@@ -19,7 +19,7 @@
           />
         </div>
         <div class="tile-overlay">
-          <h2 class="tile-title">{{ project.title }}</h2>
+          <h2 class="tile-title" :class="{ 'tile-title--light': project.titleColor === 'light' }">{{ project.title }}</h2>
         </div>
       </NuxtLink>
     </div>
@@ -168,7 +168,7 @@ function onTileLeave(e: MouseEvent) {
 
 .tile-media {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: $bg-base;
 }
@@ -198,5 +198,9 @@ function onTileLeave(e: MouseEvent) {
 .tile-title {
   color: #000;
   text-align: center;
+
+  &--light {
+    color: $bg-base;
+  }
 }
 </style>
