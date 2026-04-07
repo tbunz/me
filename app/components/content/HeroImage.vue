@@ -1,5 +1,5 @@
 <template>
-  <component :is="href ? 'a' : 'div'" :href="href" :target="href ? '_blank' : undefined" :rel="href ? 'noopener noreferrer' : undefined" class="hero-image">
+  <component :is="href ? 'a' : 'div'" :href="href" :target="href ? '_blank' : undefined" :rel="href ? 'noopener noreferrer' : undefined" class="hero-image" :class="{ 'hero-image--light': titleColor === 'light' }">
     <img
       :src="src"
       :alt="alt || ''"
@@ -19,6 +19,7 @@ defineProps<{
   title?: string
   subtitle?: string
   href?: string
+  titleColor?: 'dark' | 'light'
 }>()
 </script>
 
@@ -59,6 +60,11 @@ defineProps<{
     color: #000;
     text-align: center;
     margin-top: 0.5rem;
+  }
+
+  &--light &__title,
+  &--light &__subtitle {
+    color: $bg-base;
   }
 
   @include mobile {
