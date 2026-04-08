@@ -8,6 +8,13 @@ export default defineNuxtConfig({
     '~/components',
   ],
   content: {
+    database: {
+      type: 'sqlite',
+      filename: ':memory:',
+    },
+    experimental: {
+      sqliteConnector: 'native',
+    },
     renderer: {
       anchorLinks: false,
     },

@@ -49,6 +49,20 @@ defineProps<{
     padding: 3rem 0 0;
   }
 
+  ul, ol {
+    padding-left: 1.25em;
+    margin: 0.75em 0;
+
+    li {
+      list-style: disc;
+      margin-bottom: 0.35em;
+    }
+  }
+
+  ol li {
+    list-style: decimal;
+  }
+
   a {
     text-decoration: underline;
     transition: color $duration-normal $ease-out;
