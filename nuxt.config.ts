@@ -3,6 +3,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/content', '@nuxt/fonts'],
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      ],
+    },
+  },
   nitro: {
     prerender: {
       crawlLinks: true,
