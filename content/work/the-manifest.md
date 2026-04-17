@@ -12,7 +12,7 @@ thumbnails:
 ::hero-image{src="/images/work/manifest/hero.png" alt="The Manifest" title="The Manifest" subtitle="Nuxt + Storyblok" href="https://themanifest.fyi/"}
 ::
 
-::title-block{subtitle="They wanted a place to record hard-earned wisdoms, and dive deeper into the minds of their team and industry collaborators."}
+::title-block{subtitle="They wanted a place to record hard-earned wisdom, and dive deeper into the minds of their team and industry collaborators."}
 [Studio Freight](https://studiofreight.com) pulled me in to build a "ledger of creative deconstruction"
 ::
 
@@ -48,7 +48,7 @@ images:
 ::
 
 ::text-block
-Another takeaway was that the articles needed to be modular, maintainable, and extendable. [Studio Freight](https://studiofreight.com) wanted the ability to quickly build out new content with mix-and-match pieces: text blocks, Q&As, image galleries, pull quotes — all the building blocks of a digital magazine. The experience for the content manager had to be quick and intuitive- ready to fill with rich assets from featured projects.
+Another takeaway was that the articles needed to be modular, maintainable, and extendable. [Studio Freight](https://studiofreight.com) wanted the ability to quickly build out new content with mix-and-match pieces: text blocks, Q&As, image galleries, pull quotes — all the building blocks of a digital magazine. The experience for the content manager had to be quick and intuitive — ready to fill with rich assets from featured projects.
 ::
 
 ::image-gallery
@@ -78,7 +78,7 @@ As devs, we are already thinking about site blocks in the "component" framework.
 
 ::text-block
 The blocks were fairly simple to map and add variations to. I spent a lot of time building up the CMS alongside as I built the actual code components. I love the *details* when it comes to crafting the CMS. A cool site means nothing if the content system is too cumbersome for the content manager to use.<br><br>
-I ended up with 12 content blocks (each having variation options within) for the editor to build articles with. The image gallery was the most complicated block in the code. It needed 7 different image grouping variations, but always maintain the same amount of space of the total layout. From the content managers perspective, it was super simple. Add an image gallery block. Select the layout you wanted from a list (One up, two up, two up offset, three up, etc.). Add photos.
+I ended up with 12 content blocks (each having variation options within) for the editor to build articles with. The image gallery was the most complicated block in the code. It needed 7 different image grouping variations, but always had to maintain the same total layout space. From the content manager's perspective, it was super simple. Add an image gallery block. Select the layout you wanted from a list (One up, two up, two up offset, three up, etc.). Add photos.
 ::
 
 ::image-gallery
@@ -93,7 +93,7 @@ images:
 ::
 
 ::text-block
-In the code base, I kept it clean by keeping the gallery a single component. It parsed the correct layout and adjusted the images within accordingly, while keeping all the general properties of the gallery centralized. This made it really easy to extend if they decided mid-development that they needed a new image layout (quintuple up offset alternating spinning...). I would just add the option to the CMS, then extend the image gallery component to accomodate the option.
+In the code base, I kept it clean by keeping the gallery a single component. It parsed the correct layout and adjusted the images within accordingly, while keeping all the general properties of the gallery centralized. This made it really easy to extend if they decided mid-development that they needed a new image layout (quintuple up offset alternating spinning...). I would just add the option to the CMS, then extend the image gallery component to accommodate the option.
 ::
 
 ::title-block{subtitle="Studio Freight is filling it in with fantastic articles, I highly recommend you browse the site."}
