@@ -44,6 +44,7 @@ export default defineNuxtConfig({
         provider: 'google',
         weights: [400, 500, 700],
         styles: ['normal', 'italic'],
+        preload: true,
       },
     ],
   },

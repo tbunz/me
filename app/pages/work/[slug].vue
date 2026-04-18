@@ -9,10 +9,13 @@
 const route = useRoute()
 const { setProjectTitle, clearProjectTitle } = useProjectTitle()
 
-const { data: project } = await useAsyncData(`project-${route.params.slug}`, () =>
-  queryCollection('work')
-    .path(`/work/${route.params.slug}`)
-    .first()
+const { data: project } = await useAsyncData(
+  `project-${route.params.slug}`,
+  () => queryCollection('work').path(`/work/${route.params.slug}`).first(),
+  {
+    getCachedData: (key, nuxtApp) =>
+      nuxtApp.payload.data[key] ?? nuxtApp.static.data[key],
+  },
 )
 
 if (!project.value) {

@@ -1,7 +1,8 @@
 ---
 title: How I Use AI
-tagline: I work (at least) 10x faster
+tagline: Faster, with caveats
 titleColor: light
+sortOrder: 2
 thumbnails:
   - /images/work/ai/thumb1.png
   - /images/work/ai/ClaudeIcon-Square.png
@@ -13,14 +14,14 @@ thumbnails:
 ::
 
 ::text-block
-AI is now widely accepted to be a revolutionary tool for computer programming. Other than the most sensitive pieces of code (nuclear weapons, human safety, critical systems, etc) it seems that the increase in speed is almost always worth the mistakes along the way. But those mistakes are very real, and cause real bugs. I would like to share how I use AI to write code in different scenarios and my experience using it.
+I use AI heavily for production code. How heavily depends on the task, specifically on how much it matters if we get it wrong. Below is a breakdown of the three ways I work with Claude day to day, and one setup I built to let it run autonomously.
 ::
 
 ::side-note
 As of writing this in April 2026, the only model I use for writing code is Claude Opus 4.6 via Claude Code (to the surprise of nobody).
 ::
 
-::title-block{subtitle="Heavily one-sided pair where the AI does most of the writing, while I think, scrutinize, and review."}
+::title-block{subtitle="A one-sided partnership: Claude writes, I think and review."}
 Pair Programming with AI
 ::
 
@@ -88,4 +89,12 @@ Despite the speed-up, I would not recommend this setup for most projects. The se
 - projects *without* API keys, credentials, secrets
 
 My secret personal project is highly complex but ultimately small in scope. With a few safeguards and kill switches, I feel comfortable giving Claude full autonomy in this case. In the worst case scenario where Claude leaks everything, destroys the code, and loses all the money that the code manages, I'll be okay. 
+::
+
+::title-block{subtitle="but you have to understand its limitations."}
+AI is faster...
+::
+
+::text-block
+The through-line across all of this is matching the tool to the stakes. For a hover animation, let Claude rip. For critical data flow, slow down, review each phase, have a second instance check the first. For a side project you don't mind losing, give it the keys. 
 ::

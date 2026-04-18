@@ -16,6 +16,7 @@ export default defineContentConfig({
         tagline: z.string().optional(),
         thumbnails: z.array(z.string()).optional(),
         titleColor: z.enum(['dark', 'light']).optional(),
+        sortOrder: z.number().optional(),
       }),
     }),
   },

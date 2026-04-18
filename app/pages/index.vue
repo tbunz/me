@@ -29,8 +29,19 @@
 <script setup lang="ts">
 import gsap from 'gsap'
 
-const { data: projects } = await useAsyncData('projects', () =>
-  queryCollection('work').order('stem', 'ASC').all()
+const { data: projectsRaw } = await useAsyncData(
+  'projects',
+  () => queryCollection('work').all(),
+  {
+    getCachedData: (key, nuxtApp) =>
+      nuxtApp.payload.data[key] ?? nuxtApp.static.data[key],
+  },
+)
+
+const projects = computed(() =>
+  [...(projectsRaw.value ?? [])].sort(
+    (a, b) => (a.sortOrder ?? Infinity) - (b.sortOrder ?? Infinity),
+  ),
 )
 
 const { isMobile } = useBreakpoints()
