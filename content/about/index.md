@@ -23,6 +23,8 @@ description: A short introduction.
 
 ## Along the Way
 
-**Rode a bicycle from Salt Lake City to Des Moines in 16 days**<br>May 2025, around 1400 miles, no rest days.
+**Rode a bicycle from Salt Lake City to Des Moines in 16 days**<br>May 2025, around 1400 miles, no rest days. Bikepack style, carrying gear and camping.
 
 **Favorite rock climb: Green A, Little Cottonwood Canyon SLC**<br><a href="https://www.mountainproject.com/route/105740051/the-green-adjective" target="_blank">Mountain Project</a>
+
+**Favorite book: *Tortilla Flat* by John Steinbeck**<br>Really funny. Reminds me of northern California, a place I love and have spent a lot of time.
