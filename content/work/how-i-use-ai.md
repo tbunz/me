@@ -2,6 +2,7 @@
 title: How I Use AI
 tagline: Faster, with caveats
 titleColor: light
+sortOrder: 2
 thumbnails:
   - /images/work/ai/thumb1.png
   - /images/work/ai/ClaudeIcon-Square.png
