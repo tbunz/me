@@ -3,7 +3,7 @@ title: Contact
 description: Get in touch.
 ---
 
-## Contact
+## Let's Talk
 
 I'd love to hear from you.
 
