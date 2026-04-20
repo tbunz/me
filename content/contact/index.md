@@ -5,7 +5,7 @@ description: Get in touch.
 
 ## Let's Talk
 
-I'd love to hear from you.
+I'd love to hear from you.  I'm open to full-time, contract, and interesting collaborations.
 
 [trevmickey@gmail.com](mailto:trevmickey@gmail.com)
 
