@@ -24,7 +24,7 @@ Under NDA. No screenshots, just the technical work.
 ::text-block
 I took on a project with a fixed launch date: a one-time event site with registration, info, and a hub element. They needed someone to build out all the backend functionality: APIs, auth, and the connection between the frontend and their data. The client was already familiar with Airtable and wanted to use it as the data layer.<br><br>
 
-I started with Airtable itself. I designed the full base from scratch: tables, linked records, field types, the whole schema. On top of that, server-side APIs behind session auth and middleware, so the frontend never touched the data directly and every request was gated. A single field-map translated between Airtable's column names and the domain model, which turned out to matter a lot: the client kept changing their mind about what fields they needed, and adding or removing one became a one-line change instead of a hunt through the codebase. I also pitched in on the complex animations on the frontend.
+I started with Airtable itself. I designed the full base from scratch: tables, linked records, field types, the whole schema. On top of that, server-side APIs behind session auth and middleware, so the frontend never touched the data directly and every request was gated. A single field-map translated between Airtable's column names and the domain model, which turned out to matter a lot: the client kept changing their mind about what fields they needed, and adding or removing one became a one-line change instead of a hunt through the codebase. On the frontend side, I wrote all the composables that consumed those APIs and wired them into the static site, so the data flow from Airtable to the rendered page was end-to-end mine.
 ::
 
 ::side-note
