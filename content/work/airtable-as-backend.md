@@ -1,6 +1,6 @@
 ---
 title: Airtable as Backend
-tagline: Backend for the big event
+tagline: Backend for [REDACTED]
 sortOrder: 4
 thumbnails:
   - /images/work/airtable/thumb.png
@@ -10,7 +10,7 @@ thumbnails:
   - /images/work/airtable/thumb-yellow.png
 ---
 
-::hero-image{src="/images/work/airtable/thumb.png" alt="Airtable as Backend" title="Airtable as Backend"}
+::hero-image{src="/images/work/airtable/thumb.png" alt="Airtable as Backend" title="Airtable as Backend" subtitle="Nuxt + Airtable"}
 ::
 
 ::title-block{subtitle="A one-time event site. APIs, auth, and the whole data layer."}

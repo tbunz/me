@@ -14,7 +14,7 @@ thumbnails:
 ::
 
 ::title-block{subtitle="They wanted a place to record hard-earned wisdom, and dive deeper into the minds of their team and industry collaborators."}
-[Studio Freight](https://studiofreight.com) pulled me in to build a "ledger of creative deconstruction"
+[Studio Freight](https://studiofreight.com) pulled me in to dev a "ledger of creative deconstruction"
 ::
 
 ::text-block

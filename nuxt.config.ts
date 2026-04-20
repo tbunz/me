@@ -32,12 +32,10 @@ export default defineNuxtConfig({
       anchorLinks: false,
     },
   },
-  router: {
-    options: {
-      scrollBehavior: () => ({ top: 0, behavior: 'instant' }),
-    },
-  },
   fonts: {
+    defaults: {
+      subsets: ['latin'],
+    },
     families: [
       {
         name: 'DM Sans',
