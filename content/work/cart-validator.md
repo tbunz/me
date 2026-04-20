@@ -1,6 +1,6 @@
 ---
 title: Cart Validator
-tagline: Pushing on the edges of what AI can handle.
+tagline: Pushing on the edges of what AI can handle
 sortOrder: 3
 thumbnails:
   - /images/work/cart-validator/thumb.png
