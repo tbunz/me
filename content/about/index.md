@@ -5,7 +5,7 @@ description: A short introduction.
 
 ## About
 
-<div id="modus">Looking for varied, substantive work — ideally with humanitarian or mission-driven teams. Full-stack engineer, comfortable from CMS architecture to animation to AI tooling.</div>
+<div id="modus">Full-stack engineer looking for varied, substantive work — ideally with teams working on humanitarian or public-interest problems.</div>
 
 ## Experience
 

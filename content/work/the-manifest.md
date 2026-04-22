@@ -18,7 +18,7 @@ thumbnails:
 ::
 
 ::text-block
-The first thing impressed upon me was that the design was deliberately quiet. Mostly black and white, perfect alignment, square edges. It was clear that this platform was meant to serve the content, not compete with it. The assets and content of each article were to drive the vibe and style of the piece, while the site framed everything in place.
+The first thing I noticed was that the design was deliberately quiet. Mostly black and white, perfect alignment, square edges. It was clear that this platform was meant to serve the content, not compete with it. The assets and content of each article were to drive the vibe of the piece, while the site framed everything in place.
 ::
 
 ::image-gallery
@@ -49,7 +49,7 @@ images:
 ::
 
 ::text-block
-Another takeaway was that the articles needed to be modular, maintainable, and extendable. [Studio Freight](https://studiofreight.com) wanted the ability to quickly build out new content with mix-and-match pieces: text blocks, Q&As, image galleries, pull quotes — all the building blocks of a digital magazine. The experience for the content manager had to be quick and intuitive — ready to fill with rich assets from featured projects.
+The articles needed to be modular. [Studio Freight](https://studiofreight.com) wanted the ability to quickly build out new content with mix-and-match pieces: text blocks, Q&As, image galleries, pull quotes — all the building blocks of a digital magazine. The experience for the content manager had to be quick and intuitive — ready to fill with content from the jump.
 ::
 
 ::image-gallery
@@ -72,14 +72,9 @@ images:
 So I got to work...
 ::
 
-::side-note
-Working with the designer and stakeholders at this early step is the most important phase in building these block-style content sites. It's a basic principle of software engineering: the architecture set at the beginning of development either accelerates progress or causes nightmares later.<br><br> 
-As devs, we are already thinking about site blocks in the "component" framework. But not all stakeholders have that same view into how a site is built. You need to get everyone on the same page and make sure that you understand what they want, and that they understand what you are about to build. 
-::
-
 ::text-block
-The blocks were fairly simple to map and add variations to. I spent a lot of time building up the CMS alongside the code components. I love the *details* when it comes to crafting the CMS. A cool site means nothing if the content system is too cumbersome for the content manager to use.<br><br>
-I ended up with 12 content blocks (each having variation options within) for the editor to build articles with. The image gallery was the most complicated block in the code. It needed 7 different image grouping variations, but always had to maintain the same total layout space. From the content manager's perspective, it was super simple. Add an image gallery block. Select the layout you wanted from a list (One up, two up, two up offset, three up, etc.). Add photos.
+The blocks were simple to map and add variations to. I spent a lot of time building up the CMS alongside the code components. I love the *details* when it comes to crafting the CMS. A cool site means nothing if the content system is too cumbersome for the content manager to use.<br><br>
+Twelve content blocks, each with variation options. The image gallery was the most complicated block in the code. It needed 7 different image grouping variations, but always had to maintain the same total layout space. From the content manager's perspective, it was dead simple. Add an image gallery block. Select the layout you wanted from a list (One up, two up, two up offset, three up, etc.). Add photos.
 ::
 
 ::image-gallery
@@ -94,7 +89,7 @@ images:
 ::
 
 ::text-block
-In the code base, I kept it clean by keeping the gallery a single component. It parsed the correct layout and adjusted the images within accordingly, while keeping all the general properties of the gallery centralized. This made it really easy to extend if they decided mid-development that they needed a new image layout (quintuple up offset alternating spinning...). I would just add the option to the CMS, then extend the image gallery component to accommodate the option.
+In the code base, I kept the gallery as a single component. It parsed the correct layout and adjusted the images within accordingly, while keeping all the general properties of the gallery centralized. This made it easy to extend if they decided mid-development that they needed a new image layout (quintuple up offset alternating spinning...). I would just add the option to the CMS, then extend the image gallery component to accommodate the option.
 ::
 
 ::title-block{subtitle="an interactive landing page."}
@@ -102,6 +97,6 @@ The finishing touch...
 ::
 
 ::text-block
-The site's restraint made the landing page a chance to do something more expressive. We used GSAP for the text animations, but getting the physics to feel right was going to take a lot of fiddling — and that kind of fiddling lives more naturally in the designers' hands than mine. So I set them up with a live deployment where they could tweak all the parameters themselves: timing, easing, stagger, spring values, whatever they wanted. They dialed it in, I locked the values into the code, and we shipped.<br><br>
-They're filling it with a lot of incredible stuff. Check it out! [The Manifest](https://themanifest.fyi/){target="_blank"}
+The site's restraint made the landing page a chance to do something more expressive. We used GSAP for the text animations, but getting the physics to feel right was going to take a lot of fiddling — and that kind of fiddling lives more naturally in the designers' hands than mine. So I set them up with a live deployment where they could tweak all the parameters themselves: timing, easing, stagger, spring values, whatever they wanted. They dialed it in, I locked the values into the code, and we launched.<br><br>
+Check it out! [The Manifest](https://themanifest.fyi/){target="_blank"}
 ::
