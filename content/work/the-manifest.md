@@ -74,7 +74,7 @@ So I got to work...
 
 ::text-block
 The blocks were simple to map and add variations to. I spent a lot of time building up the CMS alongside the code components. I love the *details* when it comes to crafting the CMS. A cool site means nothing if the content system is too cumbersome for the content manager to use.<br><br>
-Twelve content blocks, each with variation options. The image gallery was the most complicated block in the code. It needed 7 different image grouping variations, but always had to maintain the same total layout space. From the content manager's perspective, it was dead simple. Add an image gallery block. Select the layout you wanted from a list (One up, two up, two up offset, three up, etc.). Add photos.
+Twelve content blocks, each with variation options. The image gallery was the most complicated block in the code. It needed seven different image grouping variations, but always had to maintain the same total layout space. From the content manager's perspective, it was dead simple. Add an image gallery block. Select the layout you wanted from a list (one up, two up, two up offset, three up, etc.). Add photos.
 ::
 
 ::image-gallery
