@@ -14,7 +14,7 @@ thumbnails:
 ::
 
 ::text-block
-I use AI heavily for production code. How heavily depends on the task. It depends mostly on how much it matters if we get it wrong.
+I use AI heavily for production code, but not uniformly. How heavily depends on the stakes of the task. Here are the ways I work with Claude day to day, plus one setup I built to let it run on its own.
 ::
 
 ::side-note
@@ -31,7 +31,7 @@ This is my general strategy for production-level web projects. I use VS Code and
 - Use Figma MCP connection so Claude can extract values for design primitives (color palette, type definitions, etc.) and set them up in the style system.
 - Ask Claude to create static UI components one by one, directly from the Figma file. 
 - I find that it does not always get the details pixel perfect. I have to review very carefully during this task. For example, it may use a different color or padding from what is present in Figma.
-- Despite the higher-than-usual mistake rate here, it's still a boost to use AI here.
+- Despite the higher-than-usual mistake rate, it's still a boost to use AI here.
 
 This flow is much slower than the others. It's important to get all of these details correct, down to the last pixel. If components aren't spaced right, or type is off, nothing in the design is going to line up later and it's going to be confusing. 
 
@@ -42,7 +42,7 @@ This flow is much slower than the others. It's important to get all of these det
 - I quickly review, note any areas to double check or any issues. Claude revises if needed.
 - All approved, next task.
 
-I use this for tasks where a bug would reveal itself quickly in normal development: button hover animations, form components, computing a dynamic top value for a page based on nav height.
+I use this for tasks where a bug would reveal itself quickly as we continue development. For example: button hover animations, form components, simple JS that alters the DOM, etc.
 
 <br>**High Complexity Tasks and Critical Code**
 - I explain the task thoroughly to Claude, starting in plan mode.
@@ -67,7 +67,7 @@ Using AI as an Autonomous Worker
 ::
 
 ::text-block
-When the OpenClaw mania erupted, I became interested in using AI more autonomously. However, I didn't want to use it for two reasons: I already pay for a Claude subscription, and I had security concerns.
+When the OpenClaw mania erupted, I too became interested in using AI more autonomously. However, I didn't want to use it for two reasons: I already pay for a Claude subscription, and I had security concerns.
 So while on a trip to California I took an afternoon and set up my own autonomous agent.<br><br>
 **Setup**<br>
 I run a cheap cloud server ($10/month) with a Claude Code instance that's always live and has full permissions on the machine. The server runs a script that's connected to a Telegram channel, so I can message Claude any time I want from my phone. It runs constantly and checks back in once it's done with a task, ready for another.
