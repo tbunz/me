@@ -14,7 +14,7 @@ thumbnails:
 ::
 
 ::text-block
-I use AI heavily for production code, but not uniformly. How heavily depends on the stakes of the task. Here are the ways I work with Claude day to day, plus one setup I built to let it run on its own.
+I use AI heavily for production code, but not uniformly. How heavily depends on the stakes of the task. Here are the ways I work with Claude day to day, plus one setup I built that's made to run autonomously.
 ::
 
 ::side-note
@@ -42,7 +42,7 @@ This flow is much slower than the others. It's important to get all of these det
 - I quickly review, note any areas to double check or any issues. Claude revises if needed.
 - All approved, next task.
 
-I use this for tasks where a bug would reveal itself quickly as we continue development. For example: button hover animations, form components, simple JS that alters the DOM, etc.
+I use this for tasks where a bug would reveal itself quickly as we continue development. For example: button hover animations, form components, moderately complex JS, etc.
 
 <br>**High Complexity Tasks and Critical Code**
 - I explain the task thoroughly to Claude, starting in plan mode.
@@ -59,7 +59,7 @@ I used this flow on a recent app where the client required Airtable as the backe
 ::side-note
 In my experience, Opus 4.7 has a difficult time writing quality tests on its own. It often creates trivial tests, and inverts the meaning of PASS/FAIL (e.g. assert PASS when the bug is present).<br><br>
 The most reliable solution is to carefully pair program alongside and mostly write the test code yourself. Test driven development is already a proven paradigm and this would give a solid check point for your development Claude to hit.<br><br>
-But if we still want to automate test writing: It's extremely important to have a test writing [skill file](https://code.claude.com/docs/en/skills) with explicit step-by-step instructions for Claude. I like to include some of those things I mentioned above, such as "The purpose of testing is to FAIL when the code behaves poorly and has a bug". Even better is to have a test reviewer skill for a Claude reviewer instance to audit all tests as they go into the suite. 
+But if we still want to automate test writing: It's extremely important to have a test writing [skill file](https://code.claude.com/docs/en/skills){target="_blank"} with explicit step-by-step instructions for Claude. For even better results, have a test reviewer skill file for a separate instance to independently audit the suite. 
 ::
 
 ::title-block{subtitle="Deploying AI on the cloud with full permissions, giving it guidance through Telegram messages."}

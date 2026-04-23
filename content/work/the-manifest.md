@@ -49,7 +49,7 @@ images:
 ::
 
 ::text-block
-The articles needed to be modular. [Studio Freight](https://studiofreight.com) wanted the ability to quickly build out new content with mix-and-match pieces: text blocks, Q&As, image galleries, pull quotes — all the building blocks of a digital magazine. The experience for the content manager had to be quick and intuitive — ready to fill with content from the jump.
+The articles needed to be modular. [Studio Freight](https://studiofreight.com) wanted to assemble new content quickly from mix-and-match pieces: text blocks, Q&As, image galleries, pull quotes — all the building blocks of a digital magazine. For the content manager, the experience had to feel fast and intuitive, ready to fill from day one.
 ::
 
 ::image-gallery
@@ -74,7 +74,7 @@ So I got to work...
 
 ::text-block
 The blocks were simple to map and add variations to. I spent a lot of time building up the CMS alongside the code components. I love the *details* when it comes to crafting the CMS. A cool site means nothing if the content system is too cumbersome for the content manager to use.<br><br>
-Twelve content blocks, each with variation options. The image gallery was the most complicated block in the code. It needed seven different image grouping variations, but always had to maintain the same total layout space. From the content manager's perspective, it was dead simple. Add an image gallery block. Select the layout you wanted from a list (one up, two up, two up offset, three up, etc.). Add photos.
+I ended up with twelve content blocks, each with variation options. The image gallery was the most complicated block in the code. It needed seven different image grouping variations, but always had to maintain the same total layout space. However, from the content manager's perspective, it was dead simple. Add an image gallery block. Select the layout you wanted from a list (one up, two up, two up offset, three up, etc.). Add photos.
 ::
 
 ::image-gallery
