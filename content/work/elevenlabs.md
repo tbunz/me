@@ -1,47 +1,62 @@
 ---
 title: ElevenLabs
-tagline: Custom storefront, headless Shopify
-sortOrder: 5
+tagline: Headless Shopify, turned up to Eleven
+sortOrder: 2
 thumbnails:
   - /images/work/elevenlabs/hero.png
   - /images/work/elevenlabs/thumb1.png
   - /images/work/elevenlabs/thumb2.png
 ---
 
-::hero-image{src="/images/work/elevenlabs/Grid.png" alt="ElevenLabs" title="ElevenLabs Merch Store" subtitle="Nuxt + Shopify"}
+::hero-image{src="/images/work/elevenlabs/Grid.png" alt="ElevenLabs" title="ElevenLabs Merch Store" subtitle="Next.js + Shopify" href="https://store.elevenlabs.io/"}
+::
+
+::title-block{subtitle="SF came with some seriously sharp design, and I brought it to life on a fully custom, headless Shopify front end."}
+I teamed up with [Studio Freight](https://studiofreight.com) to create a [killer e-commerce site](https://store.elevenlabs.io/) for [ElevenLabs](https://elevenlabs.io/).
 ::
 
 ::side-note
-ElevenLabs kept this one internal use only — no public release. Happy to show a live demo on request.
+The build speaks for itself, so [go click around the store](https://store.elevenlabs.io/) first. But if you want the backstory, here's some answers.
 ::
 
-::title-block{subtitle="A clean, high-end storefront for [ElevenLabs](https://elevenlabs.io), built on [Shopify / Storefront API — fill in]."}
-I built a merch store
-::
-
-::text-block
-[ONE OR TWO SENTENCES: what it is and who it's for. e.g. "ElevenLabs wanted a merch store for their team and community — somewhere clean and on-brand to drop product, no friction. I handled the full storefront, from design-to-code through the Shopify integration."]<br><br>
-
-[WHAT YOU OWNED: name the scope plainly. Did you do the design-to-code? The whole frontend? The Shopify wiring? Say exactly which parts were yours.]
-::
-
-::image-gallery
----
-columns: 2
-images:
-  - src: /images/work/elevenlabs/thumb1.png
-    alt: ElevenLabs Merch Store
-    caption: "[Landing / Storefront]"
-  - src: /images/work/elevenlabs/thumb2.png
-    alt: ElevenLabs Merch Store
-    caption: "[Product page]"
----
+::title-block{subtitle=""}
+What's the stack?
 ::
 
 ::text-block
-[THE ENGINEERING BEAT — the part screenshots can't show. This is the Shopify integration. Be concrete: Storefront API headless vs. theme? How did the cart work? Variant/inventory handling? Anything non-trivial you had to solve? One solid paragraph here is what makes this read as an engineer's write-up and not a portfolio caption.]
+Built with Next.js and Shopify. The frontend is completely custom, wired into Shopify's Storefront and Admin APIs through a GraphQL client I built myself. The cart's custom too — it assembles everything through the Storefront API, then hands off to Shopify's hosted checkout for payment.
+<br><br>
+Motion by [GSAP](https://gsap.com/), scroll by [Lenis](https://github.com/darkroomengineering/lenis). 
 ::
 
-::side-note
-[OPTIONAL HONEST ASIDE — a tradeoff you accepted, a constraint you worked around, or a detail you're quietly proud of. Cut this if you don't have one; restraint is fine here.]
+::title-block{subtitle=""}
+What made this one different?
+::
+
+::text-block
+This was my first time integrating Shopify into an e-commerce build, which was a blast to figure out. And the product carousel got genuinely hairy, with a pile of edge cases and overlap with other features. But I got it built WAY faster than I could've a year ago, thanks to my AI-powered workflow.
+::
+
+::title-block{subtitle=""}
+Favorite part?
+::
+
+::text-block
+[Studio Freight](https://studiofreight.com) gave me room to play with the carousel, and I had a lot of fun dialing in the interactions. They're genuinely great to work with: open to ideas from the dev, and up for little extra features here and there.
+::
+
+::title-block{subtitle=""}
+Hardest part?
+::
+
+::text-block
+The region selector. The design called for something that didn't match how Shopify handles regions under the hood. After a lot of back and forth, I built and documented a front-end layer that bridged the gap. It gave the design the structure it wanted, while still mapping cleanly to what Shopify expected underneath.
+::
+
+::title-block{subtitle=""}
+What would you change?
+::
+
+::text-block
+The site is no-nonsense. Products, Info, Cart. But it would be cool to expand on the idea with a few more content pages. 
 ::
