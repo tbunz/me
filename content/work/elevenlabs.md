@@ -16,7 +16,7 @@ I teamed up with [Studio Freight](https://studiofreight.com) to create a [killer
 ::
 
 ::side-note
-The build speaks for itself, so [go click around the store](https://store.elevenlabs.io/) first. But if you want the backstory, here's some answers.
+The build speaks for itself, so [go click around the store](https://store.elevenlabs.io/) first. But if you want the backstory, here it is.
 ::
 
 ::title-block{subtitle=""}
@@ -24,9 +24,9 @@ What's the stack?
 ::
 
 ::text-block
-Built with Next.js and Shopify. The frontend is completely custom, wired into Shopify's Storefront and Admin APIs through a GraphQL client I built myself. The cart's custom too — it assembles everything through the Storefront API, then hands off to Shopify's hosted checkout for payment.
+Built with Next.js and Shopify. The front end is completely custom, wired into Shopify's Storefront and Admin APIs through a GraphQL client I built myself. The cart's custom too: it assembles everything through the Storefront API, then hands off to Shopify's hosted checkout for payment.
 <br><br>
-Motion by [GSAP](https://gsap.com/), scroll by [Lenis](https://github.com/darkroomengineering/lenis). 
+Motion by [GSAP](https://gsap.com/). Scroll by [Lenis](https://github.com/darkroomengineering/lenis), with the scroll-driven animation custom built on top.
 ::
 
 ::title-block{subtitle=""}
@@ -35,6 +35,17 @@ What made this one different?
 
 ::text-block
 This was my first time integrating Shopify into an e-commerce build, which was a blast to figure out. And the product carousel got genuinely hairy, with a pile of edge cases and overlap with other features. But I got it built WAY faster than I could've a year ago, thanks to my AI-powered workflow.
+::
+
+::image-gallery
+---
+columns: 2
+images:
+  - src: /images/work/elevenlabs/break.png
+    alt: ElevenLabs storefront
+  - src: /images/work/elevenlabs/hero.png
+    alt: ElevenLabs merch
+---
 ::
 
 ::title-block{subtitle=""}
