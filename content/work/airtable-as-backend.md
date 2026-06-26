@@ -1,7 +1,7 @@
 ---
 title: Airtable as Backend
 tagline: Backend for [REDACTED]
-sortOrder: 4
+sortOrder: 5
 thumbnails:
   - /images/work/airtable/thumb.png
   - /images/work/airtable/thumb-lightgrey.png

@@ -1,7 +1,7 @@
 ---
 title: Cart Validator
 tagline: Pushing on the edges of what AI can handle
-sortOrder: 3
+sortOrder: 4
 thumbnails:
   - /images/work/cart-validator/thumb.png
   - /images/work/cart-validator/thumb2.png
