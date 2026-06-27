@@ -13,24 +13,55 @@ thumbnails:
 ::hero-image{src="/images/work/airtable/thumb.png" alt="Airtable as Backend" title="Airtable as Backend" subtitle="Nuxt + Airtable"}
 ::
 
-::title-block{subtitle="A one-time event site. APIs, auth, and the whole data layer."}
-I built the backend
+::title-block{subtitle="it had to be a database AND a CMS."}
+The client wanted the whole site to run on a single [Airtable](https://airtable.com) base...
 ::
 
 ::side-note
-Under NDA. No screenshots, just the technical work.
+**Under NDA**, so no names and no screenshots. Everything below is kept deliberately generic.
 ::
 
 ::text-block
-I took on a project with a fixed launch date: a one-time event site with registration, info, and a hub element. They needed someone to build out all the backend functionality: APIs, auth, and the connection between the frontend and their data. The client was already familiar with Airtable and wanted to use it as the data layer.<br><br>
-
-I started with Airtable itself. I designed the full base from scratch: tables, linked records, field types, the whole schema. On top of that, server-side APIs behind session auth and middleware, so the frontend never touched the data directly and every request was gated. A single field-map translated between Airtable's column names and the domain model, which turned out to matter a lot: the client kept changing their mind about what fields they needed, and adding or removing one became a one-line change instead of a hunt through the codebase. On the frontend side, I wrote all the composables that consumed those APIs and wired them into the static site, so the data flow from Airtable to the rendered page was end-to-end mine.
+I was brought on for an invite-only event site, mainly to handle the backend. Guests logged in to find everything they needed for the trip: from travel and hotels to the schedule and a city guide, plus RSVP and registration for sessions. None of it was public, so the whole site sat behind a login.
 ::
 
-::side-note
-Airtable is not a database, and you feel it eventually: no joins, no aggregation, no transactions, rate limits you have to engineer around. For an event in the hundreds with a fixed shelf life, those limits didn't bite. The layer I built was designed so that if the project ever outgrew Airtable, the backend could be swapped without touching the frontend.
+::title-block{subtitle=""}
+What's the stack?
 ::
 
 ::text-block
-I'm a full-stack engineer, and that means the unglamorous parts too: setting up a client's database by hand, wiring auth middleware into a site that'll be taken down in a month, checking ownership on every mutation for an event that happens once. All of it's the job.
+Nuxt and TypeScript on the frontend. For everything behind it, a single Airtable base, pulling double duty as the database and the CMS.
+::
+
+::title-block{subtitle=""}
+Wait, Airtable as a backend?
+::
+
+::text-block
+The client wanted to run everything from Airtable themselves, a tool the event team already knew, so they could edit content and guest data without a developer in the loop. The job was to make a spreadsheet behave like a real backend. I wrapped it in a typed API layer with auth in front, so the frontend only ever talked to my endpoints, never the spreadsheet directly.<br><br>
+The content side was block based, so they could add, remove, and reorder sections of a page on the fly, using the behaviors already existing in Airtable. No code required.
+::
+
+::title-block{subtitle=""}
+How'd the login work?
+::
+
+::text-block
+Nothing exotic, just standard API security done properly. Everything sat behind auth and was verified in middleware, so no page and no API route was reachable without a valid session. Guests signed in with a unique per-invite password instead of a username, and rather than pull in a heavy auth library I wrote my own lightweight session handling.
+::
+
+::title-block{subtitle=""}
+How'd you keep it from getting messy?
+::
+
+::text-block
+The table map was a set of configs that translated Airtable's fields into clean code objects. The client was constantly adding and renaming fields, so this mattered a lot. Each change was a quick config update instead of a hunt through the codebase. We also had to launch the RSVP halfway through development, while the rest of the site was still being built. So I ran two Airtable bases, one for dev and one for the live event, kept fully separate and switched with config and environment variables. Real guest data never mixed with anything still in progress.
+::
+
+::title-block{subtitle=""}
+How'd it come together?
+::
+
+::text-block
+After developing and testing the backend, I wired it into the frontend with global state and a few simple composables to consume it. The integration was clean and paired well with the sleek UI. I helped with some of the complex motion and fetching-related animations, and we shipped a great product.
 ::
