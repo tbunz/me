@@ -163,7 +163,7 @@ let currentDisplay = initialTitle
 let targetTitle = initialTitle
 
 const FILLER_WORDS = [
-  'Cimarron Alamo', 'Green A', 'Legumes', 'Me importas tu, y tu, y tu', 'T-Bone', 'Mori', 'Yesterday Blues', 'Sweet And Low', 'La Sal', 'Rabbit Ears', 'Pearly Beach', 'Ouray', 'I aint fresh?', '24 hours'
+  'Cimarron Alamo', 'Ride or Die', 'Legumes', 'Wild, Wild, Wild Horses', 'T-Bone', 'Mori', 'Yesterday Blues', 'La Sal', 'Rabbit Ears', 'Te juro que te amo', 'Ouray', 'I aint fresh?', '24 hours', 'Fishigan'
 ]
 const ROULETTE_DURATION = 1.5
 
