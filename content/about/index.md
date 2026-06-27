@@ -5,7 +5,7 @@ description: A short introduction.
 
 ## About
 
-<div id="modus">Full-stack engineer looking for varied, substantive work — ideally with teams working on humanitarian or public-interest problems.</div>
+<div id="modus">Full-stack engineer looking for varied, substantive work across domains. Focused on getting AI tooling into production in ways that are practical, governed, and actually useful.</div>
 
 ## Experience
 
