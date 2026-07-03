@@ -18,7 +18,7 @@ const { data: project } = await useAsyncData(
   },
 )
 
-if (!project.value) {
+if (!project.value || (project.value.draft && !import.meta.dev)) {
   throw createError({ statusCode: 404, statusMessage: 'Project not found' })
 }
 
