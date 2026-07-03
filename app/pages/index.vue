@@ -39,9 +39,9 @@ const { data: projectsRaw } = await useAsyncData(
 )
 
 const projects = computed(() =>
-  [...(projectsRaw.value ?? [])].sort(
-    (a, b) => (a.sortOrder ?? Infinity) - (b.sortOrder ?? Infinity),
-  ),
+  [...(projectsRaw.value ?? [])]
+    .filter((p) => import.meta.dev || !p.draft)
+    .sort((a, b) => (a.sortOrder ?? Infinity) - (b.sortOrder ?? Infinity)),
 )
 
 const { isMobile } = useBreakpoints()
