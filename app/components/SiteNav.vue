@@ -302,7 +302,8 @@ defineExpose({ menuOpen, closeMenu })
 }
 
 .nav-link {
-  font-size: $text-caption;
+  font-size: 0.875rem; // 14px — nav pinned to original size
+
   font-weight: $weight-medium;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -376,7 +377,8 @@ defineExpose({ menuOpen, closeMenu })
 
 .mobile-menu-link {
   padding: 6px 0;
-  font-size: $text-body;
+  font-size: 1rem; // 16px — nav pinned to original size
+
   font-weight: $weight-medium;
   letter-spacing: 0.04em;
   text-transform: uppercase;
