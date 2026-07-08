@@ -2,15 +2,15 @@
 title: How I Use AI
 tagline: Faster, with caveats
 titleColor: light
-sortOrder: 3
+sortOrder: 4
 thumbnails:
-  - /images/work/ai/thumb1.png
+  - /images/work/ai/thumb1_faded.png
   - /images/work/ai/ClaudeIcon-Square.png
   - /images/work/ai/terminal_abstract.png
   - /images/work/ai/Claude Spark - Clay.png
 ---
 
-::hero-image{src="/images/work/ai/thumb1.png" alt="How I Use AI" title="How I Use AI" titleColor="light"}
+::hero-image{src="/images/work/ai/thumb1_faded.png" alt="How I Use AI" title="How I Use AI" titleColor="light"}
 ::
 
 ::text-block

@@ -1,13 +1,20 @@
 ---
-title: KMM
-tagline: Add a tagline
-sortOrder: 6
+title: Market Maker
+tagline: Free Lunch?
+sortOrder: 3
 draft: true
+titleColor: light
 thumbnails:
-  - /images/work/kmm/thumb.png
+  - /images/work/kmm/v2_flux_abstract_1920x1080.png
+  - /images/work/kmm/kalshi-logo-dark-green-on-primary-green-1.jpg
+  - /images/work/kmm/kalshi-logo-white-on-near-black.jpg
+  - /images/work/kmm/kalshi-logo-dark-green-on-primary-green-1.jpg
+  - /images/work/kmm/kalshi-logo-white-on-near-black.jpg
+  - /images/work/kmm/kalshi-logo-dark-green-on-primary-green-1.jpg
+  - /images/work/kmm/kalshi-logo-white-on-near-black.jpg
 ---
 
-::hero-image{src="/images/work/kmm/hero.png" alt="KMM" title="KMM" subtitle="Add a subtitle" href=""}
+::hero-image{src="/images/work/kmm/v2_flux_abstract_1920x1080.png" alt="Kalshi Incentive Farming" title="Market Making on Kalshi" subtitle="" href="" titleColor="light"}
 ::
 
 ::title-block{subtitle="Add a supporting subtitle here."}
