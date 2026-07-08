@@ -59,6 +59,7 @@ TODO DIAGRAM HERE
 ::side-note
 † Complex market making strategies do in fact analyze a fair price, and use it to "skew" or inform their order placement (e.g. loading up more orders to buy than sell if the price is more likely to move up). Sophisticated institutional market makers can be expected to employ a myriad of advanced strategies beyond the simplistic "quote buy and sell, capture the spread", but that is the basic mechanism.  
 ::
+
 ::side-note
 †† If a stock is trading around $50, why would the other traders sell the stock for $49 or buy it for $51? Generally, one could say that "mis-price" *is* what it's worth to that trader. They may be less-informed about its true price, more-informed about its true price, or are paying a small premium for immediacy. 
 ::
@@ -79,12 +80,37 @@ Initial Research
 ::text-block
 I ran 2 days of simulated paper trading. I used a simple Python script to scan for markets with the largest $/day pools, track price movement, snapshot the orderbook, and loosely simulate how a simple strategy (e.g. quote best bid/ask symmetrically no matter what) would perform. At the end of this data collection, I had a script score my orders and track my PnL from trading activity.
 <br><br>
-The results were encouraging. Even with extremely pessimistic adjustments (to account for [adverse selection](https://en.wikipedia.org/wiki/Adverse_selection) and simulation error), I concluded this project would be well worth my time to develop. A few takeaways: 
+The results were encouraging. Even with extremely pessimistic adjustments (to account for [adverse selection](https://en.wikipedia.org/wiki/Adverse_selection) and simulation error), I concluded this project would be well worth my time to develop. Key takeaways: 
 - Liquidity rewards were a massive target (Kalshi offering ~$30,000/day across all markets at that time). 
 - A simple strategy with miniscule capital will not make a meaningful profit from spread capture alone (my simulation showed strictly losses across markets anyways).
-- I needed to start trading live. With little experience in this area, I knew theorizing could only take me so far. 
 
-This honed my profitability thesis. Liquidity rewards were *not* just a safety net and added bonus on top of spread capture: **they were the main goal**. I thought about it like this: spread capture is a *hard* problem. Multi-billion dollar firms work to figure out how to do it. In the short-term, it is unlikely I develop an advanced market making strategy that is able to meaningfully profit with self-funded capital amounts. 
+This honed my profitability thesis. Liquidity rewards were *not* just a safety net and added bonus on top of spread capture: **they were the main goal**. I think about it like this: spread capture is a *hard* problem. Multi-billion dollar firms work to figure out how to do it. In the short-term, it is unlikely I develop an advanced market making strategy that is able to meaningfully profit with self-funded capital amounts. 
 <br><br>
+The problem no longer became about market making to capture spread. My goal was to **capture liquidity rewards while minimizing losses from trades**.
+::
 
+::title-block{subtitle="How it's built and operates"}
+My Market Making Strategy
+::
+
+::text-block
+The system is a Python project with 4 layers. An "operator" interacts with the system, to run analysis and initiate trading for a market. As detailed below, the operator is Claude (but the system allows any agent, LLM or human, to act). The architecture:
+::
+
+::side-note
+TODO TODO TODO<br><br>
+2-up of architecture. one of just the 4 layers, then one of the operator integration points
+::
+
+::text-block
+**Research / Analysis**
+<br>This suite of tools scans markets and evaluates which are viable for my strategy. It deliberately stops short of a final "score" and instead comprehensively reports across numerous variables, highlighting quantitative signals. The operator considers this analysis, and other qualitative factors, to decide the safety and profitability of a market. 
+<br><br>
+Claude acting as operator is clearly indispensable in this process. It allows efficiency at scale, but specifically allows *qualitative* reasoning at scale. This is extremely important for assessing a markets viability. An example: in my experience, many smaller, niche events have extreme mis-pricings due to extremely low volume. There is simply nobody trading the event, so the "true" market price has not been discovered. Quantitatively, these markets can present as safe and profitable. However, a quick web search would reveal that this market is trading far off base with reality, and price is likely to move. 
+<br><br>
+Confirming an events general probability is difficult to do with Python alone, and essentially impossible across thousands of nuanced, unrelated events. However it is not difficult for an LLM to do research and reason plausibility as a sanity check. 
+::
+
+::side-note
+[Kalshi Research](https://kalshi.com/research/mission) published a similar finding, where they improved a trading strategy with "an LLM-based semantic stage" to assess "whether the proposed direction admits a plausible economic transmission mechanism based on event descriptions". [https://arxiv.org/abs/2602.07048](https://arxiv.org/abs/2602.07048)
 ::
