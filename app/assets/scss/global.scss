@@ -37,9 +37,9 @@ h3 { @include type-h3; }
 
     #modus {
       text-align: center;
-      font-style: italic;
-      font-weight: bold;
       color: $sage;
+      @include type-h3;
+      font-weight: bold;
     }
 
     h2:first-child {

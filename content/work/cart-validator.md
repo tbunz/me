@@ -1,7 +1,7 @@
 ---
 title: AI Cart Validator
 tagline: Plain English
-sortOrder: 4
+sortOrder: 5
 thumbnails:
   - /images/work/cart-validator/thumb.png
   - /images/work/cart-validator/thumb2.png

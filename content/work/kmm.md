@@ -1,41 +1,66 @@
 ---
-title: KMM
-tagline: Add a tagline
-sortOrder: 6
+title: Market Maker
+tagline: Free Lunch?
+sortOrder: 3
 draft: true
+titleColor: light
 thumbnails:
-  - /images/work/kmm/thumb.png
+  - /images/work/kmm/v2_flux_abstract_1920x1080.png
+  - /images/work/kmm/kalshi-logo-dark-green-on-primary-green-1.jpg
+  - /images/work/kmm/kalshi-logo-white-on-near-black.jpg
+  - /images/work/kmm/kalshi-logo-dark-green-on-primary-green-1.jpg
+  - /images/work/kmm/kalshi-logo-white-on-near-black.jpg
+  - /images/work/kmm/kalshi-logo-dark-green-on-primary-green-1.jpg
+  - /images/work/kmm/kalshi-logo-white-on-near-black.jpg
 ---
 
-::hero-image{src="/images/work/kmm/hero.png" alt="KMM" title="KMM" subtitle="Add a subtitle" href=""}
+::hero-image{src="/images/work/kmm/v2_flux_abstract_1920x1080.png" alt="Kalshi Incentive Farming" title="Market Making on Kalshi" subtitle="An Exploration" href="" titleColor="light"}
 ::
 
-::title-block{subtitle="Add a supporting subtitle here."}
-Add the opening line for KMM
+::title-block{subtitle="Developed through live experimentation and iteration."}
+I built a strategy that earns on prediction markets.
+::
+
+::side-note
+**TLDR**: TODO
 ::
 
 ::text-block
-[Kalshi's liquidity incentive program](https://help.kalshi.com/en/articles/13823851-liquidity-incentive-program) pays traders to rest orders on the book, even if these orders are never filled. They establish a reward pool for a market that has a total cash value and a time period. Over this time period, Kalshi periodically looks at the book and scores each trader, tracking how large orders are and how far they are from the best price. At the end of the time period, the scores are ranked against other traders that also scored during the period, and relative shares of the reward pool are paid out. These are known as "liquidity rewards".
+[Kalshi](https://kalshi.com/), a popular prediction market platform, runs a [liquidity incentive program](https://help.kalshi.com/en/articles/13823851-liquidity-incentive-program) that pays traders to rest orders on the book (even if these orders are never filled). They establish a reward pool for a market that has a total cash value and a time period. Over this time period, Kalshi looks at the book and scores each trader, tracking how large orders are and how far they are from the best price. At the end of the time period, the scores are ranked against other traders, and relative shares of the reward pool are paid out. These are known as "liquidity rewards". They are a subsidy that incentivizes traders to place resting orders at (or near) the best price. Generally speaking, traders who place these orders can be classified as "market makers". 
+::
+
+::image-gallery
+---
+columns: 1
+images:
+  - src: /images/work/kmm/annotated-orderbook.png
+    alt: Annotated Orderbook
+    caption: Claude Opus 4.8
+---
+::
+
+::side-note
+Kalshi also runs "volume rewards" that are a separate reward pool. This program scores your proportion of actually-executed trades during a time period. The more your orders on the book are actually filled, the more you earn from volume pools. In this project I focus mostly on liquidity rewards, since Kalshi offers them more widely and frequently. 
+::
+
+::title-block{subtitle="How does it work?"}
+Market Making
+::
+
+::text-block
+In its simplest form†, market maker strategy does not "take a side" or try to predict if the price will change, but rather places orders on both sides of the book. By simultaneously buying and selling, market makers attempt to capture the "spread" between the best sell price and best buy price. Ultimately, a maker provides liquidity to a market, which ["stabilizes the market, reducing price variation"](https://en.wikipedia.org/wiki/Market_maker).
 <br><br>
-Kalshi also runs "volume rewards" that are a separate reward pool. This program scores your proportion of the volume of actually-executed trades. The more your orders on the book are actually filled, the more you earn from volume pools.
+Imagine a stock that is worth $50 per share. Traders selling the stock are "asking" $51 for it, while buyers are "bidding" $49. A market maker would place a sell order for $51, and simultaneously place a buy order for $49. Some other trader decides to sell their stock, and hits the maker's buy order. The market maker is now holding a share of the stock and is -$49 cash. However, another trader comes forward and wants to buy the stock at the $51 sell order price††. This is executed, and the maker is left with no stock but +$2. This is the spread capture: the basic goal of market making strategy.  
 ::
 
-::side-note
-DIAGRAM HERE instead of NOTE explains rewards and orders and book.
-Read the full breakdown in [Kalshi's docs](https://help.kalshi.com/en/articles/13823851-liquidity-incentive-program).
-::
-
-::text-block
-I had been wanting to work on an automated market making strategy for a few months, and this program caught my attention. First, prediction markets are an emerging financial frontier, and I assumed the barrier to entry would be much simpler than other well established financial markets. Second, the existence of the liquidity incentive program gave the project a higher chance of some success (or a higher chance of smaller losses). I have no formal background in financial markets or quantitative analysis, but I have general financial literacy and work as a fullstack dev. LLMs had been supercharging my dev work for months, but I wanted to see if I could use them to develop a project in an area that I knew nothing about.<br><br>
-Market making in particular is interesting to me because the strategy attempts to profit whether the price goes up *or* down. In its simplest form†, market maker strategy does not "take a side" or try to predict if the price will change, but rather places orders on both sides of the book. By simultaneously buying and selling, market makers attempt to capture the "spread" between the best sell price and best buy price.
-::
-
-::side-note
-DIAGRAM HERE explain bid ask
-::
-
-::text-block
-Imagine a stock that is worth $50 per share. Traders selling the stock are "asking" $51 for it, while buyers are "bidding" $49. A market maker would place a sell order for $51, and simultaneously place a buy order for $49. Some other trader decides to sell their stock, and hits the maker's buy order. The market maker is now holding a share of the stock and is -$49 cash. However, another trader comes forward and wants to buy the stock from them at the $51 sell order price. This is executed, and the maker is left with no stock but +$2. This is the spread capture: the basic goal of market making strategy.††
+::image-gallery
+---
+columns: 1
+images:
+  - src: /images/work/kmm/.png
+    alt: Annotated Orderbook
+    caption: Claude Opus 4.8
+---
 ::
 
 ::side-note
@@ -47,12 +72,52 @@ Imagine a stock that is worth $50 per share. Traders selling the stock are "aski
 ::
 
 
-::title-block{subtitle="Viability analysis quickly shaped a novel direction."}
-With the help of AI, can I research, learn, and develop a profitable market making bot?
+::title-block{subtitle="Full-stack dev... not a quant?"}
+Motivation
 ::
 
 ::text-block
-I began researching and came to understand all the aforementioned basics of markets, market making, and the properties of prediction markets that make them unique. Very early on I decided I would start trading exclusively on markets with rewards pools, as this gave me a subsidy for the early stages when I would inevitably run a loss. My initial goal was a bot that would run even or just barely above on profitability from trading alone, and the rewards would be the real payoff. This intuition was heading in the right direction, but I came to refine the problem through prototyping. 
+I had been wanting to work on an automated market making strategy for a few months, and this program caught my attention. First, prediction markets are an emerging financial frontier, and I assumed the barrier to entry would be lower than well established financial markets. Second, the existence of the liquidity incentive program gave the project a higher chance of some success (or a higher chance of smaller losses). I have no formal background in financial markets or quantitative analysis, but I have general financial literacy and know my way around some code. LLMs had been supercharging my dev work for months, but I wanted to see if I could use them to develop a project in an area that I knew nothing about.<br><br>
+::
+
+::title-block{subtitle="Viability analysis quickly shaped a novel direction."}
+Initial Research
+::
+
+::text-block
+I ran 2 days of simulated paper trading. I used a simple Python script to scan for markets with the largest $/day pools, track price movement, snapshot the orderbook, and loosely simulate how a simple strategy (e.g. quote best bid/ask symmetrically no matter what) would perform. At the end of this data collection, I had a script score my orders and track my PnL from trading activity.
 <br><br>
-I first had Claude build a basic viability script with Python. It paper traded on markets: it scanned for viable markets with liquidity rewards, tracked their orderbooks, simulated placing orders on my behalf, and scored what I would've earned from the rewards pool, and roughly what I would've lost from "adverse selection" (e.g. informed traders hitting my orders, which are mispriced by my naive strategy. For this simulation, it was )
+The results were encouraging. Even with extremely pessimistic adjustments (to account for [adverse selection](https://en.wikipedia.org/wiki/Adverse_selection) and simulation error), I concluded this project would be well worth my time to develop. Key takeaways: 
+- Liquidity rewards were a massive target (Kalshi offering ~$30,000/day across all markets at that time). 
+- A simple strategy with miniscule capital will not make a meaningful profit from spread capture alone (my simulation showed strictly losses across markets anyways).
+
+This honed my profitability thesis. Liquidity rewards were *not* just a safety net and added bonus on top of spread capture: **they were the main goal**. I think about it like this: spread capture is a *hard* problem. Multi-billion dollar firms work to figure out how to do it. In the short-term, it is unlikely I develop an advanced market making strategy that is able to meaningfully profit with self-funded capital amounts. 
+<br><br>
+The problem no longer became about market making to capture spread. My goal was to **capture liquidity rewards while minimizing losses from trades**.
+::
+
+::title-block{subtitle="How it's built and operates"}
+My Market Making Strategy
+::
+
+::text-block
+The system is a Python project with 4 layers. An "operator" interacts with the system, to run analysis and initiate trading for a market. As detailed below, the operator is Claude (but the system allows any agent, LLM or human, to act). The architecture:
+::
+
+::side-note
+TODO TODO TODO<br><br>
+2-up of architecture. one of just the 4 layers, then one of the operator integration points
+::
+
+::text-block
+**Research / Analysis**
+<br>This suite of tools scans markets and evaluates which are viable for my strategy. It deliberately stops short of a final "score" and instead comprehensively reports across numerous variables, highlighting quantitative signals. The operator considers this analysis, and other qualitative factors, to decide the safety and profitability of a market. 
+<br><br>
+Claude acting as operator is clearly indispensable in this process. It allows efficiency at scale, but specifically allows *qualitative* reasoning at scale. This is extremely important for assessing a markets viability. An example: in my experience, many smaller, niche events have extreme mis-pricings due to extremely low volume. There is simply nobody trading the event, so the "true" market price has not been discovered. Quantitatively, these markets can present as safe and profitable. However, a quick web search would reveal that this market is trading far off base with reality, and price is likely to move. 
+<br><br>
+Confirming an event's general probability is difficult to do with Python alone, and essentially impossible across thousands of nuanced, unrelated events. However it is not difficult for an LLM to do research and reason as a sanity check. 
+::
+
+::side-note
+[Kalshi Research](https://kalshi.com/research/mission) published a similar finding, where they improved a trading strategy with "an LLM-based semantic stage" to assess "whether the proposed direction admits a plausible economic transmission mechanism based on event descriptions". [https://arxiv.org/abs/2602.07048](https://arxiv.org/abs/2602.07048)
 ::
