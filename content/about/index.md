@@ -5,21 +5,25 @@ description: A short introduction.
 
 ## About
 
-<div id="modus">Full-stack engineer looking for varied, substantive work across domains. Focused on getting AI tooling into production in ways that are practical, governed, and actually useful.</div>
+<div id="modus">Full-stack product engineer who owns web apps end to end.</div>
+
+From the front end to the CMS, data layer, and custom admin tools non-technical teams use to run the business.
+Ships measurable outcomes across Next.js, Nuxt, TypeScript, and AWS, and develops AI-first with tools like Claude
+Code.
 
 ## Experience
 
-**Software Developer** — <a href="https://studiofreight.com/" target="_blank">Studio Freight</a><br>Built custom, richly animated web experiences across e-commerce, events, and marketing.<br>Aug 2025 – Mar 2026
+**Full-Stack Engineer** — <a href="https://studiofreight.com/" target="_blank">Studio Freight</a> (Contract)<br>Built and owned entire sites end to end for e-commerce, marketing, and events. Next.js, Nuxt, TypeScript, Shopify, Storyblok, Airtable.<br>Aug 2025 – Mar 2026
 
-**Full-stack Engineer** — <a href="https://dragonflywellness.com/" target="_blank">Dragonfly Wellness</a><br>Full-stack work on a medical e-commerce platform serving 30,000 users; led a redesign that boosted conversion by 20%.<br>Jun 2024 – Aug 2025
+**Full-Stack Engineer** — <a href="https://dragonflywellness.com/" target="_blank">Dragonfly Wellness</a><br>Full-stack work on a medical e-commerce platform serving 30,000 users; led a redesign that boosted conversion by 20%.  Next.js, TypeScript, Tailwind CSS, AWS.<br>Jun 2024 – Aug 2025
 
-**Seasonal Work** — <a href="https://redbuttegarden.org/" target="_blank">Red Butte</a>, <a href="https://libertymountain.com/" target="_blank">Liberty Mountain</a>, <a href="https://cottonwoodcanyons.org/" target="_blank">CCF</a>, <a href="https://blackdiamondequipment.com/" target="_blank">Black Diamond</a><br>Botany fieldwork and forklift operation.<br>Jun 2021 – May 2024
+**Seasonal Work** — <a href="https://redbuttegarden.org/" target="_blank">Red Butte Garden</a>, <a href="https://blackdiamondequipment.com/" target="_blank">Black Diamond</a> and others<br>Career break between engineering roles; seasonal and outdoor work.<br>Jun 2021 – May 2024
 
 **Software Engineer** — <a href="https://www.cisco.com/" target="_blank">Cisco</a><br>Test automation for enterprise networking products in Python.<br>Jul 2020 – May 2021
 
 ## Education
 
-**University of Michigan** — BS Computer Science and Anthropology<br>2016 – 2020
+**University of Michigan** — BS Computer Science and Anthropology<br>Ann Arbor, MI | 2016 – 2020 | GPA 3.56
 
 ## Along the Way
 
