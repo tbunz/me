@@ -33,17 +33,31 @@ h3 { @include type-h3; }
     align-items: center;
     gap: 0.75rem;
 
-    h2 { margin-top: 3rem; }
-
-    #modus {
+    // ── Shared hero (About + Contact) ──
+    .eyebrow {
       text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      font-weight: $weight-bold;
       color: $sage;
-      @include type-h3;
-      font-weight: bold;
     }
 
-    h2:first-child {
-      @include type-h1;
+    // Extra breathing room under the page eyebrow (About / Contact)
+    .eyebrow:not(.section-label) {
+      margin-bottom: 0.75rem;
+    }
+
+    .statement {
+      @include type-h2;
+      text-align: center;
+      text-wrap: balance;
+      max-width: min(22ch, 100%);
+    }
+
+    .lead {
+      color: $text-secondary;
+      max-width: min(54ch, 100%);
     }
 
     p {

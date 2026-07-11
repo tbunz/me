@@ -3,32 +3,62 @@ title: About Me
 description: A short introduction.
 ---
 
-## About
+<p class="eyebrow">About</p>
 
-<div id="modus">Full-stack product engineer who owns web apps end to end.</div>
+<h1 class="statement">Full-stack product engineer who owns web apps end to end.</h1>
 
-From the front end to the CMS, data layer, and custom admin tools non-technical teams use to run the business.
-Ships measurable outcomes across Next.js, Nuxt, TypeScript, and AWS, and develops AI-first with tools like Claude
-Code.
+<p class="lead">From the front end to the CMS, data layer, and custom admin tools non-technical teams use to run the business. Ships measurable outcomes across Next.js, Nuxt, TypeScript, and AWS, and develops AI-first with tools like Claude Code.</p>
 
-## Experience
+<h2 class="eyebrow section-label">Experience</h2>
 
-**Full-Stack Engineer** — <a href="https://studiofreight.com/" target="_blank">Studio Freight</a> (Contract)<br>Built and owned entire sites end to end for e-commerce, marketing, and events. Next.js, Nuxt, TypeScript, Shopify, Storyblok, Airtable.<br>Aug 2025 – Mar 2026
+<div class="rail-entry">
+<span class="rail-date">Aug 2025 – Mar 2026</span>
+<span class="rail-role">Full-Stack Engineer — <a href="https://studiofreight.com/" target="_blank">Studio Freight</a> (Contract)</span>
+<span class="rail-desc">Built and owned entire sites end to end for e-commerce, marketing, and events.</span>
+<span class="rail-stack">Next.js · Nuxt · TypeScript · Shopify · Storyblok · Airtable</span>
+</div>
 
-**Full-Stack Engineer** — <a href="https://dragonflywellness.com/" target="_blank">Dragonfly Wellness</a><br>Full-stack work on a medical e-commerce platform serving 30,000 users; led a redesign that boosted conversion by 20%.  Next.js, TypeScript, Tailwind CSS, AWS.<br>Jun 2024 – Aug 2025
+<div class="rail-entry">
+<span class="rail-date">Jun 2024 – Aug 2025</span>
+<span class="rail-role">Full-Stack Engineer — <a href="https://dragonflywellness.com/" target="_blank">Dragonfly Wellness</a></span>
+<span class="rail-desc">Full-stack work on a medical e-commerce platform serving 30,000 users; led a redesign that boosted conversion by 20%.</span>
+<span class="rail-stack">Next.js · TypeScript · Tailwind CSS · AWS</span>
+</div>
 
-**Seasonal Work** — <a href="https://redbuttegarden.org/" target="_blank">Red Butte Garden</a>, <a href="https://blackdiamondequipment.com/" target="_blank">Black Diamond</a> and others<br>Career break between engineering roles; seasonal and outdoor work.<br>Jun 2021 – May 2024
+<div class="rail-entry">
+<span class="rail-date">Jun 2021 – May 2024</span>
+<span class="rail-role">Seasonal Work — <a href="https://redbuttegarden.org/" target="_blank">Red Butte Garden</a>, <a href="https://blackdiamondequipment.com/" target="_blank">Black Diamond</a> and others</span>
+<span class="rail-desc">Career break between engineering roles; seasonal and outdoor work.</span>
+</div>
 
-**Software Engineer** — <a href="https://www.cisco.com/" target="_blank">Cisco</a><br>Test automation for enterprise networking products in Python.<br>Jul 2020 – May 2021
+<div class="rail-entry">
+<span class="rail-date">Jul 2020 – May 2021</span>
+<span class="rail-role">Software Engineer — <a href="https://www.cisco.com/" target="_blank">Cisco</a></span>
+<span class="rail-desc">Test automation for enterprise networking products in Python.</span>
+</div>
 
-## Education
+<h2 class="eyebrow section-label">Education</h2>
 
-**University of Michigan** — BS Computer Science and Anthropology<br>Ann Arbor, MI | 2016 – 2020 | GPA 3.56
+<div class="rail-entry">
+<span class="rail-date">2016 – 2020</span>
+<span class="rail-role">University of Michigan — BS Computer Science and Anthropology</span>
+<span class="rail-desc">Ann Arbor, MI · GPA 3.56</span>
+</div>
 
-## Along the Way
+<h2 class="eyebrow section-label">Along the Way</h2>
 
-**Rode a bicycle from Salt Lake City to Des Moines in 16 days**<br>May 2025, around 1400 miles, no rest days. Bikepack style, carrying gear and camping.
+<div class="fun-entry">
+<span class="fun-title">Rode a bicycle from Salt Lake City to Des Moines in 16 days</span>
+<span class="fun-desc">around 1400 miles, no rest days. Bikepack style, carrying gear and camping.</span>
+<span class="fun-date">May 2025</span>
+</div>
 
-**Favorite rock climb: Green A, Little Cottonwood Canyon SLC**<br><a href="https://www.mountainproject.com/route/105740051/the-green-adjective" target="_blank">Mountain Project</a>
+<div class="fun-entry">
+<span class="fun-title">Favorite rock climb: Green A, Little Cottonwood Canyon SLC</span>
+<span class="fun-desc"><a href="https://www.mountainproject.com/route/105740051/the-green-adjective" target="_blank">Mountain Project</a></span>
+</div>
 
-**Favorite book: *Tortilla Flat* by John Steinbeck**<br>Genuinely funny. Reminds me of northern California, a place I love and have spent a lot of time in.
+<div class="fun-entry">
+<span class="fun-title">Favorite book: <em>Tortilla Flat</em> by John Steinbeck</span>
+<span class="fun-desc">Genuinely funny. Reminds me of northern California, a place I love and have spent a lot of time in.</span>
+</div>
