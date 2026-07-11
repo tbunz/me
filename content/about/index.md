@@ -7,7 +7,7 @@ description: A short introduction.
 
 <h1 class="statement">Full-stack product engineer who owns web apps end to end.</h1>
 
-<p class="lead">From the front end to the CMS, data layer, and custom admin tools non-technical teams use to run the business. Ships measurable outcomes across Next.js, Nuxt, TypeScript, and AWS, and develops AI-first with tools like Claude Code.</p>
+<p class="lead">Ships measurable outcomes across Next.js, Nuxt, TypeScript, AWS, and Shopify,  and develops AI-first with tools like Claude Code.</p>
 
 <h2 class="eyebrow section-label">Experience</h2>
 
@@ -28,13 +28,14 @@ description: A short introduction.
 <div class="rail-entry">
 <span class="rail-date">Jun 2021 – May 2024</span>
 <span class="rail-role">Seasonal Work — <a href="https://redbuttegarden.org/" target="_blank">Red Butte Garden</a>, <a href="https://blackdiamondequipment.com/" target="_blank">Black Diamond</a> and others</span>
-<span class="rail-desc">Career break between engineering roles; seasonal and outdoor work.</span>
+<span class="rail-desc">Career break; seasonal and outdoor work.</span>
 </div>
 
 <div class="rail-entry">
 <span class="rail-date">Jul 2020 – May 2021</span>
 <span class="rail-role">Software Engineer — <a href="https://www.cisco.com/" target="_blank">Cisco</a></span>
-<span class="rail-desc">Test automation for enterprise networking products in Python.</span>
+<span class="rail-desc">Test automation for enterprise networking products.</span>
+<span class="rail-stack">Python</span>
 </div>
 
 <h2 class="eyebrow section-label">Education</h2>
