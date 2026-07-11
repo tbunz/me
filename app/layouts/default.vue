@@ -2,9 +2,12 @@
   <div class="site" :style="{ '--nav-height': `${navHeight}px` }">
     <SiteNav ref="navRef" />
     <div v-if="navRef?.menuOpen" class="menu-backdrop" @click="navRef?.closeMenu()" />
-    <main :class="{ 'is-blurred': navRef?.menuOpen }">
-      <slot />
-    </main>
+    <div class="site-content">
+      <main :class="{ 'is-blurred': navRef?.menuOpen }">
+        <slot />
+      </main>
+    </div>
+    <SiteFooter :class="{ 'is-navigating': navigating }" />
     <Transition name="cover">
       <div v-if="!ready" class="page-cover" />
     </Transition>
@@ -15,6 +18,13 @@
 const navRef = ref<{ $el: HTMLElement; menuOpen: boolean; closeMenu: () => void } | null>(null)
 const navHeight = ref(0)
 const ready = ref(false)
+
+// The footer lives outside <NuxtPage>, so the page transition never fades it.
+// Its opacity is driven by `navigating`, toggled from the page transition's
+// leave/enter hooks in app.vue (shared via useState). A revealed footer fades
+// out with the leaving page, then fades back in off-screen after the scroll
+// has snapped to the top.
+const navigating = useState('navigating', () => false)
 
 let observer: ResizeObserver | null = null
 
@@ -40,6 +50,15 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .site {
   min-height: 100dvh;
+}
+
+// Opaque, full-width layer that covers the sticky footer until you scroll
+// past the content — this is what creates the reveal.
+.site-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  background: $bg-base;
 }
 
 main {

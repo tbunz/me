@@ -3,8 +3,6 @@ title: Contact
 description: Get in touch.
 ---
 
-<p class="eyebrow">Contact</p>
-
 <h1 class="statement">Let's Talk</h1>
 
 I'd love to hear from you.  I'm open to full-time, contract, and interesting collaborations.
