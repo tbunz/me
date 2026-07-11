@@ -3,8 +3,6 @@ title: About Me
 description: A short introduction.
 ---
 
-<p class="eyebrow">About</p>
-
 <h1 class="statement">Full-stack product engineer who owns web apps end to end.</h1>
 
 <p class="lead">Ships measurable outcomes across Next.js, Nuxt, TypeScript, AWS, and Shopify, and develops AI-first with tools like Claude Code.</p>

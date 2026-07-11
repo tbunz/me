@@ -34,13 +34,9 @@ h3 { @include type-h3; }
       text-align: center;
     }
 
-    // Extra breathing room under the page eyebrow (About / Contact)
-    .eyebrow:not(.section-label) {
-      margin-bottom: 0.75rem;
-    }
-
     .statement {
       @include type-h2;
+      margin-top: 2.5rem;
       text-align: center;
       text-wrap: balance;
       max-width: min(22ch, 100%);
