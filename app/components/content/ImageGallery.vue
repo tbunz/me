@@ -39,7 +39,7 @@ defineProps<{
 .image-gallery {
   display: grid;
   gap: 1rem;
-  padding: 3rem 0 0;
+  padding: $space-block 0 0;
 
   &--cols-1 {
     grid-template-columns: 1fr;
@@ -75,9 +75,7 @@ defineProps<{
   }
 
   &--cols-1#{&}--tall {
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
+    @include content-column;
   }
 
   &__caption {
@@ -87,12 +85,7 @@ defineProps<{
 
     a {
       margin-left: 0.5em;
-      text-decoration: underline;
-      transition: color $duration-normal $ease-out;
-
-      &:hover {
-        color: $sage;
-      }
+      @include link-underline;
     }
   }
 }

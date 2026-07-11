@@ -19,13 +19,8 @@ h3 { @include type-h3; }
 // ──────────────────────────────────
 
 .page-narrow {
-  max-width: 720px;
-  margin: 0 auto;
+  @include content-column;
   padding-bottom: 128px;
-
-  @include mobile {
-    max-width: 100%;
-  }
 
   > div {
     display: flex;
@@ -35,12 +30,8 @@ h3 { @include type-h3; }
 
     // ── Shared hero (About + Contact) ──
     .eyebrow {
+      @include eyebrow;
       text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 0.75rem;
-      font-weight: $weight-bold;
-      color: $sage;
     }
 
     // Extra breathing room under the page eyebrow (About / Contact)
@@ -66,9 +57,7 @@ h3 { @include type-h3; }
 
     a {
       color: $text-primary;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
-      &:hover { color: $sage; }
+      @include link-underline;
     }
   }
 }

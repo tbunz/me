@@ -59,7 +59,7 @@ $line: rgba($text-secondary, 0.15);
   grid-column: 2;
   grid-row: 3;
   font-size: 0.82rem;
-  color: rgba($text-secondary, 0.7);
+  color: rgba($text-secondary, 0.9);
 }
 
 // ── Along the Way ──

@@ -1,0 +1,45 @@
+// ──────────────────────────────────
+// Reusable Style Recipes
+// ──────────────────────────────────
+// Shared patterns so pages and content components stay in lockstep.
+// Tokens (palette/type/motion/breakpoints) are pulled in for use inside
+// the mixin bodies; components get these via the global _index injection.
+
+@use 'breakpoints' as *;
+@use 'palette' as *;
+@use 'typography' as *;
+@use 'motion' as *;
+
+// Vertical rhythm between stacked content blocks
+$space-block: 3rem;
+
+// Centered reading column — full width on mobile
+@mixin content-column {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include mobile {
+    max-width: 100%;
+  }
+}
+
+// Underlined link with sage hover — one behavior site-wide
+@mixin link-underline {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  transition: color $duration-normal $ease-out;
+
+  &:hover {
+    color: $sage;
+  }
+}
+
+// Small uppercase sage label (category eyebrows / section labels)
+@mixin eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: $weight-bold;
+  color: $sage;
+}
