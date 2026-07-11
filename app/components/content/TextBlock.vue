@@ -21,32 +21,26 @@ defineProps<{
 
 <style lang="scss">
 .text-block {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-
-  @include mobile {
-    max-width: 100%;
-  }
+  @include content-column;
 
   &--lead {
     font-size: $text-h3;
     font-weight: $weight-regular;
     line-height: 1.5;
     color: $text-primary;
-    padding: 3rem 0 0;
+    padding: $space-block 0 0;
   }
 
   &--body {
     @include type-body;
     color: $text-primary;
-    padding: 3rem 0 0;
+    padding: $space-block 0 0;
   }
 
   &--caption {
     @include type-caption;
     color: $text-primary;
-    padding: 3rem 0 0;
+    padding: $space-block 0 0;
   }
 
   ul, ol {
@@ -64,12 +58,7 @@ defineProps<{
   }
 
   a {
-    text-decoration: underline;
-    transition: color $duration-normal $ease-out;
-
-    &:hover {
-      color: $sage;
-    }
+    @include link-underline;
   }
 
   &--left { text-align: left; }
