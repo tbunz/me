@@ -2,8 +2,8 @@
   <style>
     :root { --dur: 1s; }
     .f { visibility: hidden; animation: cycle var(--dur) step-end infinite; }
-    .dk { fill: #000; }
-    .hl { fill: #9E8154; }
+    .dk { fill: #1C1410; }
+    .hl { fill: #A38C68; }
     #f0 { animation-delay: calc(var(--dur) * 0 / 12); }
     #f1 { animation-delay: calc(var(--dur) * 1 / 12); }
     #f2 { animation-delay: calc(var(--dur) * 2 / 12); }

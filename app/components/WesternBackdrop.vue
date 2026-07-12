@@ -1,7 +1,7 @@
 <template>
   <!--
-    Monochrome western backdrop, tuned to sit *behind* the black running horse:
-    everything here is a light muted tan so the horse never blends in.
+    Monochrome western backdrop, tuned to sit *behind* the near-black running
+    horse: everything here is a lighter desert tan so the horse never blends in.
 
     Depth comes from two parallax layers — a small, hazy, slow FAR layer near the
     horizon and a detailed, faster NEAR layer — plus a sun that bobs up and down
@@ -52,8 +52,8 @@ const TILE_COUNT = 3
 .western__sun {
   position: absolute;
   right: 14%;
-  // Sits fixed, low in the sky: just clears the horizon (near ground band, ~19% up).
-  bottom: 21%;
+  // Sits fixed, high in the sky, floating well above the buttes and horse.
+  bottom: 42%;
   height: 26%;
   width: auto;
   z-index: 0;

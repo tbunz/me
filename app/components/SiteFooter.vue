@@ -23,8 +23,8 @@
   z-index: 0;
   // Must stay <= viewport height so the whole footer can be revealed.
   min-height: 50vh;
-  // Placeholder background so the reveal is visible while we build it out.
-  background: $brown-dark;
+  // Desert sky the parallax scene sits against.
+  background: $tan;
   color: $bg-base;
   // Fades out with the leaving page (class toggled by the layout).
   transition: opacity $duration-normal $ease-out;
