@@ -60,6 +60,11 @@ const TILE_COUNT = 3
   z-index: 0;
   image-rendering: pixelated;
   user-select: none;
+
+  // On the taller/narrower mobile footer the moon reads as too low; lift it.
+  @include mobile {
+    bottom: 70%;
+  }
 }
 
 .western__layer {

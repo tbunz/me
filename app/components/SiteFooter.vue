@@ -141,6 +141,17 @@ onBeforeUnmount(() => {
   z-index: 1;
   // Promoted to its own layer so the JS-driven follow stays smooth.
   will-change: transform;
+
+  // On mobile the horse is scaled huge (its height fills the footer) while its
+  // art keeps empty space below the hooves, so its body reads as floating above
+  // the desert ground line. Nudge the whole horse down — top/bottom shift keeps
+  // the size identical and just drops it, with the overflow clipped. Desktop is
+  // untouched. Tune SHIFT to taste (higher = lower on screen).
+  @include mobile {
+    $shift: 10%;
+    top: $shift;
+    bottom: -$shift;
+  }
 }
 
 .site-footer__inner {
