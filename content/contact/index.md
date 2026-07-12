@@ -5,7 +5,7 @@ description: Get in touch.
 
 <h1 class="statement">Let's Talk</h1>
 
-I'd love to hear from you.  I'm open to full-time, contract, and interesting collaborations.
+<p class="lead">I'd love to hear from you. I'm open to full-time, contract, and interesting collaborations.</p>
 
 [trevmickey@gmail.com](mailto:trevmickey@gmail.com)
 
