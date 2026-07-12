@@ -1,6 +1,7 @@
 ---
 title: How I Use AI
-tagline: Faster, with caveats
+tagline: Better, Faster, Stronger
+taglineMobile: Faster
 titleColor: light
 sortOrder: 4
 thumbnails:
@@ -67,7 +68,7 @@ Using AI as an Autonomous Worker
 ::
 
 ::text-block
-When the OpenClaw mania erupted, I too became interested in using AI more autonomously. However, I didn't want to use it for two reasons: I already pay for a Claude subscription, and I had security concerns.
+When the OpenClaw mania erupted, I also became interested in using AI more autonomously. However, I didn't want to use it for two reasons: I already pay for a Claude subscription, and I had security concerns.
 So while on a trip to California I took an afternoon and set up my own autonomous agent.<br><br>
 **Setup**<br>
 I run a cheap cloud server ($10/month) with a Claude Code instance that's always live and has full permissions on the machine. The server runs a script that's connected to a Telegram channel, so I can message Claude any time I want from my phone. It runs constantly and checks back in once it's done with a task, ready for another.

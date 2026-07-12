@@ -1,6 +1,7 @@
 ---
 title: ElevenLabs
 tagline: Headless Shopify, turned up to Eleven
+taglineMobile: Up to Eleven
 sortOrder: 2
 thumbnails:
   - /images/work/elevenlabs/hero.png

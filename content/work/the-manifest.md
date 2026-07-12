@@ -1,6 +1,7 @@
 ---
 title: The Manifest
 tagline: Digital magazine platform built for editorial freedom
+taglineMobile: Editorial freedom
 sortOrder: 1
 thumbnails:
   - /images/work/manifest/hero.png

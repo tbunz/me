@@ -1,6 +1,7 @@
 ---
 title: Airtable as Backend
 tagline: Backend for [REDACTED]
+taglineMobile: REDACTED
 sortOrder: 6
 thumbnails:
   - /images/work/airtable/thumb.png

@@ -42,7 +42,7 @@ import { HAMBURGER_SVG, CLOSE_SVG, FILLER_ICONS } from '~/assets/svg/hamburger-i
 
 const { isMobile, isDesktop } = useBreakpoints()
 const { stop: lenisStop, start: lenisStart } = useLenis()
-const { projectTitle, setProjectTitle } = useProjectTitle()
+const { projectTitle, projectTitleMobile, setProjectTitle } = useProjectTitle()
 const route = useRoute()
 const menuOpen = ref(false)
 
@@ -149,7 +149,12 @@ const titles: Record<string, string> = {
 
 const pageTitle = computed(() => {
   if (titles[route.path]) return titles[route.path]
-  if (route.path.startsWith('/work/')) return projectTitle.value || 'Projects'
+  if (route.path.startsWith('/work/')) {
+    if (!projectTitle.value) return 'Projects'
+    // Prefer the shorter mobile tagline below the breakpoint. isMobile here is
+    // the nav's own (persistent) breakpoint, reliable once mounted.
+    return (isMobile.value && projectTitleMobile.value) || projectTitle.value
+  }
   return 'Projects'
 })
 
@@ -161,14 +166,24 @@ const titleEl = ref<HTMLElement | null>(null)
 let tween: gsap.core.Tween | null = null
 let currentDisplay = initialTitle
 let targetTitle = initialTitle
+// The route the currently-shown title belongs to. Used to distinguish a real
+// navigation (should spin) from a same-page title settling — e.g. the mobile
+// tagline resolving after mount, since `isMobile` is only known client-side.
+let lastRoutePath = route.path
 
 const FILLER_WORDS = [
   'Cimarron Alamo', 'Ride or Die', 'Legumes', 'Wild, Wild, Wild Horses', 'T-Bone', 'Mori', 'Yesterday Blues', 'La Sal', 'Rabbit Ears', 'Te juro que te amo', 'Ouray', 'I aint fresh?', '24 hours', 'Fishigan'
 ]
+// Separate, shorter filler set for mobile so long phrases don't overflow the
+// narrow nav. Curate freely — this list is used only below the breakpoint.
+const FILLER_WORDS_MOBILE = [
+  'Ride', 'Legumes', 'T-Bone', 'Mori', 'La Sal', 'Rabbit Ears', 'Ouray', '24 hours', 'Fishigan', 'Wild Wild', 'Te juro', 'Te amo'
+]
 const ROULETTE_DURATION = 1.5
 
 function buildSequence(current: string, target: string): string[] {
-  const pool = FILLER_WORDS.filter(w => w !== current && w !== target)
+  const words = isMobile.value ? FILLER_WORDS_MOBILE : FILLER_WORDS
+  const pool = words.filter(w => w !== current && w !== target)
   const shuffled = [...pool].sort(() => Math.random() - 0.5)
   return [...shuffled, target]
 }
@@ -229,6 +244,18 @@ function runRoulette(target: string) {
 
 watch(pageTitle, (newTitle) => {
   if (!newTitle || newTitle === targetTitle) return
+  // On a work route, 'Projects' is only ever the fallback shown for the brief
+  // async window before the article's real title/tagline loads. Spinning to it
+  // and then to the real title double-pumps the roulette (start → kill → jump →
+  // restart), so skip it — the real title change fires the single, clean spin.
+  if (newTitle === 'Projects' && route.path.startsWith('/work/')) return
+  // Only spin on an actual navigation. If the route hasn't changed since the
+  // last spin, this title change is just the same page's title settling — most
+  // often the mobile tagline resolving after mount (isMobile is false until the
+  // client mounts). Ignore it so refresh/first-load doesn't play a stray spin,
+  // matching desktop, which shows its title immediately with no animation.
+  if (route.path === lastRoutePath) return
+  lastRoutePath = route.path
   runRoulette(newTitle)
 })
 
