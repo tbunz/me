@@ -70,6 +70,12 @@ defineProps<{
   @include mobile {
     margin-left: -16px;
     width: calc(100% + 32px);
+
+    // Keep the centered title off the screen edges on narrow viewports.
+    .hero-image__title {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
   }
 }
 </style>

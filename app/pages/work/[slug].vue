@@ -22,7 +22,10 @@ if (!project.value || (project.value.draft && !import.meta.dev)) {
   throw createError({ statusCode: 404, statusMessage: 'Project not found' })
 }
 
-setProjectTitle(project.value.tagline || project.value.title)
+// Hand both variants to the nav; it picks desktop vs mobile using its own
+// (persistent, reliably-resolved) breakpoint. Deciding here would be wrong —
+// this component remounts per navigation, so its isMobile is false until mount.
+setProjectTitle(project.value.tagline || project.value.title, project.value.taglineMobile ?? null)
 
 onBeforeUnmount(() => {
   clearProjectTitle()
