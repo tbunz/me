@@ -9,7 +9,7 @@
     ground band clips it as it dips to the horizon.
   -->
   <div class="western" aria-hidden="true">
-    <img class="western__sun" src="/sunset-sun.svg" alt="" draggable="false">
+    <img class="western__sun" src="/sunset-moon.svg" alt="" draggable="false">
 
     <div class="western__layer western__layer--far">
       <img
@@ -52,8 +52,9 @@ const TILE_COUNT = 3
 .western__sun {
   position: absolute;
   right: 14%;
-  // Sits fixed, high in the sky, floating well above the buttes and horse.
-  bottom: 42%;
+  // Sits low, half-setting into the horizon like a sunset; the buttes and near
+  // ground band eclipse its lower edge as the desert scrolls past.
+  bottom: 38%;
   height: 26%;
   width: auto;
   z-index: 0;
@@ -74,11 +75,11 @@ const TILE_COUNT = 3
 // The far layer is opaque (haze comes from its lighter tone) so it occludes the sun.
 .western__layer--far {
   z-index: 1;
-  animation: western-scroll 72s linear infinite;
+  animation: western-scroll 320s linear infinite;
 }
 .western__layer--near {
   z-index: 2;
-  animation: western-scroll 40s linear infinite;
+  animation: western-scroll 110s linear infinite;
 }
 
 .western__tile {
