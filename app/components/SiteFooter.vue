@@ -23,8 +23,9 @@
   z-index: 0;
   // Must stay <= viewport height so the whole footer can be revealed.
   min-height: 50vh;
-  // Desert sky the parallax scene sits against.
-  background: $tan;
+  // Flat monochrome dusk sky: a single deep warm-brown twilight tone (in the
+  // palette's brown family) so the pale desert and cream moon read brightly.
+  background: #40332A;
   color: $bg-base;
   // Fades out with the leaving page (class toggled by the layout).
   transition: opacity $duration-normal $ease-out;
