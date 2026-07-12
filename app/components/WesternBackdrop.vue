@@ -79,7 +79,7 @@ const TILE_COUNT = 3
 }
 .western__layer--near {
   z-index: 2;
-  animation: western-scroll 110s linear infinite;
+  animation: western-scroll 58s linear infinite;
 }
 
 .western__tile {
