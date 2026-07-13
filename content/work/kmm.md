@@ -104,20 +104,49 @@ My Market Making Strategy
 The system is a Python project with 4 layers. An "operator" interacts with the system, to run analysis and initiate trading for a market. As detailed below, the operator is Claude (but the system allows any agent, LLM or human, to act). The architecture:
 ::
 
-::side-note
-TODO TODO TODO<br><br>
-2-up of architecture. one of just the 4 layers, then one of the operator integration points
+::image-gallery
+---
+columns: 2
+images:
+  - src: /images/work/kmm/trading_program_architecture_v2.png
+    alt: Trading Program Architecture
+  - src: /images/work/kmm/telegram_remote_control_flow_v3.png
+    alt: Remote Control Flow
+---
 ::
 
 ::text-block
 **Research / Analysis**
 <br>This suite of tools scans markets and evaluates which are viable for my strategy. It deliberately stops short of a final "score" and instead comprehensively reports across numerous variables, highlighting quantitative signals. The operator considers this analysis, and other qualitative factors, to decide the safety and profitability of a market. 
 <br><br>
-Claude acting as operator is clearly indispensable in this process. It allows efficiency at scale, but specifically allows *qualitative* reasoning at scale. This is extremely important for assessing a markets viability. An example: in my experience, many smaller, niche events have extreme mis-pricings due to extremely low volume. There is simply nobody trading the event, so the "true" market price has not been discovered. Quantitatively, these markets can present as safe and profitable. However, a quick web search would reveal that this market is trading far off base with reality, and price is likely to move. 
+Claude acting as operator is clearly indispensable in this process. It allows efficiency at scale, but specifically allows *qualitative* reasoning at scale. This is extremely important for assessing a markets viability. An example: in my experience, some lesser-known niche events have extreme mis-pricings due to extremely low volume. There is nobody trading the event, so the "true" market price has not been discovered. Quantitatively, these markets can present as safe and profitable. However, a quick web search would reveal that this market is trading far off base with reality, and price is likely to move drastically at some point. 
 <br><br>
-Confirming an event's general probability is difficult to do with Python alone, and essentially impossible across thousands of nuanced, unrelated events. However it is not difficult for an LLM to do research and reason as a sanity check. 
+Confirming an event's general probability is difficult to do with Python alone, and essentially impossible across thousands of nuanced, unrelated events. However it is not difficult for an LLM to do research and reason generally as a sanity check. 
 ::
 
 ::side-note
-[Kalshi Research](https://kalshi.com/research/mission) published a similar finding, where they improved a trading strategy with "an LLM-based semantic stage" to assess "whether the proposed direction admits a plausible economic transmission mechanism based on event descriptions". [https://arxiv.org/abs/2602.07048](https://arxiv.org/abs/2602.07048)
+[Kalshi Research](https://kalshi.com/research/mission) published a finding where they improved a trading strategy with "an LLM-based semantic stage" to assess "whether the proposed direction admits a plausible economic transmission mechanism based on event descriptions". [https://arxiv.org/abs/2602.07048](https://arxiv.org/abs/2602.07048)
+::
+
+::text-block
+**Strategy**
+<br>The strategy layer is where we set the tuning knobs for each market. Using the results from research we set variables such as capital limits, safety parameters, and more. This allows separation of financial decisions from execution of the actual bot.
+::
+
+::text-block
+**Orchestration**
+<br>This layer turns a group of independent market bots into a supervised portfolio. It enforces portfolio level safety, surviving restarts, auto-managing market lifecycle, and exposes controls to the operator during live trading. 
+::
+
+::text-block
+**Execution**
+<br>One asyncio task per market. Each execution instance owns one market end-to-end: its resting orders, its position, its per-market safety, and its cycle loop. The loop checks safety, fetches new orderbook information, makes decisions based on strategy, and logs metrics.
+::
+
+::side-note
+**TODOTDOTODOTDOTODTO**<br><br>
+ Results, with the ceiling attached (~300 words)
+
+Numbers in the right units: markets quoted, uptime, fills survived, incidents contained; the P&L stated once, plainly.
+Then the ceiling: pool sizes, concentration limits, thin supply of safe markets. "Capital isn't the bottleneck; safe markets are."
 ::
