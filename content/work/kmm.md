@@ -35,7 +35,7 @@ columns: 1
 images:
   - src: /images/work/kmm/annotated-orderbook.png
     alt: Annotated Orderbook
-    caption: Claude Opus 4.8
+    caption: Claude Fable 5
 ---
 ::
 
@@ -57,9 +57,9 @@ Imagine a stock that is worth $50 per share. Traders selling the stock are "aski
 ---
 columns: 1
 images:
-  - src: /images/work/kmm/.png
+  - src: /images/work/kmm/spread_capture_three_steps.png
     alt: Annotated Orderbook
-    caption: Claude Opus 4.8
+    caption: Claude Fable 5
 ---
 ::
 
@@ -85,7 +85,7 @@ Initial Research
 ::
 
 ::text-block
-I ran 2 days of simulated paper trading. I used a simple Python script to scan for markets with the largest $/day pools, track price movement, snapshot the orderbook, and loosely simulate how a simple strategy (e.g. quote best bid/ask symmetrically no matter what) would perform. At the end of this data collection, I had a script score my orders and track my PnL from trading activity.
+I ran 2 days of simulated paper trading. I used a Python script to scan for markets with the largest $/day pools, track price movement, snapshot the orderbook, and loosely simulate how a simple strategy (e.g. quote best bid/ask symmetrically no matter what) would perform. At the end of this data collection, I had a script score my orders and track my PnL from trading activity.
 <br><br>
 The results were encouraging. Even with extremely pessimistic adjustments (to account for [adverse selection](https://en.wikipedia.org/wiki/Adverse_selection) and simulation error), I concluded this project would be well worth my time to develop. Key takeaways: 
 - Liquidity rewards were a massive target (Kalshi offering ~$30,000/day across all markets at that time). 
