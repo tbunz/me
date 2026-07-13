@@ -31,14 +31,6 @@ html {
   -moz-tab-size: 4;
   line-height: 1.15;
   -webkit-tap-highlight-color: transparent;
-
-  /* Hide scrollbars (Lenis does not do this automatically) */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-html::-webkit-scrollbar {
-  display: none;
 }
 
 body {

@@ -113,7 +113,11 @@ onBeforeUnmount(() => {
   // Stays behind `.site-content` (z-index: 1) so it's covered until revealed.
   z-index: 0;
   // Must stay <= viewport height so the whole footer can be revealed.
+  // Mobile keeps the original height; desktop is a little taller.
   min-height: 50vh;
+  @include desktop {
+    min-height: 60vh;
+  }
   // Flat monochrome dusk sky: a single deep warm-brown twilight tone (in the
   // palette's brown family) so the pale desert and cream moon read brightly.
   background: #40332A;

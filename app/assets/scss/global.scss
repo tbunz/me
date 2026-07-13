@@ -10,6 +10,71 @@ body {
   background-color: $bg-base;
 }
 
+// ──────────────────────────────────
+// Scrollbar
+// ──────────────────────────────────
+// Tan thumb on a faint track, with brown chevron arrow buttons — tuned to
+// the palette.
+
+// Firefox (no arrow-button / glyph styling available here)
+html {
+  scrollbar-width: thin;
+  scrollbar-color: $brown-dark transparent;
+}
+
+// WebKit / Chromium
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $brown-dark;
+  border-radius: 999px;
+  // Inset the thumb from the track edges for a slimmer pill look.
+  border: 2px solid transparent;
+  background-clip: padding-box;
+
+  &:hover {
+    background-color: $text-primary;
+  }
+}
+
+// Arrow buttons at the ends. The browser's default glyph can't be recoloured,
+// so we draw our own chevron as a background image. Colour is $brown-dark
+// (#6B5340) — keep the `%236B5340` in the data URIs in sync if the var changes.
+::-webkit-scrollbar-button {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-button:vertical:decrement {
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 10 10'%3E%3Cpath d='M5 3L8 7H2Z' fill='%236B5340'/%3E%3C/svg%3E");
+}
+::-webkit-scrollbar-button:vertical:increment {
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 10 10'%3E%3Cpath d='M5 7L2 3H8Z' fill='%236B5340'/%3E%3C/svg%3E");
+}
+::-webkit-scrollbar-button:horizontal:decrement {
+  width: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 10 10'%3E%3Cpath d='M3 5L7 2V8Z' fill='%236B5340'/%3E%3C/svg%3E");
+}
+::-webkit-scrollbar-button:horizontal:increment {
+  width: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 10 10'%3E%3Cpath d='M7 5L3 8V2Z' fill='%236B5340'/%3E%3C/svg%3E");
+}
+// Hide the extra "double button" pieces so only one arrow shows at each end.
+::-webkit-scrollbar-button:start:increment,
+::-webkit-scrollbar-button:end:decrement {
+  display: none;
+}
+
 h1 { @include type-h1; }
 h2 { @include type-h2; }
 h3 { @include type-h3; }
