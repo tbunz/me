@@ -64,7 +64,8 @@ onBeforeUnmount(() => {
 main {
   max-width: 1600px;
   margin: 0 auto;
-  padding: calc(var(--nav-height, 0px) + 16px) 16px 0;
+  // Standard site-wide bottom padding for every page.
+  padding: calc(var(--nav-height, 0px) + 16px) 16px 175px;
   overflow-x: clip;
   transition: filter $duration-normal $ease-out;
 

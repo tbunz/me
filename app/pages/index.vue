@@ -159,7 +159,6 @@ function onTileLeave(e: MouseEvent) {
 <style lang="scss" scoped>
 .home {
   color: $text-secondary;
-  padding-bottom: 128px;
 }
 
 .tiles {
