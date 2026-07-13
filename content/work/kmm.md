@@ -97,7 +97,7 @@ The problem no longer became about market making to capture spread. My goal was 
 ::
 
 ::title-block{subtitle="How it's built and operates"}
-My Market Making Strategy
+My Bot
 ::
 
 ::text-block
@@ -143,10 +143,18 @@ Confirming an event's general probability is difficult to do with Python alone, 
 <br>One asyncio task per market. Each execution instance owns one market end-to-end: its resting orders, its position, its per-market safety, and its cycle loop. The loop checks safety, fetches new orderbook information, makes decisions based on strategy, and logs metrics.
 ::
 
+::title-block{subtitle="and next steps"}
+Metrics and Results
+::
+
 ::side-note
 **TODOTDOTODOTDOTODTO**<br><br>
- Results, with the ceiling attached (~300 words)
 
-Numbers in the right units: markets quoted, uptime, fills survived, incidents contained; the P&L stated once, plainly.
+<br><br>
+
+ Results, with the ceiling attached (~300 words) Numbers in the right units: markets quoted, uptime, fills survived, incidents contained; the P&L stated once, plainly.
 Then the ceiling: pool sizes, concentration limits, thin supply of safe markets. "Capital isn't the bottleneck; safe markets are."
+
+<br><br>
+Next steps
 ::
