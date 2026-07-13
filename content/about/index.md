@@ -48,7 +48,7 @@ description: A short introduction.
 
 <div class="fun-entry">
 <span class="fun-title">Rode a bicycle from Salt Lake City to Des Moines in 16 days</span>
-<span class="fun-desc">around 1400 miles, no rest days. Bikepack style, carrying gear and camping.</span>
+<span class="fun-desc">Around 1400 miles, no rest days. Bikepack style, carrying gear and camping.</span>
 <span class="fun-date">May 2025</span>
 </div>
 
@@ -59,5 +59,5 @@ description: A short introduction.
 
 <div class="fun-entry">
 <span class="fun-title">Favorite book: <em>Tortilla Flat</em> by John Steinbeck</span>
-<span class="fun-desc">Genuinely funny. Reminds me of northern California, a place I love and have spent a lot of time in.</span>
+<span class="fun-desc">Genuinely funny</span>
 </div>
