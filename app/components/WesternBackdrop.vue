@@ -43,10 +43,34 @@ const TILE_COUNT = 3
 </script>
 
 <style lang="scss" scoped>
+// Desktop only: raise the horizon by shifting the whole desert (mesas, buttes
+// and ground line) up as a unit at its natural size, so the galloping horse's
+// hooves meet the ground line more clearly. Tune to taste (higher = horizon
+// sits higher on screen). Mobile is untouched.
+$ground-lift: 7%;
+
 .western {
   position: absolute;
   inset: 0;
   overflow: hidden;
+
+  // Lifting the desert up exposes a strip of bare footer at the very bottom;
+  // backfill it with the solid ground tone (`#8B7256`, the desert's base fill)
+  // so the ground still reads flush to the footer's bottom edge — no gap. Sits
+  // with the near ground band (same colour → seamless) and only spans the
+  // bottom sliver, so it never touches the mesas above.
+  @include desktop {
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: $ground-lift + 2%;
+      background: #8B7256;
+      z-index: 2;
+    }
+  }
 }
 
 .western__sun {
@@ -61,6 +85,12 @@ const TILE_COUNT = 3
   image-rendering: pixelated;
   user-select: none;
 
+  // Desktop only: rise with the lifted desert (by $ground-lift) plus a small
+  // extra nudge so the moon sits a touch higher in the sky.
+  @include desktop {
+    bottom: 38% + $ground-lift + 17%;
+  }
+
   // On the taller/narrower mobile footer the moon reads as too low; lift it.
   @include mobile {
     bottom: 70%;
@@ -74,6 +104,13 @@ const TILE_COUNT = 3
   align-items: flex-end;
   width: max-content;
   will-change: transform;
+
+  // Shift the bottom-anchored tiles (ground + mesas/buttes) up together, sizes
+  // unchanged. The tan `::after` above backfills the strip this opens up.
+  @include desktop {
+    top: -$ground-lift;
+    bottom: $ground-lift;
+  }
 }
 
 // Distant: slow. Nearer: faster. (Horse runs right → world slides left.)

@@ -12,3 +12,6 @@ description: Get in touch.
 <a href="https://www.linkedin.com/in/trevro/" target="_blank">LinkedIn</a>
 
 <a href="https://github.com/tbunz" target="_blank">GitHub</a>
+
+::deer-skull
+::
