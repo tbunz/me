@@ -35,7 +35,6 @@ columns: 1
 images:
   - src: /images/work/kmm/annotated-orderbook.png
     alt: Annotated Orderbook
-    caption: Claude Fable 5
 ---
 ::
 
@@ -59,7 +58,6 @@ columns: 1
 images:
   - src: /images/work/kmm/spread_capture_three_steps.png
     alt: Annotated Orderbook
-    caption: Claude Fable 5
 ---
 ::
 
@@ -143,8 +141,19 @@ Confirming an event's general probability is difficult to do with Python alone, 
 <br>One asyncio task per market. Each execution instance owns one market end-to-end: its resting orders, its position, its per-market safety, and its cycle loop. The loop checks safety, fetches new orderbook information, makes decisions based on strategy, and logs metrics.
 ::
 
-::title-block{subtitle="and next steps"}
-Metrics and Results
+::title-block{subtitle="Metrics, takeaways, next steps"}
+Results
+::
+
+::image-gallery
+---
+columns: 2
+images:
+  - src: /images/work/kmm/trading_results_summary.png
+    alt: Trading Results Summary
+  - src: /images/work/kmm/results-summary-16x9.png
+    alt: Results PnL
+---
 ::
 
 ::side-note
