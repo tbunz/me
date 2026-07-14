@@ -49,7 +49,7 @@ Market Making
 ::text-block
 In its simplest form†, a market-making strategy does not "take a side" or try to predict if the price will change, but rather places orders on both sides of the book. By simultaneously buying and selling, market makers attempt to capture the "spread" between the best sell price and best buy price. Ultimately, a maker provides liquidity to a market, which ["stabilizes the market, reducing price variation"](https://en.wikipedia.org/wiki/Market_maker).
 <br><br>
-Imagine a stock that is worth $50 per share. Traders selling the stock are "asking" $51 for it, while buyers are "bidding" $49. A market maker would place a sell order for $51, and simultaneously place a buy order for $49. Some other trader decides to sell their stock, and hits the maker's buy order. The market maker is now holding a share of the stock and is -$49 cash. However, another trader comes forward and wants to buy the stock at the $51 sell order price††. This is executed, and the maker is left with no stock but +$2. This is spread capture: the basic goal of market making.  
+Imagine a stock that is worth $50 per share. Traders selling the stock are "asking" $51 for it, while buyers are "bidding" $49. A market maker would place a sell order for $51, and simultaneously place a buy order for $49. Some trader decides to sell their stock, and hits the maker's buy order. The market maker is now holding a share of the stock and is -$49 cash. However, another trader comes forward and wants to buy the stock at the $51 sell order price††. This is executed, and the maker is left with no stock but +$2. This is spread capture: the basic goal of market making.  
 ::
 
 ::image-gallery
@@ -62,7 +62,7 @@ images:
 ::
 
 ::side-note
-† Complex market-making strategies do in fact estimate a fair price, and use it to "skew" or inform their order placement (e.g. loading up more orders to buy than sell if the price is more likely to move up). Sophisticated institutional market makers can be expected to employ a myriad of advanced strategies beyond the simplistic "quote buy and sell, capture the spread", but that is the basic mechanism.  
+† Complex market-making strategies do in fact estimate a fair price, and use it to "skew" or inform their order placement (e.g. loading up more orders to buy than sell if the price is more likely to move up). Sophisticated institutional market makers can be expected to employ a myriad of advanced strategies beyond "quote buy and sell, capture the spread", but that is the basic mechanism.  
 ::
 
 ::side-note
@@ -117,13 +117,15 @@ images:
 **Research / Analysis**
 <br>This suite of tools scans markets and evaluates which are viable for my strategy. It deliberately stops short of a final "score" and instead reports comprehensively on numerous variables, highlighting quantitative signals. The operator considers this analysis, and other qualitative factors, to decide the safety and profitability of a market. 
 <br><br>
-Claude acting as operator is clearly indispensable in this process. It allows efficiency at scale, but specifically enables *qualitative* reasoning at scale. This is extremely important for assessing a market's viability. An example: in my experience, some lesser-known niche events have extreme mispricings due to very low volume. There is nobody trading the event, so the "true" market price has not been discovered. Quantitatively, these markets can present as safe and profitable. However, a quick web search would reveal that this market is trading far from reality, and the price is likely to move drastically at some point. 
+Claude acting as operator is clearly indispensable in this process. It allows efficiency at scale, but specifically enables *qualitative* reasoning at scale. This is extremely important for assessing a market's viability. An example: in my experience, some lesser-known niche events have extreme mispricings due to very low volume. There is nobody trading the event, so the "true" market price has not been discovered. Quantitatively, these markets can present as safe and profitable. However, a quick web search would reveal that this market is trading far from reality, and the price is likely to swing. 
 <br><br>
 Confirming an event's general probability is difficult to do with Python alone, and essentially impossible across thousands of nuanced, unrelated events. However, it is not difficult for an LLM to do research and reason generally as a sanity check. 
 ::
 
 ::side-note
 [Kalshi Research](https://kalshi.com/research/mission) published a finding where they improved a trading strategy with "an LLM-based semantic stage" to assess "whether the proposed direction admits a plausible economic transmission mechanism based on event descriptions". [https://arxiv.org/abs/2602.07048](https://arxiv.org/abs/2602.07048)
+<br><br>
+This finding is in line with an observation from this project: LLMs are extremely useful for a sort of "plausibility analysis" to test the results of quantitative conclusions against heuristics.
 ::
 
 ::text-block
@@ -171,8 +173,8 @@ Over the course of 16 weeks I have been able to turn a profit, maintaining a ste
 
 ::text-block
 **Takeaways**
-- The liquidity rewards proved to be the main source of profit. My profit was the result of liquidity incentives *minus* losses from adverse selection. Simply put, with a naive spread capture strategy, most of my round-trip buy/sell trades were at a loss. The problem became: maximize rewards, minimize losses on trades.
-- This strategy is neither reliable nor sustainable. The liquidity incentives program is at the discretion of Kalshi and their business goals. If they decided to reduce the program, change the requirements, or end it entirely, this strategy would not be profitable. Some weeks were less profitable for my bot entirely because Kalshi had fewer reward pools active. 
+- The liquidity rewards proved to be the main source of profit. Gains were the result of liquidity incentives *minus* losses from adverse selection. Simply put, with a naive spread capture strategy, most of my round-trip buy/sell trades were at a loss. The problem became: maximize rewards, minimize losses on trades.
+- This strategy is neither reliable nor sustainable. The liquidity incentives program is at the discretion of Kalshi and their business goals. If they decided to reduce the program, change the requirements, or end it entirely, this bot would not be profitable. Some weeks were less profitable entirely because Kalshi had fewer reward pools active. 
 - However, assuming the program continues in a similar form, there are many achievable improvements to increase PnL within the current strategy.
 - **AI continues to be useful, productive, and essential to my development work.** This project would not have been possible for me to develop effectively in a short period of time without it.
 ::
@@ -182,11 +184,11 @@ Over the course of 16 weeks I have been able to turn a profit, maintaining a ste
 <br>
 I have numerous improvements planned for the bot in its current paradigm:
 - enhanced position management
-- deep research on markets with recurring pools for better order skewing
+- deep research and modeling of markets for better quoting
 - implementation of [academically rigorous algorithms](https://people.orie.cornell.edu/sfs33/LimitOrderBook.pdf)
-- an extended API layer connecting to Polymarket to expand the field of markets (Polymarket has a similar incentives program)
+- an extended API layer to access other prediction market platforms such as [Polymarket](https://polymarket.com/) (they have a similar incentives program)
 <br>
-However, given that the profit model is reliant on subsidy programs, I would like to move towards an actual spread capture strategy for the long term. I am beginning to explore advanced strategies that will lead in this direction. I will take much of what I've developed here and apply it to this new iteration. As long as they exist, liquidity rewards will still guide my market selection, even as I move towards a strategy that does not totally rely on them.
+However, given that the profit model is reliant on subsidy programs, I would like to move towards an actual spread capture strategy for the long term. I am beginning to explore advanced strategies that will lead in this direction. I will take much of what I've developed here and apply it to this new iteration. As long as they exist, liquidity rewards will guide my market selection, even as I move towards a strategy that does not totally rely on them.
 <br><br>
-I have no delusions about breaking into mainstream financial markets as an independent market maker. However, I will continue developing strategies in the emergent realm of prediction markets, gaining knowledge and small returns along the way.
+I have no delusions about breaking into mainstream financial markets as an independent market maker. However, I will continue developing strategies in the emergent realm of prediction markets, pursuing experience and small returns along the way.
 ::
