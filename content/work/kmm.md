@@ -2,7 +2,7 @@
 title: Market Maker
 tagline: Money for Nothing
 sortOrder: 3
-draft: true
+draft: false
 titleColor: light
 thumbnails:
   - /images/work/kmm/v2_flux_abstract_1920x1080.png
