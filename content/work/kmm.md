@@ -156,14 +156,37 @@ images:
 ---
 ::
 
+::text-block
+**PnL so far: +$1,081.93** (fees included†)
+<br>
+Over the course of 16 weeks I have been able to turn a profit. I have been able to maintain a steady (albeit modest) income with my strategy, utlizing a relatively small personal amount of funds. The gains are unimpressive in absolute terms, but the costs of the project are low: 
+- Minor risk in terms of actual dollars
+- Usage of my Claude subscription (that I would have anyways even without this project)
+- $10/month for a cloud server
+::
+
 ::side-note
-**TODOTDOTODOTDOTODTO**<br><br>
+† Generally, Kalshi [only charges fees](https://kalshi.com/fee-schedule) to takers (orders that immediately match and execute on the orderbook) and *not* makers (orders that rest on the book). Since I was placing mostly placing resting orders, most of my trading was fee-less. However, my bot did incur some fees as a taker when it crosses the spread to buy/sell for strategic and safety reasons. 
+::
 
+::text-block
+**Takeaways**
+- The liquidity rewards proved to be the main reward. My profit was the result of liquidity incentives *minus* losses from adverse selection. Simply put, with a naive spread capture strategy, most of my round-trip buy/sell trades were at a loss. The problem became: maximize rewards, minimize losses on trades.
+- This strategy is not reliable nor sustainable. The liquidity incentives program is at the discretion of Kalshi and their business goals. If they decided to reduce the program, change the requirements, or end it entirely, this strategy would not be profitable. Some weeks were less profitable for my bot entirely because Kalshi had fewer reward pools active. 
+- However, assuming the program continues in a similar form, there are a lot of achievable improvements to increase PnL within the current strategy.
+- **AI continues to be useful, productive, and essential to my development work.** This project would not have been possible for me to develop effectively in a short period of time without it.
+::
+
+::text-block
+**Next Steps**
+<br>
+I have numerous improvements planned for the bot in its current paradigm:
+- enhanced position management
+- deep research on markets with recurring pools for better order skewing
+- implementing some [academically rigorous algorithms](https://people.orie.cornell.edu/sfs33/LimitOrderBook.pdf)
+- extend the API layer to connect to Polymarket to expand field of markets (Polymarket has a similar incentives program)
+<br>
+However, given that the profit model is reliant on subsidy programs, I would like to move towards an actual spread capture strategy for the long term. I am beginning to explore advanced strategies that will lead in this direction. I will take much of what I've developed here and apply it to this new iteration. While they exist, liquidity rewards will still guide my market selection, even as I move towards a strategy that does not totally rely on them.
 <br><br>
-
- Results, with the ceiling attached (~300 words) Numbers in the right units: markets quoted, uptime, fills survived, incidents contained; the P&L stated once, plainly.
-Then the ceiling: pool sizes, concentration limits, thin supply of safe markets. "Capital isn't the bottleneck; safe markets are."
-
-<br><br>
-Next steps
+I have no delusions about breaking into mainstream financial markets as an independent market maker. However, I will continue developing strategies in the emergent realm of prediction markets, gaining knowledge and small returns along the way.
 ::
