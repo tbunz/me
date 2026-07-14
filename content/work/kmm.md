@@ -79,7 +79,7 @@ Motivation
 ::
 
 ::text-block
-I had been wanting to work on an automated market-making strategy for a few months, and this program caught my attention. First, prediction markets are an emerging financial frontier, and I assumed the barrier to entry would be lower than in well-established financial markets. Second, the existence of the liquidity incentive program gave the project a higher chance of some success (or a higher chance of smaller losses). I have no formal background in financial markets or quantitative analysis, but I have general financial literacy and know my way around some code. LLMs had been supercharging my dev work for months, but I wanted to see if I could use them to develop a project in an area that I knew nothing about.
+I had been wanting to work on an automated market-making strategy for a few months, and Kalshi's incentive program caught my attention. First, prediction markets are an emerging financial frontier, and I assumed the barrier to entry would be lower than in well-established financial markets. Second, the existence of the liquidity incentive program gave the project a higher chance of some success (or a higher chance of smaller losses). I have no formal background in financial markets or quantitative analysis, but I have general financial literacy and know my way around some code. LLMs had been supercharging my dev work for months, but I wanted to see if I could use them to develop a project in an area that I knew nothing about.
 ::
 
 ::title-block{subtitle="Two days of paper trading changed the goal."}
@@ -103,7 +103,7 @@ The System
 ::
 
 ::text-block
-The system is a Python project with four layers, designed around an "operator" who runs analysis, approves markets, and initiates trading. The operator is Claude. The system allows any agent, LLM or human, to act as operator, but it was built AI-first, and Claude runs it day to day. The architecture:
+Under the hood, it's a Python project with four layers, designed around an "operator" who runs analysis, approves markets, and initiates trading. The operator is Claude. The system allows any agent, LLM or human, to act as operator, but it was built AI-first, and Claude runs it day to day. The architecture:
 ::
 
 ::image-gallery
@@ -153,6 +153,15 @@ The Operator
 A typical session starts from my phone. Over Telegram, I ask Claude for a status report: which markets we're in, how much capital is deployed where, and how each position is doing. Depending on the answer, I have it adjust a market's parameters, or kick off the analysis pipeline. The pipeline runs quantitative research on candidate markets, then Claude layers on qualitative research: web searches on the actual event behind each market, sanity-checking that the price reflects reality. It reports back with a summary and a suggested strategy per market. I approve or reject every market before capital is deployed.
 ::
 
+::image-gallery
+---
+columns: 1
+images:
+  - src: /images/work/kmm/market_approval_funnel.png
+    alt: Market Approval Funnel
+---
+::
+
 ::text-block
 This is the remote control flow diagrammed above. Claude operates with full permissions. It can open and close positions manually, start and stop individual market bots, and kill the whole system if needed. It messages me when it needs clarification, when something is beyond its control, or simply to summarize what it has done. By capability, Claude can do nearly everything I can; by convention, new capital always waits for my approval. In practice, I run a live trading operation from a chat thread on my phone.
 ::
@@ -197,7 +206,7 @@ Over 16 weeks of live trading I have maintained a steady (albeit modest) profit.
 ::text-block
 **Takeaways**
 - The thesis held: liquidity rewards were the main source of profit. My gains were liquidity incentives *minus* losses from adverse selection. With a naive spread capture strategy, most round-trip trades lost money; the rewards more than covered them.
-- This strategy is neither reliable nor sustainable. The liquidity incentives program is at the discretion of Kalshi and their business goals. If they decided to reduce the program, change the requirements, or end it entirely, this bot would not be profitable. Some weeks were less profitable entirely because Kalshi had fewer reward pools active. 
+- This strategy is neither reliable nor sustainable. The liquidity incentives program exists at Kalshi's discretion and serves their business goals. If they decided to reduce the program, change the requirements, or end it entirely, this bot would not be profitable. Some weeks were less profitable entirely because Kalshi had fewer reward pools active. 
 - However, assuming the program continues in a similar form, there are many achievable improvements to increase PnL within the current strategy.
 - **AI continues to be useful, productive, and essential to my development work.** This project would not have been possible for me to develop effectively in a short period of time without it.
 ::
