@@ -1,6 +1,6 @@
 ---
 title: Market Maker
-tagline: Free Lunch?
+tagline: Money for Nothing
 sortOrder: 3
 draft: true
 titleColor: light
@@ -22,7 +22,7 @@ I built an AI-powered trading system that earns real money on prediction markets
 ::
 
 ::side-note
-**TLDR**: Claude wrote this trading system and Claude runs it. I planned the architecture, direct operations from a Telegram thread, and approve every market; the bot quotes prediction markets on Kalshi to earn the platform's liquidity incentives. Seeded with $650, it has returned +$1,081.93 over 16 weeks (+166%, fees included). A solo project in a domain I had no background in, live within two days of the first line of code.
+**TLDR**: An AI-operated trading system that earns real money on Kalshi's prediction markets. I planned the architecture, direct operations from a Telegram thread, and approve every market; Claude wrote the code and runs it day to day, quoting markets to earn the platform's liquidity incentives. Seeded with $650, it has returned +$1,081.93 over 16 weeks (+166%, fees included). A solo project in a domain I had no background in, live within two days of the first line of code.
 ::
 
 ::title-block{subtitle="Kalshi pays traders to provide liquidity."}
