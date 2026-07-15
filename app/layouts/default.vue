@@ -49,7 +49,9 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .site {
-  min-height: 100dvh;
+  // lvh (static "toolbar-hidden" height) so the toolbar toggling never resizes
+  // the page — guarantees full coverage at the tallest viewport without jumps.
+  min-height: 100lvh;
 }
 
 // Opaque, full-width layer that covers the sticky footer until you scroll
@@ -57,17 +59,27 @@ onBeforeUnmount(() => {
 .site-content {
   position: relative;
   z-index: 1;
-  min-height: 100dvh;
+  min-height: 100lvh; // static (see .site) — no resize on toolbar toggle
   background: $bg-base;
 }
 
 main {
+  // Single source of truth for the page's horizontal gutter. Full-bleed
+  // components (e.g. HeroImage) break out by referencing this, so they stay
+  // in sync when the value changes per-breakpoint.
+  --page-gutter: 16px;
+
   max-width: 1600px;
   margin: 0 auto;
   // Standard site-wide bottom padding for every page.
-  padding: calc(var(--nav-height, 0px) + 16px) 16px 175px;
+  padding: calc(var(--nav-height, 0px) + 16px) var(--page-gutter) 175px;
   overflow-x: clip;
   transition: filter $duration-normal $ease-out;
+
+  // Tighter side padding on mobile buys a little more line width for prose.
+  @include mobile {
+    --page-gutter: 12px;
+  }
 
   &.is-blurred {
     filter: blur(4px);

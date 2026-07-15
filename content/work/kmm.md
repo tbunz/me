@@ -103,7 +103,7 @@ The System
 ::
 
 ::text-block
-Under the hood, it's a Python project with four layers, designed around an "operator" who runs analysis, approves markets, and initiates trading. The operator is Claude. The system allows any agent, LLM or human, to act as operator, but it was built AI-first, and Claude runs it day to day. The architecture:
+Under the hood, it's a Python project with four layers, designed around an "operator" who runs analysis, approves markets, and initiates trading. The operator is Claude. The system allows any agent, LLM or human, to act as operator, but I have Claude run it day to day. The architecture:
 ::
 
 ::image-gallery
