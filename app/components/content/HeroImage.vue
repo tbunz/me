@@ -68,8 +68,9 @@ defineProps<{
   }
 
   @include mobile {
-    margin-left: -16px;
-    width: calc(100% + 32px);
+    // Break out of the page gutter to sit edge-to-edge (mirrors main's padding).
+    margin-left: calc(-1 * var(--page-gutter, 16px));
+    width: calc(100% + var(--page-gutter, 16px) * 2);
 
     // Keep the centered title off the screen edges on narrow viewports.
     .hero-image__title {
