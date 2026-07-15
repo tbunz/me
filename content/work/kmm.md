@@ -1,6 +1,6 @@
 ---
 title: Market Maker
-tagline: Money for Nothing
+tagline: Paid to Rest
 sortOrder: 3
 draft: false
 titleColor: light
