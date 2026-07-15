@@ -34,7 +34,9 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .project :deep(.hero-image) {
-  height: calc(100dvh - var(--nav-height, 0px));
+  // svh (static) rather than dvh so the toolbar show/hide doesn't resize the
+  // hero mid-scroll — see HeroImage.vue for the full rationale.
+  height: calc(100svh - var(--nav-height, 0px));
   margin-top: -16px;
 }
 </style>

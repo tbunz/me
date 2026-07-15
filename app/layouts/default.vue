@@ -49,7 +49,9 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .site {
-  min-height: 100dvh;
+  // lvh (static "toolbar-hidden" height) so the toolbar toggling never resizes
+  // the page — guarantees full coverage at the tallest viewport without jumps.
+  min-height: 100lvh;
 }
 
 // Opaque, full-width layer that covers the sticky footer until you scroll
@@ -57,7 +59,7 @@ onBeforeUnmount(() => {
 .site-content {
   position: relative;
   z-index: 1;
-  min-height: 100dvh;
+  min-height: 100lvh; // static (see .site) — no resize on toolbar toggle
   background: $bg-base;
 }
 

@@ -34,7 +34,7 @@ html {
 }
 
 body {
-  min-height: 100dvh;
+  min-height: 100lvh; /* static viewport unit — avoids resize on mobile toolbar toggle */
   line-height: 1.5;
 }
 

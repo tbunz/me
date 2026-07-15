@@ -28,7 +28,10 @@ defineProps<{
   display: block;
   width: min(100vw, 1568px);
   margin-left: calc(-1 * min(50vw, 784px) + 50%);
-  height: 100dvh;
+  // svh (not dvh): static "toolbar-visible" height so the hero doesn't resize
+  // when the mobile browser toolbar shows/hides on scroll — that live resize
+  // changes document height mid-scroll and makes Lenis snap/jump.
+  height: 100svh;
   position: relative;
   overflow: hidden;
 
