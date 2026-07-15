@@ -29,18 +29,16 @@ defineProps<{
     line-height: 1.5;
     color: $text-primary;
     padding: $space-block 0 0;
+
+    @include mobile {
+      font-size: $text-h3-mobile;
+    }
   }
 
   &--body {
     @include type-body;
     color: $text-primary;
     padding: $space-block 0 0;
-
-    // Slightly smaller on mobile so a few more words fit per line, which
-    // tightens the ragged right edge on the narrow reading column.
-    @include mobile {
-      font-size: 1.0625rem; // 17px
-    }
   }
 
   &--caption {
