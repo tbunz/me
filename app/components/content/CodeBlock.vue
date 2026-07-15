@@ -48,10 +48,12 @@ function onWheel(e: WheelEvent) {
   }
 
   &__lang {
-    @include type-caption;
+    // No type-caption here: its mobile step would out-cascade the pinned
+    // 12px size below. This label stays 12px at all widths.
     color: rgba(#fff, 0.3);
     text-transform: uppercase;
     font-size: 0.75rem;
+    font-weight: $weight-regular;
     letter-spacing: 0.05em;
   }
 

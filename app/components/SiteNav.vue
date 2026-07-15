@@ -314,6 +314,10 @@ defineExpose({ menuOpen, closeMenu })
   @include type-h2;
   font-weight: $weight-bold;
 
+  @include mobile {
+    font-size: $text-h2; // nav pinned to original size
+  }
+
   &--sizer {
     display: block;
     visibility: hidden;
