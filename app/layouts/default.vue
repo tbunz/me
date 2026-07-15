@@ -76,9 +76,10 @@ main {
   overflow-x: clip;
   transition: filter $duration-normal $ease-out;
 
-  // Tighter side padding on mobile buys a little more line width for prose.
+  // Slightly tighter side padding on mobile buys a little more line width
+  // for prose without the text feeling edge-to-edge.
   @include mobile {
-    --page-gutter: 12px;
+    --page-gutter: 14px;
   }
 
   &.is-blurred {
