@@ -3,9 +3,9 @@ title: About Me
 description: A short introduction.
 ---
 
-<h1 class="statement">Full-stack product engineer who owns web apps end to end.</h1>
+<h1 class="statement">Full-stack product engineer who builds and runs AI systems.</h1>
 
-<p class="lead">Ships measurable outcomes across Next.js, Nuxt, TypeScript, AWS, and Shopify, and develops AI-first with tools like Claude Code.</p>
+<p class="lead">Runs a live AI trading system and evaluates frontier models. Ships products end to end with Next.js, Nuxt, and TypeScript.</p>
 
 <h2 class="eyebrow section-label">Experience</h2>
 
@@ -71,7 +71,7 @@ description: A short introduction.
 </div>
 
 <div class="fun-entry">
-<span class="fun-title">Favorite rapper</span>
+<span class="fun-title">Favorite rapper: Rylo Rodriguez</span>
 <div class="fun-embed">
 <iframe src="https://open.spotify.com/embed/artist/0gg11prPP6OqtUvBcKnPpq?utm_source=generator&si=840e1525ebce4aa4" width="100%" height="352" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Rylo Rodriguez on Spotify"></iframe>
 </div>
