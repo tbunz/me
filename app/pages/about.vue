@@ -86,6 +86,16 @@ $line: rgba($text-secondary, 0.15);
   letter-spacing: 0.04em;
   color: rgba($text-secondary, 0.75);
 }
+.about :deep(.fun-embed) {
+  margin-top: 0.75rem;
+  width: 100%;
+
+  iframe {
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+  }
+}
 
 @include mobile {
   .about :deep(.rail-entry) {
