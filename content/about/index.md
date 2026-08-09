@@ -10,6 +10,19 @@ description: A short introduction.
 <h2 class="eyebrow section-label">Experience</h2>
 
 <div class="rail-entry">
+<span class="rail-date">Apr 2026 – Present</span>
+<span class="rail-role">Agentic Coding Evaluation — <a href="https://www.surgehq.ai/" target="_blank">Surge AI</a> (Contract)</span>
+<span class="rail-desc">Evaluate frontier LLM performance on agentic coding tasks and contribute to AI benchmark development; write and review code for model training and evaluation.</span>
+</div>
+
+<div class="rail-entry">
+<span class="rail-date">Apr 2026 – Present</span>
+<span class="rail-role">Independent Project — <a href="/work/kmm">Kalshi AI Trading System</a></span>
+<span class="rail-desc">Built and operate a live trading system on Kalshi's prediction markets: Claude analyzes markets and recommends positions, with execution and risk controlled by hard-coded capital and loss limits.</span>
+<span class="rail-stack">Python · Claude (agentic) · Telegram</span>
+</div>
+
+<div class="rail-entry">
 <span class="rail-date">Aug 2025 – Mar 2026</span>
 <span class="rail-role">Full-Stack Engineer — <a href="https://studiofreight.com/" target="_blank">Studio Freight</a> (Contract)</span>
 <span class="rail-desc">Built and owned entire sites end to end for e-commerce, marketing, and events.</span>
@@ -58,6 +71,8 @@ description: A short introduction.
 </div>
 
 <div class="fun-entry">
-<span class="fun-title">Favorite book: <em>Tortilla Flat</em> by John Steinbeck</span>
-<span class="fun-desc">Genuinely funny</span>
+<span class="fun-title">Favorite rapper</span>
+<div class="fun-embed">
+<iframe src="https://open.spotify.com/embed/artist/0gg11prPP6OqtUvBcKnPpq?utm_source=generator&si=840e1525ebce4aa4" width="100%" height="352" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Rylo Rodriguez on Spotify"></iframe>
+</div>
 </div>
