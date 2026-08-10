@@ -73,6 +73,6 @@ description: A short introduction.
 <div class="fun-entry">
 <span class="fun-title">Favorite rapper: Rylo Rodriguez</span>
 <div class="fun-embed">
-<iframe src="https://open.spotify.com/embed/artist/0gg11prPP6OqtUvBcKnPpq?utm_source=generator&si=840e1525ebce4aa4" width="100%" height="352" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Rylo Rodriguez on Spotify"></iframe>
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO05iVdV?utm_source=generator&si=20a0993cc29b4003" width="100%" height="352" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="This Is Rylo Rodriguez on Spotify"></iframe>
 </div>
 </div>
